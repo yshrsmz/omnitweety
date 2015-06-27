@@ -1,0 +1,7 @@
+.idea/
+app/
+node_modules/
+*.iml
+app.zip
+omnitweety.zip
+apikey.js

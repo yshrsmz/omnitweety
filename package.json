@@ -1,0 +1,25 @@
+{
+  "name": "bartweet",
+  "version": "0.0.1",
+  "description": "Update your Twitter status right from Chrome's Omnibox (URL bar).",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/yshrsmz/bartweet"
+  },
+  "author": "yshrsmz",
+  "license": "ISC",
+  "devDependencies": {
+    "del": "^1.2.0",
+    "event-stream": "^3.3.1",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^5.1.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-if": "^1.2.5",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.2.0"
+  }
+}
