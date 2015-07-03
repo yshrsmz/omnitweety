@@ -1,6 +1,6 @@
 {
   "name": "bartweet",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Update your Twitter status right from Chrome's Omnibox (URL bar).",
   "main": "gulpfile.js",
   "scripts": {
