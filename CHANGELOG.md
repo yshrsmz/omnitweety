@@ -1,7 +1,12 @@
 Change Log
 ===
 
-Version 0.1.0 *(2015-7-3)*
+Version 0.2.1 *(2015-7-8)*
+--------------------------
+
+- FIX: Cannot share url with multiple query parameters
+
+Version 0.2.0 *(2015-7-3)*
 --------------------------
 
 - Rewrite `background.js` from scratch.
