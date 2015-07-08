@@ -72,7 +72,7 @@ class OmniTweety {
                         }
 
                         chrome.omnibox.setDefaultSuggestion({
-                            description: message
+                            description: this.escapeText(message)
                         });
                     });
                 });
@@ -161,6 +161,14 @@ class OmniTweety {
         }
 
         return `${prefix}: ${title} ${url}`;
+    }
+
+    escapeText(text) {
+        return text.replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, "&apos;")
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
     }
 
 }
