@@ -1,6 +1,11 @@
 Change Log
 ===
 
+Version 0.2.2 *(2015-7-10)*
+---------------------------
+
+- Update extension's description
+
 Version 0.2.1 *(2015-7-8)*
 --------------------------
 

@@ -2,8 +2,8 @@
     "name": "Omnitweety",
     "short_name": "Omnitweety",
     "manifest_version": 2,
-    "version": "0.2.1",
-    "description": "Update your Twitter status right from Chrome's Omnibox (URL bar).",
+    "version": "0.2.2",
+    "description": "Tweet your status & share what you are browsing now, from Omnibox(URL bar)!",
     "omnibox": {"keyword": "tw"},
     "icons": {
         "128": "assets/icon_128.png",
