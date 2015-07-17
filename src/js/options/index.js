@@ -3,7 +3,7 @@
 import React from 'react';
 import Router from 'react-router';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import Routes from './Routes';
+import Routes from './routes';
 
 if (typeof window !== 'undefined') {
     window.React = React;
