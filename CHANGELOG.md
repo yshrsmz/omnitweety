@@ -1,8 +1,8 @@
 Change Log
 ===
 
-Version 0.3.0
--------------
+Version 0.3.0 *(TBD)*
+---------------------
 
 - NEW: Options page
 
