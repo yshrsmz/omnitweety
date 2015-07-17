@@ -33,7 +33,15 @@ gulp.task('babel', function() {
             .pipe(babel({stage:1}))
             .pipe(gulpif(isProduction, uglify()))
             .pipe(concat('background.min.js'))
-            .pipe(gulp.dest('./app/js'))
+            .pipe(gulp.dest('./app/js')),
+
+        gulp.src([
+            './src/js/options/options.js'
+        ])
+          .pipe(babel({stage:1}))
+          .pipe(gulpif(isProduction, uglify()))
+          .pipe(concat('options.min.js'))
+          .pipe(gulp.dest('./app/js'))
     );
 });
 
