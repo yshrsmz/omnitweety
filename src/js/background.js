@@ -10,8 +10,12 @@ class OmniTweety {
         return 'https://api.twitter.com/1.1/help/configuration.json';
     }
 
-    static get shareCommand() {
-        return /^:share\s?/;
+    static get shareCommandRegExp() {
+        return /^:share(\s*|\s+[\w\W]*)$/;
+    }
+
+    static get shareTextRegExp() {
+        return /^:share\s+([\w\W]+)$/;
     }
 
     constructor() {
@@ -47,9 +51,22 @@ class OmniTweety {
     }
 
     isShareCommand(text) {
-        return OmniTweety.shareCommand.test(text);
+        return OmniTweety.shareCommandRegExp.test(text);
     }
 
+    getShareUserContent(text) {
+        let ary = OmniTweety.shareTextRegExp.exec(text);
+        // return first match or null
+        if (ary && ary.length > 1) {
+            return ary[1];
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * get current page's title & url
+     */
     getCurrentPage(cb) {
         chrome.tabs.query({active: true, currentWindow: true}, (pages) => {
             if (pages.length > 0) {
@@ -68,7 +85,11 @@ class OmniTweety {
                     let message = 'unable to share this page';
                     this.getShortUrlMaxLength((urlMaxLength = page.url.length) => {
                         if (page) {
-                            message = this.buildShareText('NowBrowsing', page.title, page.url, urlMaxLength);
+                            message = this.buildShareText(
+                                this.getShareUserContent(text) || 'NowBrowsing',
+                                page.title,
+                                page.url,
+                                urlMaxLength);
                         }
 
                         chrome.omnibox.setDefaultSuggestion({
@@ -88,7 +109,11 @@ class OmniTweety {
 
                 this.getCurrentPage((page) => {
                     this.getShortUrlMaxLength((maxLength = page.url.length) => {
-                        let sendMessage = this.buildShareText('NowBrowsing', page.title, page.url, maxLength);
+                        let sendMessage = this.buildShareText(
+                            this.getShareUserContent(text) || 'NowBrowsing',
+                            page.title,
+                            page.url,
+                            maxLength);
 
                         this.postStatus(sendMessage);
                     });

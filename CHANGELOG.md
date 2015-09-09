@@ -1,10 +1,18 @@
 Change Log
 ===
 
-Version 0.3.0 *(TBD)*
+Version 0.4.0 *(TBD)*
 ---------------------
 
 - NEW: Options page
+
+
+Version 0.3.0 *(2015-9-9)*
+--------------------------
+
+- NEW: Now you can share url with your comment. type what you want after ":share ", like ":share amazing".
+  What you write will replace "NowBrowsing".
+
 
 Version 0.2.2 *(2015-7-10)*
 ---------------------------
@@ -27,4 +35,3 @@ Version 0.0.2 *(2015-6-27)*
 ---------------------------
 
 - Initial release.
-
