@@ -1,6 +1,11 @@
 Change Log
 ===
 
+Version 0.3.1 *(2015-9-10)*
+---------------------------
+
+- FIX: tweet failed because multiple urls is not detected properly.
+
 Version 0.3.0 *(2015-9-9)*
 --------------------------
 
