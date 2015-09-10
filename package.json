@@ -13,13 +13,21 @@
   "author": "yshrsmz",
   "license": "ISC",
   "devDependencies": {
+    "babelify": "^6.3.0",
+    "browserify": "^11.0.1",
     "del": "^1.2.0",
     "event-stream": "^3.3.1",
     "gulp": "^3.9.0",
     "gulp-babel": "^5.1.0",
     "gulp-concat": "^2.6.0",
     "gulp-if": "^1.2.5",
+    "gulp-plumber": "^1.0.1",
     "gulp-rename": "^1.2.2",
-    "gulp-uglify": "^1.2.0"
+    "gulp-uglify": "^1.2.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "dependencies": {
+    "twitter-text": "^1.13.2"
   }
 }

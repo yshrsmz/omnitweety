@@ -1,5 +1,8 @@
 'use strict';
 
+import TwitterText from 'twitter-text';
+import TwitterAPIKey from '../../apikey.js';
+
 class OmniTweety {
 
     static get URL_UPDATE() {
@@ -179,7 +182,15 @@ class OmniTweety {
 
     buildShareText(prefix, title, url, urlMaxLength) {
         let baseMessage = `${prefix}: ${title} `;
-        let lengthDiff = 140 - (baseMessage.length + urlMaxLength);
+        let urlsInBaseMessage = TwitterText.extractUrls(baseMessage);
+        let urlsCount = urlsInBaseMessage.length + 1;
+        let urlsLengthInBaseMessage = 0;
+
+        urlsInBaseMessage.forEach((item) => {
+            urlsLengthInBaseMessage += item.length;
+        });
+
+        let lengthDiff = 140 - ((baseMessage.length - urlsLengthInBaseMessage) + urlMaxLength * urlsCount);
 
         if (lengthDiff < 0) {
             title = title.slice(0, lengthDiff);
