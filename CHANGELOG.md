@@ -6,6 +6,11 @@ Version 0.4.0 *(TBD)*
 
 - NEW: Options page
 
+Version 0.3.1 *(2015-9-10)*
+---------------------------
+
+- FIX: tweet failed because multiple urls is not detected properly.
+>>>>>>> master
 
 Version 0.3.0 *(2015-9-9)*
 --------------------------
