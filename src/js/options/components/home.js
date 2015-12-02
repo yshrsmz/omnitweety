@@ -24,6 +24,8 @@ let HomePage = React.createClass({
             paddingTop: Spacing.desktopKeylineIncrement + Spacing.desktopGutter
         };
 
+        let appVersion = `App Version: ${chrome.app.getDetails().version}`;
+
         return (
             <div style={style}>
                 <Paper style={{margin:'auto', maxWidth:'600px'}}>
@@ -35,7 +37,13 @@ let HomePage = React.createClass({
                     </List>
                     <ListDivider/>
                     <List subheader="Others">
-                        <ListItem primaryText="App Version: 0.3.1"/>
+                        <ListItem primaryText={appVersion}/>
+                        <ListItem
+                            primaryText="Developer"
+                            secondaryText={
+                                <p>@yslibnet (yslibrary.net)</p>
+                            }/>
+                        <ListItem primaryText="Rate on Chrome Web Store"/>
                     </List>
                 </Paper>
             </div>

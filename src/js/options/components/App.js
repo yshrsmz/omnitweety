@@ -5,8 +5,6 @@ import { AppCanvas, AppBar, IconButton, Styles }from 'material-ui';
 import SettingIcon from 'material-ui/lib/svg-icons/action/settings';
 import AppTheme from '../app-theme';
 
-import FullWidthSection from './full-width-section';
-
 let ThemeManager = Styles.ThemeManager;
 let {Colors, Typography} = Styles;
 
@@ -30,13 +28,6 @@ class App extends React.Component {
     getStyles() {
         let darkWhite = Colors.darkWhite;
         return {
-            footer: {
-                backgroundColor: Colors.grey900,
-                textAlign: 'center',
-                position: 'absolute',
-                bottom: 0,
-                width: '100%'
-            },
             a: {
                 color: darkWhite
             },
@@ -72,13 +63,6 @@ class App extends React.Component {
                     iconElementLeft={<IconButton><SettingIcon/></IconButton>}/>
 
                 {this.props.children}
-
-                <FullWidthSection style={styles.footer}>
-                    <p style={styles.p}>
-                        Created by Yasuhiro Shimizu at <a href="http://yslibrary.net" target="_blank">Ys' Library</a>.
-                    </p>
-                    {githubButton}
-                </FullWidthSection>
             </AppCanvas>
         )
     }
