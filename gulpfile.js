@@ -27,7 +27,13 @@ gulp.task('auth-js', function() {
             './src/js/chrome_ex_oauthsimple.js',
             './src/js/chrome_ex_oauth.js'
         ])
-            .pipe(babel({stage:1}))
+            .pipe(babel({
+                presets: ['es2015', 'stage-1']
+            }))
+            .on('error', function(err) {
+                console.log(err);
+                this.emit('ent')
+            })
             .pipe(gulpif(isProduction, uglify()))
             .pipe(concat('chrome_ex_oauth.min.js'))
             .pipe(gulp.dest('./app/js'))
@@ -39,15 +45,13 @@ gulp.task('background-js', function() {
 
     var bundler = browserify(allFiles);
 
-    bundler.transform(babelify.configure({
-        stage: 1,
-        sourceMapRelative: path.join(__dirname, 'src/js'),
-        blacklist: ['useStrict']
-    }));
+    bundler.transform(babelify, {
+        presets: ['es2015', 'stage-1']
+    })
 
     return bundler.bundle()
         .on('error', function(err) {
-            console.log(err.message);
+            console.log(err);
             this.emit('ent');
         })
         .pipe(plumber())
@@ -62,15 +66,13 @@ gulp.task('options-js', function() {
 
     var bundler = browserify(allFiles);
 
-    bundler.transform(babelify.configure({
-        stage: 1,
-        sourceMapRelative: path.join(__dirname, 'src/js/options'),
-        blacklist: ['useStrict']
-    }));
+    bundler.transform(babelify, {
+        presets: ['es2015', 'stage-1', 'react']
+    })
 
     return bundler.bundle()
         .on('error', function(err) {
-            console.log(err.message)
+            console.log(err)
             this.emit('ent');
         })
         .pipe(plumber())
