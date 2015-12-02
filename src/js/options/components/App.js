@@ -32,7 +32,10 @@ class App extends React.Component {
         return {
             footer: {
                 backgroundColor: Colors.grey900,
-                textAlign: 'center'
+                textAlign: 'center',
+                position: 'absolute',
+                bottom: 0,
+                width: '100%'
             },
             a: {
                 color: darkWhite
