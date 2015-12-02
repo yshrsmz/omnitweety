@@ -64,7 +64,7 @@ class App extends React.Component {
         return (
             <AppCanvas>
                 <AppBar
-                    title="Omnitweety"
+                    title="Omnitweety for Chrome"
                     zDepth={0}
                     iconElementLeft={<IconButton><SettingIcon/></IconButton>}/>
 
