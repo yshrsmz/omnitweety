@@ -35,8 +35,8 @@ gulp build --production     # for production
 you need `apikey.js` in project root directory
 
 ```
-var TwitterAPIKey = {
-    "consumer_key": "CONSUMER_KEY",
-    "consumer_secret": "CONSUMER_SECRET"
+export default {
+    "consumer_key": "YOUR_CONSUMER_KEY",
+    "consumer_secret": "YOUR_CONSUMER_SECRET"
 };
 ```
