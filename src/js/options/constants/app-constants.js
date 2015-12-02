@@ -1,6 +1,6 @@
 'use strict';
 
-import keyMirror from 'keymirror';
+import keyMirror from 'fbjs/lib/keymirror';
 
 const urlUpdate = 'https://api.twitter.com/1.1/statuses/update.json';
 const urlConfig = 'https://api.twitter.com/1.1/help/configuration.json';
@@ -18,7 +18,12 @@ const AppConstants = keyMirror({
 
     URL_UPDATE: urlUpdate,
     URL_CONFIG: urlConfig,
-    OAUTH_SCOPE: `${urlUpdate},${urlConfig}`
+    OAUTH_SCOPE: `${urlUpdate},${urlConfig}`,
+
+    USE_SLACK: false,
+    SLACK_TOKEN: '',
+    SLACK_USER: '',
+    SLACK_ROOM: ''
 });
 
 export default AppConstants;

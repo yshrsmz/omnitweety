@@ -1,13 +1,13 @@
 'use strict';
 
 import React from 'react';
-import {RouteHandler} from 'react-router';
 import { AppCanvas, AppBar, IconButton, Styles }from 'material-ui';
 import SettingIcon from 'material-ui/lib/svg-icons/action/settings';
+import AppTheme from '../app-theme';
 
 import FullWidthSection from './full-width-section';
 
-let ThemeManager = new Styles.ThemeManager();
+let ThemeManager = Styles.ThemeManager;
 let {Colors, Typography} = Styles;
 
 class App extends React.Component {
@@ -23,8 +23,8 @@ class App extends React.Component {
 
     getChildContext() {
         return {
-            muiTheme: ThemeManager.getCurrentTheme()
-        }
+            muiTheme: ThemeManager.getMuiTheme(AppTheme)
+        };
     }
 
     getStyles() {
@@ -68,7 +68,7 @@ class App extends React.Component {
                     zDepth={0}
                     iconElementLeft={<IconButton><SettingIcon/></IconButton>}/>
 
-                <RouteHandler/>
+                {this.props.children}
 
                 <FullWidthSection style={styles.footer}>
                     <p style={styles.p}>

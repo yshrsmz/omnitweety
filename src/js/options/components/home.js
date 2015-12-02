@@ -9,7 +9,6 @@ import FullWidthSection from './full-width-section.js';
 
 let {StylePropable, StyleResizable} = Mixins;
 let {Colors, Spacing, Typography} = Styles;
-let ThemeManager = new Styles.ThemeManager().getCurrentTheme();
 
 
 let HomePage = React.createClass({

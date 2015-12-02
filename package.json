@@ -31,11 +31,14 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
+    "fbjs": "^0.4.0",
     "flux": "^2.0.3gulp",
-    "material-ui": "^0.10.1",
-    "react": "^0.13.3",
-    "react-router": "^0.13.3",
-    "react-tap-event-plugin": "^0.1.7",
+    "history": "^1.13.1",
+    "material-ui": "^0.13.4",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3",
+    "react-router": "^1.0.0",
+    "react-tap-event-plugin": "^0.2.1",
     "twitter-text": "^1.13.2"
   }
 }
