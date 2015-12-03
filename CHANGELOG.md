@@ -1,16 +1,18 @@
 Change Log
 ===
 
-Version 0.4.0 *(TBD)*
+Version 0.4.0 *(2015-12-03)*
 ---------------------
 
-- NEW: Options page
+- NEW: Options page. Open from chrome's extension settings.
+- NEW: Slack integration.
+
 
 Version 0.3.1 *(2015-9-10)*
 ---------------------------
 
 - FIX: tweet failed because multiple urls is not detected properly.
->>>>>>> master
+
 
 Version 0.3.0 *(2015-9-9)*
 --------------------------
