@@ -16,7 +16,8 @@ const AppTheme = {
         textColor: '#212121',
         alternateTextColor: Colors.white,
         borderColor: '#b6b6b6',
-        disabledColor: ColorManipulator.fade(Colors.darkBlack, 0.3)
+        disabledColor: ColorManipulator.fade(Colors.darkBlack, 0.3),
+        canvasColor: Colors.white
     }
 }
 export default AppTheme;
