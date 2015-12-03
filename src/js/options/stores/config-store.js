@@ -6,8 +6,17 @@ import AppConstants from '../constants/app-constants';
 import AppDispatcher from '../dispatcher/app-dispatcher';
 import ApiTokens from '../../../../apikey';
 
-const KEY_TOKEN = `oauth_token_${encodeURI(AppConstants.OAUTH_SCOPE)}`;
-const KEY_TOKEN_SECRET = `oauth_token_secret_${encodeURI(AppConstants.OAUTH_SCOPE)}`;
+let {
+    ActionTypes, Values
+} = AppConstants;
+
+const KEY_TOKEN = `oauth_token_${encodeURI(Values.OAUTH_SCOPE)}`;
+const KEY_TOKEN_SECRET = `oauth_token_secret_${encodeURI(Values.OAUTH_SCOPE)}`;
+
+const KEY_USE_SLACK = "slack_use";
+const KEY_SLACK_TOKEN = "slack_token";
+const KEY_SLACK_USER = "slack_user";
+const KEY_SLACK_ROOM = "slack_room";
 
 const CHANGE_EVENT = 'change';
 
@@ -33,7 +42,7 @@ class ConfigStore extends EventEmitter {
     handler(action) {
 
         switch (action.actionType) {
-            case AppConstants.SAVE_TOKEN:
+            case ActionTypes.SAVE_TOKEN:
                 let tokens = action.tokens;
                 save(KEY_TOKEN, tokens.token);
                 save(KEY_TOKEN_SECRET, tokens.token_secret);
@@ -42,6 +51,35 @@ class ConfigStore extends EventEmitter {
                 break;
 
             case AppConstants.DEAUTH:
+                break;
+
+            case AppConstants.SAVE_USE_SLACK:
+                let useSlack = action.slackUseSlack;
+                save(KEY_USE_SLACK, useSlack);
+
+                this.emitChange();
+                break;
+
+            case ActionTypes.SAVE_SLACK_TOKEN:
+                let token = action.slackToken;
+                save(KEY_SLACK_TOKEN, token);
+
+                this.emitChange();
+                break;
+
+            case ActionTypes.SAVE_SLACK_USER:
+                let user = action.slackUser;
+                save(KEY_SLACK_USER, user);
+
+                this.emitChange();
+                break;
+
+            case ActionTypes.SAVE_SLACK_ROOM:
+                let room = action.slackRoom;
+                save(KEY_SLACK_ROOM, room);
+
+                this.emitChange();
+                break;
 
         }
     }
@@ -80,6 +118,19 @@ class ConfigStore extends EventEmitter {
 
     hasToken() {
         return !!this.getToken();
+    }
+
+    useSlack() {
+        return !!load(KEY_USE_SLACK);
+    }
+    getSlackToken() {
+        return load(KEY_SLACK_TOKEN);
+    }
+    getSlackUser() {
+        return load(KEY_SLACK_USER);
+    }
+    getSlackRoom() {
+        return load(KEY_SLACK_ROOM);
     }
 }
 
