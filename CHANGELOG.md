@@ -1,16 +1,25 @@
 Change Log
 ===
 
+Version 0.4.0 *(2015-12-03)*
+---------------------
+
+- NEW: Options page. Open from chrome's extension settings.
+- NEW: Slack integration.
+
+
 Version 0.3.1 *(2015-9-10)*
 ---------------------------
 
 - FIX: tweet failed because multiple urls is not detected properly.
+
 
 Version 0.3.0 *(2015-9-9)*
 --------------------------
 
 - NEW: Now you can share url with your comment. type what you want after ":share ", like ":share amazing".
   What you write will replace "NowBrowsing".
+
 
 Version 0.2.2 *(2015-7-10)*
 ---------------------------

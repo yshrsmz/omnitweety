@@ -21,42 +21,37 @@ gulp.task('clean', function(cb) {
     del(['./app/*'], cb);
 });
 
-gulp.task('babel', function() {
+gulp.task('auth-js', function() {
     return merge(
         gulp.src([
             './src/js/chrome_ex_oauthsimple.js',
             './src/js/chrome_ex_oauth.js'
         ])
-            .pipe(babel({stage:1}))
+            .pipe(babel({
+                presets: ['es2015', 'stage-1']
+            }))
+            .on('error', function(err) {
+                console.log(err);
+                this.emit('ent')
+            })
             .pipe(gulpif(isProduction, uglify()))
             .pipe(concat('chrome_ex_oauth.min.js'))
             .pipe(gulp.dest('./app/js'))
-
-        //gulp.src([
-        //    './apikey.js',
-        //    './src/js/background.js'
-        //])
-        //    .pipe(babel({stage:1}))
-        //    .pipe(gulpif(isProduction, uglify()))
-        //    .pipe(concat('background.min.js'))
-        //    .pipe(gulp.dest('./app/js'))
     );
 });
 
-gulp.task('browserify', function() {
+gulp.task('background-js', function() {
     var allFiles = './src/js/background.js';
 
     var bundler = browserify(allFiles);
 
-    bundler.transform(babelify.configure({
-        stage: 1,
-        sourceMapRelative: path.join(__dirname, 'src/js'),
-        blacklist: ['useStrict']
-    }));
+    bundler.transform(babelify, {
+        presets: ['es2015', 'stage-1']
+    })
 
     return bundler.bundle()
         .on('error', function(err) {
-            console.log(err.message);
+            console.log(err);
             this.emit('ent');
         })
         .pipe(plumber())
@@ -64,6 +59,32 @@ gulp.task('browserify', function() {
         .pipe(gulpif(isProduction, buffer()))
         .pipe(gulpif(isProduction, uglify()))
         .pipe(gulp.dest('./app/js'));
+});
+
+gulp.task('options-js', function() {
+    var allFiles = './src/js/options/index.js';
+
+    var bundler = browserify(allFiles);
+
+    bundler.transform(babelify, {
+        presets: ['es2015', 'stage-1', 'react']
+    })
+
+    return bundler.bundle()
+        .on('error', function(err) {
+            console.log(err)
+            this.emit('ent');
+        })
+        .pipe(plumber())
+        .pipe(source('options.min.js'))
+        .pipe(gulpif(isProduction, buffer()))
+        .pipe(gulpif(isProduction, uglify()))
+        .pipe(gulp.dest('./app/js'))
+});
+
+gulp.task('css', function() {
+    return gulp.src('./src/css/style.css')
+        .pipe(gulp.dest('./app/css'));
 });
 
 gulp.task('html', function() {
@@ -81,4 +102,4 @@ gulp.task('config', function() {
         .pipe(gulp.dest('./app'));
 });
 
-gulp.task('build', ['config', 'babel', 'browserify', 'html', 'assets']);
+gulp.task('build', ['config', 'auth-js', 'background-js', 'options-js', 'html', 'assets']);

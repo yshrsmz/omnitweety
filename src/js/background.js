@@ -1,16 +1,22 @@
 'use strict';
 
+import request from 'superagent';
+
 import TwitterText from 'twitter-text';
 import TwitterAPIKey from '../../apikey.js';
+import AppConstants from './options/constants/app-constants';
+import ConfigStore from './options/stores/config-store';
+
+let {Values} = AppConstants;
 
 class OmniTweety {
 
     static get URL_UPDATE() {
-        return 'https://api.twitter.com/1.1/statuses/update.json';
+        return Values.URL_UPDATE;
     }
 
     static get URL_CONFIG() {
-        return 'https://api.twitter.com/1.1/help/configuration.json';
+        return Values.URL_CONFIG;
     }
 
     static get shareCommandRegExp() {
@@ -29,12 +35,12 @@ class OmniTweety {
 
     initBackgroundPage() {
         return ChromeExOAuth.initBackgroundPage({
-            'request_url': 'https://api.twitter.com/oauth/request_token',
-            'authorize_url': 'https://api.twitter.com/oauth/authorize',
-            'access_url': 'https://api.twitter.com/oauth/access_token',
+            'request_url': Values.URL_REQUEST_TOKEN,
+            'authorize_url': Values.URL_AUTHORIZE,
+            'access_url': Values.URL_ACCESS_TOKEN,
             'consumer_key': TwitterAPIKey.consumer_key,
             'consumer_secret': TwitterAPIKey.consumer_secret,
-            'scope': 'https://api.twitter.com/1.1/statuses/update.json,https://api.twitter.com/1.1/help/configuration.json',
+            'scope': Values.OAUTH_SCOPE,
             'app_name': 'Omnitweety'
         });
     }
@@ -119,11 +125,13 @@ class OmniTweety {
                             maxLength);
 
                         this.postStatus(sendMessage);
+                        this.postSlack(sendMessage);
                     });
 
                 });
             } else {
                 this.postStatus(text);
+                this.postSlack(text);
             }
         });
     }
@@ -146,6 +154,24 @@ class OmniTweety {
                 this.notify(result.user.profile_image_url_https, result.user.name, result.text);
             }
         }, request);
+    }
+
+    postSlack(text) {
+        if (!ConfigStore.useSlack()) {
+            return;
+        }
+        let data = {
+            token: ConfigStore.getSlackToken(),
+            channel: ConfigStore.getSlackRoom(),
+            username: ConfigStore.getSlackUser(),
+            text: text
+        };
+
+        request.get(Values.URL_SLACK_POST_MESSAGE)
+            .query(data)
+            .end((err, res) => {
+                console.log('send to slack', err, res);
+            });
     }
 
     getTwitterConfig(cb) {
