@@ -4,7 +4,6 @@ import {EventEmitter} from 'events';
 
 import AppConstants from '../constants/app-constants';
 import AppDispatcher from '../dispatcher/app-dispatcher';
-import ApiTokens from '../../../../apikey';
 
 let {
     ActionTypes, Values
