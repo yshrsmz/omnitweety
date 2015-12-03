@@ -50,10 +50,10 @@ class ConfigStore extends EventEmitter {
                 this.emitChange();
                 break;
 
-            case AppConstants.DEAUTH:
+            case ActionTypes.DEAUTH:
                 break;
 
-            case AppConstants.SAVE_USE_SLACK:
+            case ActionTypes.SAVE_USE_SLACK:
                 let useSlack = action.slackUseSlack;
                 save(KEY_USE_SLACK, useSlack);
 
@@ -121,7 +121,12 @@ class ConfigStore extends EventEmitter {
     }
 
     useSlack() {
-        return !!load(KEY_USE_SLACK);
+        let _useSlack = load(KEY_USE_SLACK);
+        if (_useSlack) {
+            return JSON.parse(_useSlack);
+        } else {
+            return false;
+        }
     }
     getSlackToken() {
         return load(KEY_SLACK_TOKEN);

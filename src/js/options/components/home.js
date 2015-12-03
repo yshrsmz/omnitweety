@@ -7,6 +7,7 @@ import SettingIcon from 'material-ui/lib/svg-icons/action/settings';
 
 import FullWidthSection from './full-width-section.js';
 import ConfigStore from '../stores/config-store';
+import ConfigActions from '../actions/config-actions';
 import AppConstants from '../constants/app-constants';
 
 let {StylePropable, StyleResizable} = Mixins;
@@ -42,11 +43,13 @@ let HomePage = React.createClass({
     },
 
     _onChange() {
+        console.log('onChange');
         this.setState(getConfigState());
     },
 
     _onUseSlackToggled(event, checked) {
         console.log(checked);
+        ConfigActions.saveSlackUseSlack(checked);
     },
 
     _onSlackAccessTokenClicked() {

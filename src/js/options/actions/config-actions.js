@@ -1,9 +1,7 @@
 import AppDispatcher from '../dispatcher/app-dispatcher';
 import AppConstants from '../constants/app-constants';
 
-let {ActioNTypes} = AppConstants;
-
-console.log(ActionTypes.SAVE_USE_SLACK);
+let {ActionTypes} = AppConstants;
 
 
 export default {
@@ -19,14 +17,14 @@ export default {
             actionType: ActionTypes.SAVE_USE_SLACK,
             slackUseSlack: useSlack
         });
-    }
+    },
 
     saveSlackUser(user) {
         AppDispatcher.dispatch({
             actionType: ActionTypes.SAVE_SLACK_USER,
             slackUser: user
         });
-    }
+    },
 
     saveSlackRoom(room) {
         AppDispatcher.dispatch({
