@@ -16,10 +16,12 @@ let {Values} = AppConstants;
 
 let getConfigState = () => {
     return {
+        statusPrefix: ConfigStore.getStatusPrefix(),
         useSlack: ConfigStore.useSlack(),
         slackToken: ConfigStore.getSlackToken(),
         slackUser: ConfigStore.getSlackUser(),
         slackRoom: ConfigStore.getSlackRoom(),
+        openStatusPrefixDialog: false,
         openSlackTokenDialog: false,
         openSlackUserDialog: false,
         openSlackRoomDialog: false
@@ -50,6 +52,10 @@ let HomePage = React.createClass({
         this.setState(getConfigState());
     },
 
+    _onStatusPrefixClicked() {
+        this.setState({openStatusPrefixDialog: true});
+    },
+
     _onUseSlackToggled(event, checked) {
         console.log(checked);
         ConfigActions.saveSlackUseSlack(checked);
@@ -65,6 +71,15 @@ let HomePage = React.createClass({
 
     _onSlackRoomClicked() {
         this.setState({openSlackRoomDialog: true});
+    },
+
+    _onSaveStatusPrefix() {
+        let prefix = this.refs.statusPrefixText.getValue();
+        console.log('prefix:', prefix);
+
+        ConfigActions.saveStatusPrefix(prefix);
+
+        this._onRequestClose();
     },
 
     _onSaveSlackToken() {
@@ -96,6 +111,7 @@ let HomePage = React.createClass({
 
     _onRequestClose(buttonClicked) {
         this.setState({
+            openStatusPrefixDialog: false,
             openSlackTokenDialog: false,
             openSlackUserDialog: false,
             openSlackRoomDialog: false
@@ -107,6 +123,11 @@ let HomePage = React.createClass({
             padding: Spacing.desktopGutter,
             paddingTop: Spacing.desktopKeylineIncrement + Spacing.desktopGutter
         };
+
+        let statusPrefixDialogActions = [
+            {text: 'Cancel'},
+            {text: 'Save', onTouchTap: this._onSaveStatusPrefix, ref: 'saveStatusPrefix'}
+        ];
 
         let slackTokenDialogActions = [
             {text: 'Cancel'},
@@ -135,6 +156,12 @@ let HomePage = React.createClass({
         return (
             <div style={style}>
                 <Paper style={{margin:'auto', maxWidth:'600px'}}>
+                    <List subheader="General">
+                        <ListItem primaryText="Prefix"
+                            secondaryText={this.state.statusPrefix}
+                            onClick={this._onStatusPrefixClicked}/>
+                    </List>
+                    <ListDivider/>
                     <List subheader="Slack Integration">
                         <ListItem primaryText="Use Slack Integration"
                             rightToggle={
@@ -167,6 +194,17 @@ let HomePage = React.createClass({
                             primaryText="Rate on Chrome Web Store"/>
                     </List>
                 </Paper>
+                <Dialog
+                    ref="statusPrefixDialog"
+                    title="Slack Access Token"
+                    open={this.state.openStatusPrefixDialog}
+                    actions={statusPrefixDialogActions}
+                    onRequestClose={this._onRequestClose}>
+                    <TextField
+                        ref="statusPrefixText"
+                        style={{width: '100%'}}
+                        defaultValue={this.state.statusPrefix}/>
+                </Dialog>
                 <Dialog
                     ref="slackTokenDialog"
                     title="Slack Access Token"

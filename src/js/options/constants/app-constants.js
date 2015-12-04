@@ -28,6 +28,9 @@ const ActionTypes = keyMirror({
     SAVE_CONFIG: null,
     LOAD_CONFIG: null,
 
+    // actions for general settings
+    SAVE_STATUS_PREFIX: null,
+
     // actions for Slack integration
     SAVE_USE_SLACK: null,
     LOAD_USE_SLACK: null,

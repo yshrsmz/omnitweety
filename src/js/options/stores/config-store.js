@@ -12,6 +12,8 @@ let {
 const KEY_TOKEN = `oauth_token_${encodeURI(Values.OAUTH_SCOPE)}`;
 const KEY_TOKEN_SECRET = `oauth_token_secret_${encodeURI(Values.OAUTH_SCOPE)}`;
 
+const KEY_STATUS_PREFIX = "status_prefix";
+
 const KEY_USE_SLACK = "slack_use";
 const KEY_SLACK_TOKEN = "slack_token";
 const KEY_SLACK_USER = "slack_user";
@@ -50,6 +52,13 @@ class ConfigStore extends EventEmitter {
                 break;
 
             case ActionTypes.DEAUTH:
+                break;
+
+            case ActionTypes.SAVE_STATUS_PREFIX:
+                let prefix = action.prefix;
+                save(KEY_STATUS_PREFIX, prefix);
+
+                this.emitChange();
                 break;
 
             case ActionTypes.SAVE_USE_SLACK:
@@ -117,6 +126,15 @@ class ConfigStore extends EventEmitter {
 
     hasToken() {
         return !!this.getToken();
+    }
+
+    getStatusPrefix() {
+        let prefix = load(KEY_STATUS_PREFIX);
+        if (prefix) {
+            return prefix;
+        } else {
+            return 'NowBrowsing:';
+        }
     }
 
     useSlack() {

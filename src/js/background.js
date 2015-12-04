@@ -75,6 +75,10 @@ class OmniTweety {
         return OmniTweety.optionsCommandRegExp.test(text);
     }
 
+    isVersionCommand(text) {
+        return OmniTweety.versionCommandRegExp.test(text);
+    }
+
     getShareUserContent(text) {
         let ary = OmniTweety.shareTextRegExp.exec(text);
         // return first match or null
@@ -105,13 +109,12 @@ class OmniTweety {
     handleEvents() {
         chrome.omnibox.onInputChanged.addListener((text) => {
             if (this.isShareCommand(text)) {
-
                 this.getCurrentPage((page) => {
                     let message = 'unable to share this page';
                     this.getShortUrlMaxLength((urlMaxLength = page.url.length) => {
                         if (page) {
                             message = this.buildShareText(
-                                this.getShareUserContent(text) || 'NowBrowsing',
+                                this.getShareUserContent(text) || ConfigStore.getStatusPrefix(),
                                 page.title,
                                 page.url,
                                 urlMaxLength);
@@ -143,25 +146,27 @@ class OmniTweety {
                 this.getCurrentPage((page) => {
                     this.getShortUrlMaxLength((maxLength = page.url.length) => {
                         let sendMessage = this.buildShareText(
-                            this.getShareUserContent(text) || 'NowBrowsing',
+                            this.getShareUserContent(text) || ConfigStore.getStatusPrefix(),
                             page.title,
                             page.url,
                             maxLength);
 
-                        this.postStatus(sendMessage);
-                        this.postSlack(sendMessage);
+                        this.postMessage(sendMessage);
                     });
-
                 });
             } else if (this.isOptionsCommand(text)) {
                 chrome.runtime.openOptionsPage(null);
             } else if (this.isVersionCommand(text)) {
                 this.postMessage(this.getVersionString());
             } else {
-                this.postStatus(text);
-                this.postSlack(text);
+                this.postMessage(text);
             }
         });
+    }
+
+    postMessage(text) {
+        this.postStatus(text);
+        this.postSlack(text);
     }
 
     postStatus(text) {
@@ -235,7 +240,7 @@ class OmniTweety {
     }
 
     buildShareText(prefix, title, url, urlMaxLength) {
-        let baseMessage = `${prefix}: ${title} `;
+        let baseMessage = `${prefix} ${title} `;
         let urlsInBaseMessage = TwitterText.extractUrls(baseMessage);
         let urlsCount = urlsInBaseMessage.length + 1;
         let urlsLengthInBaseMessage = 0;
@@ -260,7 +265,6 @@ class OmniTweety {
             .replace(/</g, '&lt;')
             .replace(/>/g, '&gt;');
     }
-
 }
 
 new OmniTweety();

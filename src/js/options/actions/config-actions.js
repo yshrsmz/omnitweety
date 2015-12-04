@@ -5,6 +5,13 @@ let {ActionTypes} = AppConstants;
 
 
 export default {
+    saveStatusPrefix(prefix) {
+        AppDispatcher.dispatch({
+            actionType: ActionTypes.SAVE_STATUS_PREFIX,
+            prefix: prefix
+        });
+    },
+
     saveSlackToken(token) {
         AppDispatcher.dispatch({
             actionType: ActionTypes.SAVE_SLACK_TOKEN,

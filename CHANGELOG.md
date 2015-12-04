@@ -4,8 +4,9 @@ Change Log
 Version 0.5.0 *(TBD)*
 ---------------------
 
-- NEW: `:options` command. open options page from omnibox.
-- NEW: `:version` command. now you can easily check omnitweety's version.
+- NEW: Prefix customization. Configure from options page.
+- NEW: `:options` command. Open options page from omnibox.
+- NEW: `:version` command. Now you can easily check omnitweety's version.
 
 
 Version 0.4.0 *(2015-12-03)*
