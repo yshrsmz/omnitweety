@@ -4,6 +4,7 @@ import React from 'react';
 import Router from 'react-router';
 import {Mixins, RaisedButton, Styles, List, ListItem, Toggle, Paper, ListDivider, Dialog, TextField} from 'material-ui';
 import SettingIcon from 'material-ui/lib/svg-icons/action/settings';
+import ColorManipulator from 'material-ui/lib/utils/color-manipulator'
 
 import FullWidthSection from './full-width-section.js';
 import ConfigStore from '../stores/config-store';
@@ -144,6 +145,10 @@ let HomePage = React.createClass({
             {text: 'Save', onTouchTap: this._onSaveSlackRoom, ref: 'saveSlackRoom'}
         ];
 
+        let slackDisabledListItemStyle = this.state.useSlack
+            ? {}
+            : {backgroundColor: ColorManipulator.fade(Colors.darkBlack, 0.05)};
+
         let hintSlackToken = 'Enter Slack access token';
         let hintSlackUser = 'Enter user name to use';
         let hintSlackRoom = 'Enter room name to post';
@@ -170,13 +175,19 @@ let HomePage = React.createClass({
                             }/>
                         <ListItem primaryText="Slack Access Token"
                             secondaryText={slackTokenSecondary}
-                            onClick={this._onSlackAccessTokenClicked}/>
+                            onClick={this._onSlackAccessTokenClicked}
+                            disabled={!this.state.useSlack}
+                            style={slackDisabledListItemStyle}/>
                         <ListItem primaryText="Slack User Name"
                             secondaryText={slackUserSecondary}
-                            onClick={this._onSlackUserClicked}/>
+                            onClick={this._onSlackUserClicked}
+                            disabled={!this.state.useSlack}
+                            style={slackDisabledListItemStyle}/>
                         <ListItem primaryText="Slack Room"
                             secondaryText={slackRoomSecondary}
-                            onClick={this._onSlackRoomClicked}/>
+                            onClick={this._onSlackRoomClicked}
+                            disabled={!this.state.useSlack}
+                            style={slackDisabledListItemStyle}/>
                     </List>
                     <ListDivider/>
                     <List subheader="Others">
