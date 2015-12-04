@@ -1,8 +1,14 @@
 Change Log
 ===
 
-Version 0.4.0 *(2015-12-03)*
+Version 0.5.0 *(TBD)*
 ---------------------
+
+- NEW: `:options` command. open options page from omnibox.
+
+
+Version 0.4.0 *(2015-12-03)*
+----------------------------
 
 - NEW: Options page. Open from chrome's extension settings.
 - NEW: Slack integration.

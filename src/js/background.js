@@ -27,6 +27,10 @@ class OmniTweety {
         return /^:share\s+([\w\W]+)$/;
     }
 
+    static get optionsCommandRegExp() {
+        return /^:options(\s*|\s+[\w\W]*)$/;
+    }
+
     constructor() {
         this.oauth = this.initBackgroundPage();
 
@@ -61,6 +65,10 @@ class OmniTweety {
 
     isShareCommand(text) {
         return OmniTweety.shareCommandRegExp.test(text);
+    }
+
+    isOptionsCommand(text) {
+        return OmniTweety.optionsCommandRegExp.test(text);
     }
 
     getShareUserContent(text) {
@@ -106,6 +114,10 @@ class OmniTweety {
                         });
                     });
                 });
+            } else if (this.isOptionsCommand(text)) {
+                chrome.omnibox.setDefaultSuggestion({
+                    description: 'Open options page'
+                });
             } else {
                 chrome.omnibox.setDefaultSuggestion({
                     description: `${140 - text.length} characters remaining.`
@@ -129,6 +141,8 @@ class OmniTweety {
                     });
 
                 });
+            } else if (this.isOptionsCommand(text)) {
+                chrome.runtime.openOptionsPage(null);
             } else {
                 this.postStatus(text);
                 this.postSlack(text);
