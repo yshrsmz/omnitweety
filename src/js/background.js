@@ -255,7 +255,7 @@ class OmniTweety {
             title = title.slice(0, lengthDiff);
         }
 
-        return `${prefix}: ${title} ${url}`;
+        return `${prefix} ${title} ${url}`;
     }
 
     escapeText(text) {
