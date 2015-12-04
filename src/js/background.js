@@ -31,6 +31,10 @@ class OmniTweety {
         return /^:options(\s*|\s+[\w\W]*)$/;
     }
 
+    static get versionCommandRegExp() {
+        return /^:version(\s*|\s+[\w\W]*)$/;
+    }
+
     constructor() {
         this.oauth = this.initBackgroundPage();
 
@@ -94,6 +98,10 @@ class OmniTweety {
         });
     }
 
+    getVersionString() {
+        return `I\'m using Omnitweety for Chrome Version ${chrome.app.getDetails().version} - ${Values.URL_WEBSTORE}`;
+    }
+
     handleEvents() {
         chrome.omnibox.onInputChanged.addListener((text) => {
             if (this.isShareCommand(text)) {
@@ -117,6 +125,10 @@ class OmniTweety {
             } else if (this.isOptionsCommand(text)) {
                 chrome.omnibox.setDefaultSuggestion({
                     description: 'Open options page'
+                });
+            } else if (this.isVersionCommand(text)) {
+                chrome.omnibox.setDefaultSuggestion({
+                    description: this.getVersionString()
                 });
             } else {
                 chrome.omnibox.setDefaultSuggestion({
@@ -143,6 +155,8 @@ class OmniTweety {
                 });
             } else if (this.isOptionsCommand(text)) {
                 chrome.runtime.openOptionsPage(null);
+            } else if (this.isVersionCommand(text)) {
+                this.postMessage(this.getVersionString());
             } else {
                 this.postStatus(text);
                 this.postSlack(text);
