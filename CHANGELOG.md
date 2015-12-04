@@ -1,8 +1,13 @@
 Change Log
 ===
 
+Version 0.5.1 *(2014-12-04)*
+----------------------------
+
+- FIX: prefix input dialog's Title
+
 Version 0.5.0 *(2015-12-04)*
----------------------
+----------------------------
 
 - NEW: Prefix customization. Configure from options page.
 - NEW: `:options` command. Open options page from omnibox.

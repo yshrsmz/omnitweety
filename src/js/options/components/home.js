@@ -162,7 +162,7 @@ let HomePage = React.createClass({
             <div style={style}>
                 <Paper style={{margin:'auto', maxWidth:'600px'}}>
                     <List subheader="General">
-                        <ListItem primaryText="Prefix"
+                        <ListItem primaryText="Status Prefix"
                             secondaryText={this.state.statusPrefix}
                             onClick={this._onStatusPrefixClicked}/>
                     </List>
@@ -207,7 +207,7 @@ let HomePage = React.createClass({
                 </Paper>
                 <Dialog
                     ref="statusPrefixDialog"
-                    title="Slack Access Token"
+                    title="Status Prefix"
                     open={this.state.openStatusPrefixDialog}
                     actions={statusPrefixDialogActions}
                     onRequestClose={this._onRequestClose}>

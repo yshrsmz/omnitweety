@@ -2,7 +2,7 @@
     "name": "Omnitweety",
     "short_name": "Omnitweety",
     "manifest_version": 2,
-    "version": "0.5.0",
+    "version": "0.5.1",
     "description": "Tweet your status & share what you are browsing now, from Omnibox (a.k.a. URL or Address bar)!",
     "omnibox": {"keyword": "tw"},
     "icons": {
