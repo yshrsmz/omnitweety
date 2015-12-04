@@ -16,6 +16,13 @@ type this after you enter Omnitweety input mode, to share current tab's url & ti
 ## `:share + {space} + {comment}`
 after you enter share command, you can type some comment to attach.
 
+## `:options`
+open options page
+
+## `:version`
+check omnitweety's version
+
+
 # build
 
 install dependencies.

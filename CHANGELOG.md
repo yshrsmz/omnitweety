@@ -1,7 +1,7 @@
 Change Log
 ===
 
-Version 0.5.0 *(TBD)*
+Version 0.5.0 *(2015-12-04)*
 ---------------------
 
 - NEW: Prefix customization. Configure from options page.
