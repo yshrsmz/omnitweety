@@ -16,7 +16,6 @@ const KEY_STATUS_PREFIX = "status_prefix";
 
 const KEY_USE_SLACK = "slack_use";
 const KEY_SLACK_TOKEN = "slack_token";
-const KEY_SLACK_USER = "slack_user";
 const KEY_SLACK_ROOM = "slack_room";
 
 const CHANGE_EVENT = 'change';
@@ -71,13 +70,6 @@ class ConfigStore extends EventEmitter {
             case ActionTypes.SAVE_SLACK_TOKEN:
                 let token = action.slackToken;
                 save(KEY_SLACK_TOKEN, token);
-
-                this.emitChange();
-                break;
-
-            case ActionTypes.SAVE_SLACK_USER:
-                let user = action.slackUser;
-                save(KEY_SLACK_USER, user);
 
                 this.emitChange();
                 break;
@@ -147,9 +139,6 @@ class ConfigStore extends EventEmitter {
     }
     getSlackToken() {
         return load(KEY_SLACK_TOKEN);
-    }
-    getSlackUser() {
-        return load(KEY_SLACK_USER);
     }
     getSlackRoom() {
         return load(KEY_SLACK_ROOM);
