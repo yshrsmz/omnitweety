@@ -26,13 +26,6 @@ export default {
         });
     },
 
-    saveSlackUser(user) {
-        AppDispatcher.dispatch({
-            actionType: ActionTypes.SAVE_SLACK_USER,
-            slackUser: user
-        });
-    },
-
     saveSlackRoom(room) {
         AppDispatcher.dispatch({
             actionType: ActionTypes.SAVE_SLACK_ROOM,

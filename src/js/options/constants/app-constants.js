@@ -36,8 +36,6 @@ const ActionTypes = keyMirror({
     LOAD_USE_SLACK: null,
     SAVE_SLACK_TOKEN: null,
     LOAD_SLACK_TOKEN: null,
-    SAVE_SLACK_USER: null,
-    LOAD_SLACK_USER: null,
     SAVE_SLACK_ROOM: null,
     LOAD_SLACK_ROOM: null
 });

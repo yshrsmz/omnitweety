@@ -1,13 +1,19 @@
 Change Log
 ===
 
-Version 0.5.2 *(2014-12-04)*
+Version 0.5.3 *(2015-12-07)*
+----------------------------
+
+- NEW: Post message to slack as an authenticated user(remove username option)
+
+
+Version 0.5.2 *(2015-12-04)*
 ----------------------------
 
 - FIX: tweet status template
 
 
-Version 0.5.1 *(2014-12-04)*
+Version 0.5.1 *(2015-12-04)*
 ----------------------------
 
 - FIX: prefix input dialog's Title

@@ -20,11 +20,9 @@ let getConfigState = () => {
         statusPrefix: ConfigStore.getStatusPrefix(),
         useSlack: ConfigStore.useSlack(),
         slackToken: ConfigStore.getSlackToken(),
-        slackUser: ConfigStore.getSlackUser(),
         slackRoom: ConfigStore.getSlackRoom(),
         openStatusPrefixDialog: false,
         openSlackTokenDialog: false,
-        openSlackUserDialog: false,
         openSlackRoomDialog: false
     };
 }
@@ -66,10 +64,6 @@ let HomePage = React.createClass({
         this.setState({openSlackTokenDialog: true});
     },
 
-    _onSlackUserClicked() {
-        this.setState({openSlackUserDialog: true});
-    },
-
     _onSlackRoomClicked() {
         this.setState({openSlackRoomDialog: true});
     },
@@ -92,15 +86,6 @@ let HomePage = React.createClass({
         this._onRequestClose();
     },
 
-    _onSaveSlackUser() {
-        let user = this.refs.slackUserText.getValue();
-        console.log('user:', user);
-
-        ConfigActions.saveSlackUser(user);
-
-        this._onRequestClose();
-    },
-
     _onSaveSlackRoom() {
         let room = this.refs.slackRoomText.getValue();
         console.log('room:', room);
@@ -114,7 +99,6 @@ let HomePage = React.createClass({
         this.setState({
             openStatusPrefixDialog: false,
             openSlackTokenDialog: false,
-            openSlackUserDialog: false,
             openSlackRoomDialog: false
         });
     },
@@ -135,11 +119,6 @@ let HomePage = React.createClass({
             {text: 'Save', onTouchTap: this._onSaveSlackToken, ref: 'saveSlackToken'}
         ];
 
-        let slackUserDialogActions = [
-            {text: 'Cancel'},
-            {text: 'Save', onTouchTap: this._onSaveSlackUser, ref: 'saveSlackUser'}
-        ];
-
         let slackRoomDialogActions = [
             {text: 'Cancel'},
             {text: 'Save', onTouchTap: this._onSaveSlackRoom, ref: 'saveSlackRoom'}
@@ -150,12 +129,10 @@ let HomePage = React.createClass({
             : {backgroundColor: ColorManipulator.fade(Colors.darkBlack, 0.05)};
 
         let hintSlackToken = 'Enter Slack access token';
-        let hintSlackUser = 'Enter user name to use';
         let hintSlackRoom = 'Enter room name to post';
 
         let appVersion = `App Version: ${chrome.app.getDetails().version}`;
         let slackTokenSecondary = this.state.slackToken || hintSlackToken;
-        let slackUserSecondary = this.state.slackUser || hintSlackUser;
         let slackRoomSecondary = this.state.slackRoom || hintSlackRoom;
 
         return (
@@ -176,11 +153,6 @@ let HomePage = React.createClass({
                         <ListItem primaryText="Slack Access Token"
                             secondaryText={slackTokenSecondary}
                             onClick={this._onSlackAccessTokenClicked}
-                            disabled={!this.state.useSlack}
-                            style={slackDisabledListItemStyle}/>
-                        <ListItem primaryText="Slack User Name"
-                            secondaryText={slackUserSecondary}
-                            onClick={this._onSlackUserClicked}
                             disabled={!this.state.useSlack}
                             style={slackDisabledListItemStyle}/>
                         <ListItem primaryText="Slack Room"
@@ -227,18 +199,6 @@ let HomePage = React.createClass({
                         hintText={hintSlackToken}
                         style={{width: '100%'}}
                         defaultValue={this.state.slackToken}/>
-                </Dialog>
-                <Dialog
-                    ref="slackUserDialog"
-                    title="Slack User"
-                    open={this.state.openSlackUserDialog}
-                    actions={slackUserDialogActions}
-                    onRequestClose={this._onRequestClose}>
-                    <TextField
-                        ref="slackUserText"
-                        hintText={hintSlackUser}
-                        style={{width: '100%'}}
-                        defaultValue={this.state.slackUser}/>
                 </Dialog>
                 <Dialog
                     ref="slackRoomDialog"

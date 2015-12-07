@@ -196,8 +196,8 @@ class OmniTweety {
         let data = {
             token: ConfigStore.getSlackToken(),
             channel: ConfigStore.getSlackRoom(),
-            username: ConfigStore.getSlackUser(),
-            text: text
+            text: text,
+            as_user: true
         };
 
         request.get(Values.URL_SLACK_POST_MESSAGE)
