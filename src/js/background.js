@@ -6,6 +6,7 @@ import TwitterText from 'twitter-text';
 import TwitterAPIKey from '../../apikey.js';
 import AppConstants from './options/constants/app-constants';
 import ConfigStore from './options/stores/config-store';
+import SubCommands from './sub-commands';
 
 let {Values} = AppConstants;
 
@@ -17,22 +18,6 @@ class OmniTweety {
 
     static get URL_CONFIG() {
         return Values.URL_CONFIG;
-    }
-
-    static get shareCommandRegExp() {
-        return /^:share(\s*|\s+[\w\W]*)$/;
-    }
-
-    static get shareTextRegExp() {
-        return /^:share\s+([\w\W]+)$/;
-    }
-
-    static get optionsCommandRegExp() {
-        return /^:options(\s*|\s+[\w\W]*)$/;
-    }
-
-    static get versionCommandRegExp() {
-        return /^:version(\s*|\s+[\w\W]*)$/;
     }
 
     constructor() {
@@ -67,20 +52,51 @@ class OmniTweety {
         });
     }
 
+
+    isSlackCommand(text) {
+        return SubCommands.sl.regex.test(text) || SubCommands.sl.textRegex.test(text);
+    }
+
+    isTweetCommand(text) {
+        return SubCommands.tw.regex.test(text) || SubCommands.tw.textRegex.test(text);
+    }
+
     isShareCommand(text) {
-        return OmniTweety.shareCommandRegExp.test(text);
+        return SubCommands.share.regex.test(text) || SubCommands.share.textRegex.test(text);
+    }
+
+    isShareSlackCommand(text) {
+        return SubCommands.sharesl.regex.test(text) || SubCommands.sharesl.textRegex.test(text);
+    }
+
+    isShareTwitterCommand(text) {
+        return SubCommands.sharetw.regex.test(text) || SubCommands.sharetw.textRegex.test(text);
     }
 
     isOptionsCommand(text) {
-        return OmniTweety.optionsCommandRegExp.test(text);
+        return SubCommands.options.regex.test(text);
     }
 
     isVersionCommand(text) {
-        return OmniTweety.versionCommandRegExp.test(text);
+        return SubCommands.version.regex.test(text);
     }
 
-    getShareUserContent(text) {
-        let ary = OmniTweety.shareTextRegExp.exec(text);
+    isAnyShareCommand(text) {
+        return this.isShareCommand(text) || this.isShareSlackCommand(text) || this.isShareTwitterCommand(text);
+    }
+
+    getShareCommandRegex(text) {
+        if (this.isShareCommand(text)) {
+            return SubCommands.share.textRegex;
+        } else if (this.isShareTwitterCommand(text)) {
+            return SubCommands.sharetw.textRegex;
+        } else {
+            return SubCommands.sharesl.textRegex;
+        }
+    }
+
+    getUserInputContent(text, regex) {
+        let ary = regex.exec(text);
         // return first match or null
         if (ary && ary.length > 1) {
             return ary[1];
@@ -108,13 +124,13 @@ class OmniTweety {
 
     handleEvents() {
         chrome.omnibox.onInputChanged.addListener((text) => {
-            if (this.isShareCommand(text)) {
+            if (this.isAnyShareCommand(text)) {
                 this.getCurrentPage((page) => {
                     let message = 'unable to share this page';
                     this.getShortUrlMaxLength((urlMaxLength = page.url.length) => {
                         if (page) {
                             message = this.buildShareText(
-                                this.getShareUserContent(text) || ConfigStore.getStatusPrefix(),
+                                this.getUserInputContent(text, this.getShareCommandRegex(text)) || ConfigStore.getStatusPrefix(),
                                 page.title,
                                 page.url,
                                 urlMaxLength);
@@ -134,30 +150,53 @@ class OmniTweety {
                     description: this.getVersionString()
                 });
             } else {
+                let sendMessage;
+                if (this.isSlackCommand(text)) {
+                    sendMessage = this.getUserInputContent(text, SubCommands.sl.textRegex);
+                } else if (this.isTweetCommand(text)) {
+                    sendMessage = this.getUserInputContent(text, SubCommands.tw.textRegex);
+                } else {
+                    sendMessage = text;
+                }
+                let message = `${140 - sendMessage.length} characters remaining.`;
                 chrome.omnibox.setDefaultSuggestion({
-                    description: `${140 - text.length} characters remaining.`
+                    description: message
                 });
             }
         });
 
         chrome.omnibox.onInputEntered.addListener((text) => {
-            if (this.isShareCommand(text)) {
+            if (this.isAnyShareCommand(text)) {
 
                 this.getCurrentPage((page) => {
                     this.getShortUrlMaxLength((maxLength = page.url.length) => {
                         let sendMessage = this.buildShareText(
-                            this.getShareUserContent(text) || ConfigStore.getStatusPrefix(),
+                            this.getUserInputContent(text, this.getShareCommandRegex(text)) || ConfigStore.getStatusPrefix(),
                             page.title,
                             page.url,
                             maxLength);
 
-                        this.postMessage(sendMessage);
+                        if (this.isShareSlackCommand(text)) {
+                            this.postSlack(sendMessage, true);
+                        } else if (this.isShareTwitterCommand(text)) {
+                            this.postStatus(sendMessage);
+                        } else {
+                            this.postMessage(sendMessage);
+                        }
                     });
                 });
             } else if (this.isOptionsCommand(text)) {
                 chrome.runtime.openOptionsPage(null);
+
             } else if (this.isVersionCommand(text)) {
                 this.postMessage(this.getVersionString());
+
+            } else if (this.isSlackCommand(text)) {
+                this.postSlack(this.getUserInputContent(text, SubCommands.sl.textRegex), true);
+
+            } else if (this.isTweetCommand(text)) {
+                this.postStatus(this.getUserInputContent(text, SubCommands.tw.textRegex));
+
             } else {
                 this.postMessage(text);
             }
@@ -166,7 +205,7 @@ class OmniTweety {
 
     postMessage(text) {
         this.postStatus(text);
-        this.postSlack(text);
+        this.postSlack(text, false);
     }
 
     postStatus(text) {
@@ -189,7 +228,7 @@ class OmniTweety {
         }, request);
     }
 
-    postSlack(text) {
+    postSlack(text, shouldNotify) {
         if (!ConfigStore.useSlack()) {
             return;
         }
@@ -204,6 +243,15 @@ class OmniTweety {
             .query(data)
             .end((err, res) => {
                 console.log('send to slack', err, res);
+                if (!shouldNotify) {
+                    return;
+                }
+
+                if (err) {
+                    this.notify('./assets/icon_128.png', 'Oops! There was an error.', err.message);
+                } else {
+                    this.notify('./assets/icon_128.png', 'Successfully posted to Slack', text);
+                }
             });
     }
 
