@@ -8,6 +8,22 @@
   dependencies:
     axios "*"
 
+"@types/chrome@^0.0.46":
+  version "0.0.46"
+  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.46.tgz#f597623b2244c7484bbf59aceb9c8d16a39d4cd7"
+  dependencies:
+    "@types/filesystem" "*"
+
+"@types/filesystem@*":
+  version "0.0.28"
+  resolved "https://registry.yarnpkg.com/@types/filesystem/-/filesystem-0.0.28.tgz#3fd7735830f2c7413cb5ac45780bc45904697b0e"
+  dependencies:
+    "@types/filewriter" "*"
+
+"@types/filewriter@*":
+  version "0.0.28"
+  resolved "https://registry.yarnpkg.com/@types/filewriter/-/filewriter-0.0.28.tgz#c054e8af4d9dd75db4e63abc76f885168714d4b3"
+
 "@types/lodash@^4.14.62":
   version "4.14.62"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.62.tgz#8674f9861582148a60b7a89cb260f11378d11683"
