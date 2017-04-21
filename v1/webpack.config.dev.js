@@ -1,8 +1,10 @@
+var webpack = require("webpack");
+
 module.exports = {
     entry: {
         "./app/js/background": "./src/ts/background",
         "./app/js/oauth": "./src/ts/oauth",
-        "./app/js/options": "./src/ts/options"
+        "./app/js/options": "./src/ts/options",
     },
     output: {
         path: __dirname,
@@ -21,5 +23,14 @@ module.exports = {
                 ]
             }
         ]
-    }
+    },
+    plugins: [
+        new webpack.optimize.CommonsChunkPlugin({
+            name: "./app/js/vendor",
+            minChunks: function(module) {
+                // this assumes your vendor imports exist in the node_modules directory
+                return module.context && module.context.indexOf("node_modules") !== -1;
+            }
+        })
+    ]
 };
