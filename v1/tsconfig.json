@@ -1,0 +1,18 @@
+{
+    "files": [
+        "./src/ts/background/index.ts",
+        "./src/ts/oauth/index.ts",
+        "./src/ts/options/index.ts"
+    ],
+    "exclude": [
+        "./node_modules"
+    ],
+    "compilerOptions": {
+        "outDir": "./app/js",
+        "module": "es2015",
+        "target": "es2015",
+        "sourceMap": true,
+        "noImplicitAny": true,
+        "jsx": "react"
+    }
+}
