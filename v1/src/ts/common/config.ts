@@ -1,5 +1,5 @@
-import ApiKey from "../../../apikey";
-
+declare const API_KEY: String;
+declare const API_SECRET: String;
 
 export const AppConfig = {
     URL_DEVELOPER: "https://twitter.com/yslibnet",
@@ -17,8 +17,8 @@ export const TwitterConfig = {
     URL_CONFIG: "https://api.twitter.com/1.1/help/configuration.json",
 
     // api keys
-    API_KEY: ApiKey.consumer_key,
-    API_SECRET: ApiKey.consumer_secret,
+    API_KEY: API_KEY,
+    API_SECRET: API_SECRET,
 }
 
 export const SlackConfig = {

@@ -1,5 +1,7 @@
 var webpack = require("webpack");
 
+var apikey = require("./apikey-dev.json");
+
 module.exports = {
     entry: {
         "./app/js/background": "./src/ts/background",
@@ -19,7 +21,7 @@ module.exports = {
             {
                 test: /\.tsx?$/,
                 use: [
-                {loader: "ts-loader"}
+                    {loader: "ts-loader"}
                 ]
             }
         ]
@@ -31,6 +33,10 @@ module.exports = {
                 // this assumes your vendor imports exist in the node_modules directory
                 return module.context && module.context.indexOf("node_modules") !== -1;
             }
-        })
+        }),
+        new webpack.DefinePlugin({
+            API_KEY: JSON.stringify(apikey.consumer_key),
+            API_SECRET: JSON.stringify(apikey.consumer_secret),
+        }),
     ]
 };
