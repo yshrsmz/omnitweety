@@ -1,0 +1,21 @@
+{
+    "extends": ["tslint:latest", "tslint-react"],
+    "rules": {
+        "object-literal-sort-keys": false,
+        "eofline": true,
+        "indent": [true, "spaces"],
+        "whitespace": [
+            true,
+            "check-branch",
+            "check-decl",
+            "check-operator",
+            "check-module",
+            "check-separator",
+            "check-type",
+            "check-typecast"
+        ],
+        "max-classes-per-file": [
+            false
+        ]
+    }
+}
