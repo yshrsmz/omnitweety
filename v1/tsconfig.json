@@ -1,11 +1,11 @@
 {
     "files": [
-        "./src/ts/background/index.ts",
-        "./src/ts/oauth/index.ts",
-        "./src/ts/options/index.ts"
+        "src/ts/background/index.ts",
+        "src/ts/oauth/index.ts",
+        "src/ts/options/index.ts"
     ],
     "exclude": [
-        "./node_modules"
+        "node_modules"
     ],
     "compilerOptions": {
         "outDir": "./app/js",
@@ -13,6 +13,10 @@
         "target": "es2015",
         "sourceMap": true,
         "noImplicitAny": true,
-        "jsx": "react"
+        "jsx": "react",
+        "typeRoots": [
+            "node_modules/@types",
+            "src/ts/types"
+        ]
     }
 }
