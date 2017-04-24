@@ -1,8 +1,7 @@
 import { OAuth } from "oauth";
 
-import AccessToken from "./access_token";
 import { TwitterConfig } from "../common/config";
-
+import AccessToken from "./access_token";
 
 class Authorizer {
 
@@ -41,7 +40,7 @@ class Authorizer {
                 const authUrl = `${TwitterConfig.URL_AUTHORIZE}?oauth_token=${oauthToken}`;
                 resolve(authUrl);
             });
-        })
+        });
     }
 
     public accept(pinCode: String): Promise<AccessToken> {
@@ -62,4 +61,4 @@ class Authorizer {
     }
 }
 
-export default new Authorizer(TwitterConfig.API_KEY, TwitterConfig.API_SECRET)
+export default new Authorizer(TwitterConfig.API_KEY, TwitterConfig.API_SECRET);
