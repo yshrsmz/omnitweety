@@ -8,6 +8,7 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack --progress --colors --config ./webpack.config.dev.js && cpx 'assets/**/*.png' app/assets",
+    "clean": "rimraf ./app",
     "tsfmt": "tsfmt -r --useTsconfig=./tsconfig.json",
     "tslint:fix": "tslint --fix -c tslint.json 'src/**/*.{ts,tsx}'"
   },
@@ -28,6 +29,7 @@
     "@types/react-dom": "^15.5.0",
     "cpx": "^1.5.0",
     "html-webpack-plugin": "^2.28.0",
+    "rimraf": "^2.6.1",
     "ts-loader": "^2.0.3",
     "tslint": "^5.1.0",
     "tslint-react": "^2.6.0",
