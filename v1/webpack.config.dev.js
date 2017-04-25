@@ -1,4 +1,5 @@
 var webpack = require("webpack");
+var HtmlWebpackPlugin = require("html-webpack-plugin");
 
 var apikey = require("./apikey-dev.json");
 
@@ -37,6 +38,21 @@ module.exports = {
         new webpack.DefinePlugin({
             API_KEY: JSON.stringify(apikey.consumer_key),
             API_SECRET: JSON.stringify(apikey.consumer_secret),
+        }),
+        new HtmlWebpackPlugin({
+            title: "Omnitweety - Background",
+            filename: "./app/background.html",
+            chunks: ["./app/js/background"],
+        }),
+        new HtmlWebpackPlugin({
+            title: "Omnitweety - Options",
+            filename: "./app/options.html",
+            chunks: ["./app/js/options"],
+        }),
+        new HtmlWebpackPlugin({
+            title: "Omnitweety - Auth",
+            filename: "./app/oauth.html",
+            chunks: ["./app/js/oauth"]
         }),
     ]
 };
