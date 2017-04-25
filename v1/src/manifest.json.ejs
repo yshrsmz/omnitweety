@@ -1,10 +1,10 @@
 {
-    "name": "Omnitweety",
-    "short_name": "Omnitweety",
+    "name": "<%= htmlWebpackPlugin.options.appname %>",
+    "short_name": "<%= htmlWebpackPlugin.options.appname %>",
     "manifest_version": 2,
-    "version": "1.0.0",
+    "version": "<%= htmlWebpackPlugin.options.appversion %>",
     "description": "Tweet your status & share what you are browsing now, from Omnibox (a.k.a. URL or Address bar)!",
-    "omnibox": {"keyword": "tw"},
+    "omnibox": {"keyword": "<%= htmlWebpackPlugin.options.shortcut %>"},
     "icons": {
         "128": "assets/icon_128.png",
         "48": "assets/icon_48.png",
@@ -12,13 +12,13 @@
     },
     "background": {
         "scripts": [
-            "js/chrome_ex_oauth.min.js",
-            "js/background.min.js"
+            "js/oauth.js",
+            "js/background.js"
         ],
         "persistent": false
     },
     "options_page": "options.html",
-    "web_accessible_resources": ["chrome_ex_oauth.html"],
+    "web_accessible_resources": ["oauth.html"],
     "permissions": [
         "notifications",
         "tabs",

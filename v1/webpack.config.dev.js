@@ -1,3 +1,4 @@
+var path = require("path");
 var webpack = require("webpack");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 
@@ -5,12 +6,12 @@ var apikey = require("./apikey-dev.json");
 
 module.exports = {
     entry: {
-        "./app/js/background": "./src/ts/background",
-        "./app/js/oauth": "./src/ts/oauth",
-        "./app/js/options": "./src/ts/options",
+        "js/background": "./src/ts/background",
+        "js/oauth": "./src/ts/oauth",
+        "js/options": "./src/ts/options",
     },
     output: {
-        path: __dirname,
+        path: path.resolve(__dirname, "app"),
         filename: "[name].js"
     },
     devtool: "source-map",
@@ -29,7 +30,7 @@ module.exports = {
     },
     plugins: [
         new webpack.optimize.CommonsChunkPlugin({
-            name: "./app/js/vendor",
+            name: "js/vendor",
             minChunks: function(module) {
                 // this assumes your vendor imports exist in the node_modules directory
                 return module.context && module.context.indexOf("node_modules") !== -1;
@@ -41,18 +42,26 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             title: "Omnitweety - Background",
-            filename: "./app/background.html",
-            chunks: ["./app/js/background"],
+            filename: "background.html",
+            chunks: ["js/background", "js/vendor"],
         }),
         new HtmlWebpackPlugin({
             title: "Omnitweety - Options",
-            filename: "./app/options.html",
-            chunks: ["./app/js/options"],
+            filename: "options.html",
+            chunks: ["js/options", "js/vendor"],
         }),
         new HtmlWebpackPlugin({
             title: "Omnitweety - Auth",
-            filename: "./app/oauth.html",
-            chunks: ["./app/js/oauth"]
+            filename: "oauth.html",
+            chunks: ["js/oauth", "js/vendor"]
+        }),
+        new HtmlWebpackPlugin({
+            filename: "manifest.json",
+            template: "./src/manifest.json.ejs",
+            inject: false,
+            appname: "Omnitweety - Dev",
+            shortcut: "twd",
+            appversion: "0.9.1"
         }),
     ]
 };
