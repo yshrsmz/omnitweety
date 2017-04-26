@@ -1,5 +1,8 @@
-declare const API_KEY: String;
-declare const API_SECRET: String;
+declare const API_KEY: string;
+declare const API_SECRET: string;
+
+const urlUpdate = "https://api.twitter.com/1.1/statuses/update.json";
+const urlConfig = "https://api.twitter.com/1.1/help/configuration.json";
 
 export const AppConfig = {
     URL_DEVELOPER: "https://twitter.com/yslibnet",
@@ -13,12 +16,14 @@ export const TwitterConfig = {
     URL_ACCESS_TOKEN: "https://api.twitter.com/oauth/access_token",
 
     // for status update
-    URL_STATUS_UPDATE: "https://api.twitter.com/1.1/statuses/update.json",
-    URL_CONFIG: "https://api.twitter.com/1.1/help/configuration.json",
+    URL_STATUS_UPDATE: urlUpdate,
+    URL_CONFIG: urlConfig,
+
+    OAUTH_SCOPE: `$urlUpdate,$urlConfig`,
 
     // api keys
-    API_KEY,
-    API_SECRET,
+    API_KEY: API_KEY,
+    API_SECRET: API_SECRET,
 };
 
 export const SlackConfig = {

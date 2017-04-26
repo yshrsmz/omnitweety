@@ -1,4 +1,5 @@
 import AccessToken from "./access_token";
+import { TwitterConfig } from "../common/config"
 
 class AccessTokenRepository {
 
@@ -21,8 +22,14 @@ class AccessTokenRepository {
         return new AccessToken(token, secret);
     }
 
+    isAuthorized(): boolean {
+        return !!this.getAccessToken().token
+    }
+
     clear() {
         delete localStorage[this.oauthTokenKey];
         delete localStorage[this.oauthTokenSecretKey];
     }
 }
+
+export default new AccessTokenRepository(TwitterConfig.OAUTH_SCOPE)
