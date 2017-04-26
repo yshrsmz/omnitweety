@@ -37,8 +37,9 @@ module.exports = {
             }
         }),
         new webpack.DefinePlugin({
-            API_KEY: JSON.stringify(apikey.consumer_key),
-            API_SECRET: JSON.stringify(apikey.consumer_secret),
+            TWITTER_API_KEY: JSON.stringify(apikey.consumer_key),
+            TWITTER_API_SECRET: JSON.stringify(apikey.consumer_secret),
+            "process.env.NODE_ENV": JSON.stringify("development"),
         }),
         new HtmlWebpackPlugin({
             title: "Omnitweety - Background",

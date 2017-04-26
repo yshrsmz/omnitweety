@@ -54,7 +54,6 @@ class Authorizer {
                         reject(error);
                         return;
                     }
-                    console.log("accept:", oauthAccessToken, oauthAccessTokenSecret);
                     resolve(new AccessToken(oauthAccessToken, oauthAccessTokenSecret));
                 });
         });

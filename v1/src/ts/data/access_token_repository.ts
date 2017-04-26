@@ -1,5 +1,5 @@
+import { TwitterConfig } from "../common/config";
 import AccessToken from "./access_token";
-import { TwitterConfig } from "../common/config"
 
 class AccessTokenRepository {
 
@@ -11,25 +11,25 @@ class AccessTokenRepository {
         this.oauthTokenSecretKey = `oauth_token_secret${encodeURI(oauthScope)}`;
     }
 
-    setAccessToken(token: AccessToken) {
+    public setAccessToken(token: AccessToken) {
         localStorage[this.oauthTokenKey] = token.token;
         localStorage[this.oauthTokenSecretKey] = token.tokenSecret;
     }
 
-    getAccessToken(): AccessToken {
+    public getAccessToken(): AccessToken {
         const token: string = localStorage[this.oauthTokenKey];
         const secret: string = localStorage[this.oauthTokenSecretKey];
         return new AccessToken(token, secret);
     }
 
-    isAuthorized(): boolean {
-        return !!this.getAccessToken().token
+    public isAuthorized(): boolean {
+        return !!this.getAccessToken().token;
     }
 
-    clear() {
+    public clear() {
         delete localStorage[this.oauthTokenKey];
         delete localStorage[this.oauthTokenSecretKey];
     }
 }
 
-export default new AccessTokenRepository(TwitterConfig.OAUTH_SCOPE)
+export default new AccessTokenRepository(TwitterConfig.OAUTH_SCOPE);

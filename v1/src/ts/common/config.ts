@@ -1,5 +1,5 @@
-declare const API_KEY: string;
-declare const API_SECRET: string;
+declare const TWITTER_API_KEY: string;
+declare const TWITTER_API_SECRET: string;
 
 const urlUpdate = "https://api.twitter.com/1.1/statuses/update.json";
 const urlConfig = "https://api.twitter.com/1.1/help/configuration.json";
@@ -22,8 +22,8 @@ export const TwitterConfig = {
     OAUTH_SCOPE: `$urlUpdate,$urlConfig`,
 
     // api keys
-    API_KEY: API_KEY,
-    API_SECRET: API_SECRET,
+    API_KEY: TWITTER_API_KEY,
+    API_SECRET: TWITTER_API_SECRET,
 };
 
 export const SlackConfig = {
