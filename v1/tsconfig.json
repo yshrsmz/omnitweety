@@ -1,8 +1,8 @@
 {
     "files": [
         "src/ts/background/index.ts",
-        "src/ts/oauth/index.ts",
-        "src/ts/options/index.ts"
+        "src/ts/oauth/index.tsx",
+        "src/ts/options/index.tsx"
     ],
     "exclude": [
         "node_modules"
