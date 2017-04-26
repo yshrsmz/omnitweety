@@ -2,13 +2,13 @@
 declare module "oauth" {
     export class OAuth {
         constructor(
-            requestUrl: String,
-            accessUrl: String,
-            consumerKey: String,
-            consumerSecret: String,
-            version: String,
-            authorize_callback: String,
-            signatureMethod: String,
+            requestUrl: string,
+            accessUrl: string,
+            consumerKey: string,
+            consumerSecret: string,
+            version: string,
+            authorize_callback: string,
+            signatureMethod: string,
             nonceSize?: any,
             customHeaders?: any);
 
@@ -19,28 +19,28 @@ declare module "oauth" {
         get(url: any, oauth_token: any, oauth_token_secret: any, callback: any): any;
 
         getOAuthAccessToken(
-            oauth_token: String,
-            oauth_token_secret: String,
-            oauth_verifier: String,
+            oauth_token: string,
+            oauth_token_secret: string,
+            oauth_verifier: string,
             callback: (
                 error: any,
-                oauth_access_token: String,
-                oauth_access_token_secret: String,
+                oauth_access_token: string,
+                oauth_access_token_secret: string,
                 results: any) => void): void;
 
         getOAuthRequestToken(
             extraParams: any,
             callback: (
                 error: any,
-                oauth_token: String,
-                oauth_token_secret: String,
+                oauth_token: string,
+                oauth_token_secret: string,
                 results: any) => void): void;
 
         getOAuthRequestToken(
             callback: (
                 error: any,
-                oauth_token: String,
-                oauth_token_secret: String,
+                oauth_token: string,
+                oauth_token_secret: string,
                 results: any) => void): void;
 
         getProtectedResource(url: any, method: any, oauth_token: any, oauth_token_secret: any, callback: any): void;

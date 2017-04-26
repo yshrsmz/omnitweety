@@ -5,15 +5,15 @@ import AccessToken from "./access_token";
 
 class Authorizer {
 
-    private readonly apiKey: String;
-    private readonly apiSecret: String;
+    private readonly apiKey: string;
+    private readonly apiSecret: string;
 
-    private oauthToken: String;
-    private oauthTokenSecret: String;
+    private oauthToken: string;
+    private oauthTokenSecret: string;
 
     private readonly oauth: OAuth;
 
-    constructor(apiKey: String, apiSecret: String) {
+    constructor(apiKey: string, apiSecret: string) {
         this.apiKey = apiKey;
         this.apiSecret = apiSecret;
 
@@ -28,8 +28,8 @@ class Authorizer {
         );
     }
 
-    public request(): Promise<String> {
-        return new Promise<String>((resolve, reject) => {
+    public request(): Promise<string> {
+        return new Promise<string>((resolve, reject) => {
             this.oauth.getOAuthRequestToken((error, oauthToken, oauthTokenSecret, results) => {
                 if (error) {
                     reject(error);
@@ -43,7 +43,7 @@ class Authorizer {
         });
     }
 
-    public accept(pinCode: String): Promise<AccessToken> {
+    public accept(pinCode: string): Promise<AccessToken> {
         return new Promise<AccessToken>((resolve, reject) => {
             this.oauth.getOAuthAccessToken(
                 this.oauthToken,
