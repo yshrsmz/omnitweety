@@ -21,6 +21,8 @@ export const TwitterConfig = {
 
     OAUTH_SCOPE: `$urlUpdate,$urlConfig`,
 
+    STATUS_LENGTH: 140,
+
     // api keys
     API_KEY: TWITTER_API_KEY,
     API_SECRET: TWITTER_API_SECRET,

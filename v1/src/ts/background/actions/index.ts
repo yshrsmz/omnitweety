@@ -15,3 +15,25 @@ export const receiveLoginStatus = (loggedIn: boolean) => ({
     type: CHECK_LOGIN_RECEIVE,
     payload: loggedIn,
 });
+
+export const UPDATE_OMNIBOX = "UPDATE_OMNIBOX";
+export const FINISH_OMNIBOX = "FINISH_OMNIBOX";
+
+export const notifyOmniboxUpdated = (value: string) => ({
+    type: UPDATE_OMNIBOX,
+    payload: value,
+});
+
+export const notifyOmniboxFinished = (value: string) => ({
+    type: FINISH_OMNIBOX,
+    payload: value,
+});
+
+export const SEND_STATUS_REQUEST = "SEND_STATUS_REQUEST";
+export const SEND_STATUS_SUCCESS = "SEND_STATUS_SUCCESS";
+export const SEND_STATUS_FAILURE = "SEND_STATUS_FAILURE";
+
+export const requestSendStatus = (status: string) => ({
+    type: SEND_STATUS_REQUEST,
+    payload: status,
+});
