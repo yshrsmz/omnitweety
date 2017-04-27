@@ -6,5 +6,5 @@ import * as checkOmniboxSagas from "./check_omnibox";
 
 export default function* rootSaga() {
     yield fork(checkLoginSagas.handleCheckLoginStatus);
-    yield fork(checkOmniboxSagas.handleOmniboxInput);
+    yield fork(checkOmniboxSagas.handleOmniboxEvents);
 }

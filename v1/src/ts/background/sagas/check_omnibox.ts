@@ -1,5 +1,5 @@
-import { eventChannel, END } from "redux-saga";
-import { call, fork, put, race, take, takeEvery } from "redux-saga/effects";
+import { END, eventChannel } from "redux-saga";
+import { call, cancel, cancelled, fork, put, race, take, takeEvery } from "redux-saga/effects";
 
 import * as Actions from "../actions";
 import parseStatus, { IParsedStatus } from "./parse_status";
@@ -50,6 +50,7 @@ function checkOmniboxInputEntered() {
 function checkOmniboxInputCanceled() {
     return eventChannel((emitter) => {
         const listener = () => {
+            emitter(true);
             emitter(END);
         };
 
@@ -61,34 +62,37 @@ function checkOmniboxInputCanceled() {
     });
 }
 
-
-function* handleOmniboxEnterOrCancel() {
-    const inputFinished = yield call(checkOmniboxInputEntered);
-    const inputCancelled = yield call(checkOmniboxInputCanceled);
-    const result = yield race({
-        task: take(inputFinished),
-        cancel: take(inputCancelled)
-    });
-
-    console.log(result);
-}
-
-export function* handleOmniboxInput() {
+function* handleOmniboxInput() {
     const inputChanged = yield call(checkOmniboxInputChanged);
     try {
         while (true) {
             const input = yield take(inputChanged);
-
-            console.log(input);
+            yield put(Actions.notifyOmniboxUpdated(input));
         }
     } finally {
-        console.log("finished");
+        if (yield cancelled()) {
+            inputChanged.close();
+        }
     }
 }
 
 export function* handleOmniboxEvents() {
-    while(true) {
+    while (true) {
         yield take(checkOmniboxInputStarted());
-        yield fork(handleOmniboxInput);
+
+        const watcherTask = yield fork(handleOmniboxInput);
+
+        const inputFinished = yield call(checkOmniboxInputEntered);
+        const inputCancelled = yield call(checkOmniboxInputCanceled);
+        const result = yield race({
+            task: take(inputFinished),
+            cancel: take(inputCancelled),
+        });
+        if (result.cancel) {
+            yield put(Actions.notifyOmniboxFinished(""));
+        } else {
+            yield put(Actions.notifyOmniboxFinished(result.task));
+        }
+        yield cancel(watcherTask);
     }
 }
