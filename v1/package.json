@@ -17,6 +17,7 @@
     "@types/redux-saga": "^0.10.5",
     "axios": "^0.16.1",
     "lodash": "^4.17.4",
+    "minimist": "^1.2.0",
     "oauth": "^0.9.15",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
