@@ -37,3 +37,9 @@ export const requestSendStatus = (status: string) => ({
     type: SEND_STATUS_REQUEST,
     payload: status,
 });
+
+export const NAVIGATE_OPTIONS = "NAVIGATE_OPTIONS";
+export const NAVIGATE_AUTH = "NAVIGATE_AUTH";
+
+export const navigateToAuthPage = () => ({ type: NAVIGATE_AUTH });
+export const navigateToOptions = () => ({ type: NAVIGATE_OPTIONS });
