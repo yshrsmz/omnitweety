@@ -18,6 +18,7 @@ export const receiveLoginStatus = (loggedIn: boolean) => ({
 
 export const UPDATE_OMNIBOX = "UPDATE_OMNIBOX";
 export const FINISH_OMNIBOX = "FINISH_OMNIBOX";
+export const CANCEL_OMNIBOX = "CANCEL_OMNIBOX";
 
 export const notifyOmniboxUpdated = (value: string) => ({
     type: UPDATE_OMNIBOX,
@@ -28,6 +29,8 @@ export const notifyOmniboxFinished = (value: string) => ({
     type: FINISH_OMNIBOX,
     payload: value,
 });
+
+export const notifyOmniboxCancelled = () => ({ type: CANCEL_OMNIBOX });
 
 export const SEND_STATUS_REQUEST = "SEND_STATUS_REQUEST";
 export const SEND_STATUS_SUCCESS = "SEND_STATUS_SUCCESS";

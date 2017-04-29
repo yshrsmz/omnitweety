@@ -2,7 +2,7 @@ import { END, eventChannel } from "redux-saga";
 import { call, cancel, cancelled, fork, put, race, take, takeEvery } from "redux-saga/effects";
 
 import * as Actions from "../actions";
-import parseStatus, { IParsedStatus } from "./parse_status";
+import parseStatus, { IParsedStatus } from "./status_parser";
 
 function checkOmniboxInputStarted() {
     return eventChannel((emitter) => {
@@ -89,7 +89,7 @@ export function* handleOmniboxEvents() {
             cancel: take(inputCancelled),
         });
         if (result.cancel) {
-            yield put(Actions.notifyOmniboxFinished(""));
+            yield put(Actions.notifyOmniboxCancelled());
         } else {
             yield put(Actions.notifyOmniboxFinished(result.task));
         }
