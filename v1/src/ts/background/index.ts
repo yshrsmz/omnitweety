@@ -14,11 +14,9 @@ store.runSaga(rootSaga);
 store.subscribe(() => {
     const loginStatus = getLoginStatus(store.getState());
     if (loginStatus.isLoaded && !loginStatus.isLoggedIn) {
-        // start login process
-        console.info("Not autorized, start login process...");
-        router.navigateToOptionsPage();
+        // show login suggestion
     } else {
-
+        // show status preview or status length
     }
 });
 
