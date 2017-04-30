@@ -1,24 +1,20 @@
 import { TwitterConfig } from "../common/config";
 import AccessToken from "./access_token";
+import configDataStore from "./config_datastore";
 
 class AccessTokenRepository {
 
-    private readonly oauthTokenKey: string;
-    private readonly oauthTokenSecretKey: string;
-
-    constructor(oauthScope: string) {
-        this.oauthTokenKey = `oauth_token${encodeURI(oauthScope)}`;
-        this.oauthTokenSecretKey = `oauth_token_secret${encodeURI(oauthScope)}`;
+    constructor() {
     }
 
     public setAccessToken(token: AccessToken) {
-        localStorage[this.oauthTokenKey] = token.token;
-        localStorage[this.oauthTokenSecretKey] = token.tokenSecret;
+        configDataStore.setAccessToken(token.token);
+        configDataStore.setAccessTokenSecret(token.tokenSecret);
     }
 
     public getAccessToken(): AccessToken {
-        const token: string = localStorage[this.oauthTokenKey];
-        const secret: string = localStorage[this.oauthTokenSecretKey];
+        const token: string = configDataStore.getAccessToken();
+        const secret: string = configDataStore.getAccessTokenSecret();
         return new AccessToken(token, secret);
     }
 
@@ -27,9 +23,9 @@ class AccessTokenRepository {
     }
 
     public clear() {
-        delete localStorage[this.oauthTokenKey];
-        delete localStorage[this.oauthTokenSecretKey];
+        configDataStore.clearAccessToken()
+        configDataStore.clearAccesTokenSecret();
     }
 }
 
-export default new AccessTokenRepository(TwitterConfig.OAUTH_SCOPE);
+export default new AccessTokenRepository();
