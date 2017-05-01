@@ -1,16 +1,19 @@
 declare module "minimist" {
-    export interface IArgv {
-        _: string[];
-    }
+    export = minimist;
 
-    export interface IOptions {
-        string?: string | string[];
-        boolean?: string | string[];
-        alias?: { [key: string]: string; };
-        "default"?: { [key: string]: string | boolean };
-        stopEarly?: boolean;
-        "--"?: boolean;
-    }
+    function minimist<T extends minimist.IArgv>(args: string[], options: minimist.IOptions): T;
 
-    export default function minimist<T extends IArgv>(args: string[], options: IOptions): T;
+    namespace minimist {
+        interface IArgv {
+            _: string[];
+        }
+        interface IOptions {
+            string?: string | string[];
+            boolean?: string | string[];
+            alias?: { [key: string]: string; };
+            "default"?: { [key: string]: string | boolean };
+            stopEarly?: boolean;
+            "--"?: boolean;
+        }
+    }
 }

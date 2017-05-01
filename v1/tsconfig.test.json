@@ -11,14 +11,15 @@
         "src/ts/**/*"
     ],
     "compilerOptions": {
+        "declaration": false,
         "rootDir": "./src/ts",
         "outDir": "./app/js",
-        "module": "es2015",
+        "module": "commonjs",
         "moduleResolution": "node",
         "target": "es2015",
-        "sourceMap": true,
         "noImplicitAny": true,
         "jsx": "react",
+        "inlineSourceMap": true,
         "typeRoots": [
             "node_modules/@types",
             "src/ts/types"

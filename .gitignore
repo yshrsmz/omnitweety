@@ -1,6 +1,7 @@
 .idea/
 app/
 node_modules/
+.nyc_output/
 *.iml
 app.zip
 omnitweety.zip

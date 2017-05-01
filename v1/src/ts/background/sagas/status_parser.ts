@@ -1,6 +1,6 @@
-import minimist, { IArgv, IOptions } from "minimist";
+import * as minimist from "minimist";
 
-const options: IOptions = {
+const options: minimist.IOptions = {
     boolean: ["t", "s", "l", "v", "o"],
     alias: {
         t: "twitter",
@@ -12,7 +12,7 @@ const options: IOptions = {
     stopEarly: true,
 };
 
-interface IArgs extends IArgv {
+interface IArgs extends minimist.IArgv {
     share: boolean;
     twitter: boolean;
     slack: boolean;
