@@ -9,11 +9,12 @@ declare module "minimist" {
         }
         interface IOptions {
             string?: string | string[];
-            boolean?: string | string[];
+            boolean?: string | string[] | boolean;
             alias?: { [key: string]: string; };
             "default"?: { [key: string]: string | boolean };
             stopEarly?: boolean;
             "--"?: boolean;
+            unknown: (arg: any) => boolean;
         }
     }
 }
