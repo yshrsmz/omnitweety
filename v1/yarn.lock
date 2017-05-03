@@ -1113,9 +1113,9 @@ combined-stream@^1.0.5, combined-stream@~1.0.5:
   dependencies:
     delayed-stream "~1.0.0"
 
-command-line-args@^4.0.3:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/command-line-args/-/command-line-args-4.0.3.tgz#aefb061f107f0fd8d72b3c5e0ba042b319891bae"
+command-line-args@^4.0.4:
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/command-line-args/-/command-line-args-4.0.4.tgz#6b9ab497cfe82d2c1ce1e47d6c18a85382f5d9fe"
   dependencies:
     array-back "^1.0.4"
     find-replace "^1.0.3"
@@ -3743,11 +3743,7 @@ redux-logger@^3.0.1:
   dependencies:
     deep-diff "0.3.4"
 
-redux-saga@*:
-  version "0.15.0"
-  resolved "https://registry.yarnpkg.com/redux-saga/-/redux-saga-0.15.0.tgz#14c4aae5bfece7266d6b16e9050556a102fc6d38"
-
-redux-saga@^0.15.1:
+redux-saga@*, redux-saga@^0.15.1:
   version "0.15.1"
   resolved "https://registry.yarnpkg.com/redux-saga/-/redux-saga-0.15.1.tgz#13db6b78d34ca9e77c983935143ec0ed1cfe34b5"
 
