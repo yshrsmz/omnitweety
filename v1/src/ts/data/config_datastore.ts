@@ -1,14 +1,14 @@
 import { TwitterConfig } from "../common/config";
 
-let save = function(key: string, value: string|boolean) {
+const save = function(key: string, value: string | boolean) {
     localStorage[key] = value;
 };
 
-let load = function(key: string) {
+const load = function(key: string) {
     return localStorage[key];
 };
 
-let clear = function(key: string) {
+const clear = function(key: string) {
     delete localStorage[key];
 };
 
@@ -49,7 +49,7 @@ class ConfigDataStore {
         clear(ConfigDataStore.KEY_TWITTER_SECRET);
     }
 
-    public getStatusPrefix() :string {
+    public getStatusPrefix(): string {
         const result: string = load(ConfigDataStore.KEY_STATUS_PREFIX);
         return result ? result : "NowBrowsing:";
     }
@@ -58,7 +58,7 @@ class ConfigDataStore {
         save(ConfigDataStore.KEY_STATUS_PREFIX, prefix);
     }
 
-    public useSlack():boolean {
+    public useSlack(): boolean {
         const result = load(ConfigDataStore.KEY_USE_SLACK);
         if (result) {
             return JSON.parse(result);

@@ -19,7 +19,7 @@
     "@types/redux-saga": "^0.10.5",
     "axios": "^0.16.1",
     "command-line-args": "^4.0.4",
-    "lodash": "^4.17.4",
+    "lodash-es": "^4.17.4",
     "minimist": "^1.2.0",
     "oauth": "^0.9.15",
     "react": "^15.5.4",
@@ -34,7 +34,7 @@
   "devDependencies": {
     "@types/axios": "^0.14.0",
     "@types/chrome": "^0.0.46",
-    "@types/lodash": "^4.14.63",
+    "@types/lodash-es": "^4.14.5",
     "@types/react": "^15.0.23",
     "@types/react-dom": "^15.5.0",
     "@types/redux-logger": "^3.0.0",

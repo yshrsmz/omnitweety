@@ -23,7 +23,7 @@ class AccessTokenRepository {
     }
 
     public clear() {
-        configDataStore.clearAccessToken()
+        configDataStore.clearAccessToken();
         configDataStore.clearAccesTokenSecret();
     }
 }

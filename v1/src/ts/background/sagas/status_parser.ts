@@ -1,34 +1,32 @@
-import * as minimist from "minimist";
 import * as commandLineArgs from "command-line-args";
+import minimist, { IOptions, IArgv} from "../../common/minimist";
 
-const options: minimist.IOptions = {
-    boolean: true,
-    alias: {
-        twitter: "t",
-        share: "s",
-        slack: "l",
-        version: "v",
-        options: "o",
-        // t: "twitter",
-        // s: "share",
-        // l: "slack",
-        // v: "version",
-        // o: "options",
-    },
-    stopEarly: true,
-    unknown: (arg: string):boolean => {
-        console.log("arg", arg);
-        return !(arg.startsWith("-") || arg.startsWith("--"));
-    }
+interface ICommandOption {
+    alias: string;
+    isAlias?: boolean;
+}
+
+interface ICommandOptions {
+    [ key: string ]: ICommandOption;
+}
+
+const options: ICommandOptions = {
+    share: { alias: "s" },
+    twitter: { alias: "t" },
+    slack: { alias: "l" },
+    version: { alias: "v" },
+    options: { alias: "o" },
 };
 
-interface IArgs extends minimist.IArgv {
-    share: boolean;
-    twitter: boolean;
-    slack: boolean;
-    version: boolean;
-    options: boolean;
-    _unknown: string[];
+interface IArgs {
+    flags: {
+        share: boolean;
+        twitter: boolean;
+        slack: boolean;
+        version: boolean;
+        options: boolean;
+    };
+    content: string;
 }
 
 export interface IParsedStatus {
@@ -40,19 +38,67 @@ export interface IParsedStatus {
     status: string;
 }
 
-export default function parseStatus(value: string): IParsedStatus {
-    // const args: IArgs = minimist<IArgs>(value.split(" "), options);
-    const args: IArgs = commandLineArgs([
-        { name: "twitter", alias: "t", type: Boolean, defaultValue: false },
-        { name: "share", alias: "s", type: Boolean, defaultValue: false },
-        { name: "slack", alias: "l", type: Boolean, defaultValue: false },
-        { name: "version", alias: "v", type: Boolean, defaultValue: false },
-        { name: "options", alias: "o", type: Boolean, defaultValue: false },
-    ], {
-        partial: true,
-        argv: value.split(" "),
-    });
+function parseCliStyleArgs(args: string, opts: ICommandOptions): {flags: { [key: string]: boolean}, other: string} {
+    const splittedArgs = args.split(" ");
 
+    const resultFlags: { [key: string]: boolean } = {};
+    let metUnknownOrNonCommand = false;
+    let index = 0;
+
+    splittedArgs.forEach((arg) => {
+        if (metUnknownOrNonCommand) {
+            return;
+        }
+        if (/^--.+$/.test(arg)) {
+            // "--twitter"
+            var key = arg.match(/^--(.+)/)[1];
+
+            if (opts.hasOwnProperty(key)) {
+                let option = opts[key];
+                resultFlags[option.isAlias ? option.alias : key] = true;
+            } else {
+                metUnknownOrNonCommand = true;
+            }
+        } else if (/^-[^-]+/.test(arg)) {
+            // "-ts"
+            var letters = arg.slice(1, arg.length).split('');
+
+            letters.forEach((letter) => {
+                if (opts.hasOwnProperty(letter)) {
+                    let option = opts[letter];
+                    resultFlags[option.isAlias ? option.alias : letter] = true;
+                } else {
+                    if (letters.length == 1) {
+                        metUnknownOrNonCommand = true;
+                    }
+                }
+            });
+        } else {
+            metUnknownOrNonCommand = true;
+        }
+        if (!metUnknownOrNonCommand) {
+                index++;
+        }
+    });
+    const other = splittedArgs.slice(index, splittedArgs.length);
+
+    return {
+        flags: resultFlags,
+        other: other.join(" "),
+    };
+}
+
+export default function parseStatus(value: string): IParsedStatus {
+    let invertedOptions: { [key: string]: ICommandOption } = {};
+    Object.keys(options).forEach((key) => {
+        const option = options[key];
+        invertedOptions[key] = option;
+        if (option.alias !== undefined) {
+            invertedOptions[option.alias] = { alias: key, isAlias: !option.isAlias };
+        }
+    });
+    const args = parseCliStyleArgs(value, invertedOptions);
+    const flags = args.flags;
     // if all flags are false, then user might use old subcommands
 
     /**
@@ -63,11 +109,11 @@ export default function parseStatus(value: string): IParsedStatus {
      * - [ ] :version
      */
     return {
-        share: args.share,
-        slack: args.slack,
-        twitter: args.twitter,
-        version: args.version,
-        options: args.options,
-        status: args._unknown.join(" "),
+        share: !!flags.share,
+        slack: !!flags.slack,
+        twitter: !!flags.twitter,
+        version: !!flags.version,
+        options: !!flags.options,
+        status: args.other,
     };
 }
