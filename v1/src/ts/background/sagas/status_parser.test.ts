@@ -2,7 +2,22 @@ import test from "ava";
 
 import parseStatus, { IParsedStatus } from "./status_parser";
 
-test("short hand can be parsed", (t) => {
+test("no options", (t) => {
+    const result = parseStatus("test test -t");
+
+    t.deepEqual<IParsedStatus>(
+        result,
+        {
+            options: false,
+            share: false,
+            slack: false,
+            twitter: false,
+            version: false,
+            status: "test test -t",
+        });
+});
+
+test("shorthand can be parsed", (t) => {
     const result = parseStatus("-ts test");
 
     t.deepEqual<IParsedStatus>(
