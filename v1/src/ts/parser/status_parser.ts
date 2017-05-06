@@ -1,6 +1,3 @@
-import * as commandLineArgs from "command-line-args";
-import minimist, { IOptions, IArgv} from "../../common/minimist";
-
 interface ICommandOption {
     alias: string;
     isAlias?: boolean;
@@ -86,6 +83,10 @@ function parseCliStyleArgs(args: string, opts: ICommandOptions): {flags: { [key:
         flags: resultFlags,
         other: other.join(" "),
     };
+}
+
+function parseVimStyleArgs(value: string, invertedOptions: ICommandOptions): IArgs {
+    return;
 }
 
 export default function parseStatus(value: string): IParsedStatus {
