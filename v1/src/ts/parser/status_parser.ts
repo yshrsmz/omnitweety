@@ -17,11 +17,7 @@ const options: ICommandOptions = {
 
 interface IArgs {
     flags: {
-        share: boolean;
-        twitter: boolean;
-        slack: boolean;
-        version: boolean;
-        options: boolean;
+        [key: string]: boolean;
     };
     content: string;
 }
@@ -35,7 +31,7 @@ export interface IParsedStatus {
     status: string;
 }
 
-function parseCliStyleArgs(args: string, opts: ICommandOptions): {flags: { [key: string]: boolean}, other: string} {
+function parseCliStyleArgs(args: string, opts: ICommandOptions): IArgs {
     const splittedArgs = args.split(" ");
 
     const resultFlags: { [key: string]: boolean } = {};
@@ -48,7 +44,7 @@ function parseCliStyleArgs(args: string, opts: ICommandOptions): {flags: { [key:
         }
         if (/^--.+$/.test(arg)) {
             // "--twitter"
-            var key = arg.match(/^--(.+)/)[1];
+            const key = arg.match(/^--(.+)/)[1];
 
             if (opts.hasOwnProperty(key)) {
                 let option = opts[key];
@@ -81,15 +77,33 @@ function parseCliStyleArgs(args: string, opts: ICommandOptions): {flags: { [key:
 
     return {
         flags: resultFlags,
-        other: other.join(" "),
+        content: other.join(" "),
     };
 }
 
-function parseVimStyleArgs(value: string, invertedOptions: ICommandOptions): IArgs {
-    return;
+function parseVimStyleArgs(args: string, opts: ICommandOptions): IArgs {
+    const resultFlags: { [key: string]: boolean } = {};
+    const splittedArgs = args.trim().split(" ");
+    const command = splittedArgs[0].trim();
+
+    let hasCommand = false;
+    if (command.startsWith(":")) {
+        const key = command.slice(1, command.length);
+        if (opts.hasOwnProperty(key)) {
+            resultFlags[key] = true;
+            hasCommand = true;
+        }
+    }
+
+    const other = hasCommand ? splittedArgs.slice(1, splittedArgs.length) : [args];
+
+    return {
+        flags: resultFlags,
+        content: other.join(" "),
+    };
 }
 
-export default function parseStatus(value: string): IParsedStatus {
+function invertOptions(options: ICommandOptions): ICommandOptions {
     let invertedOptions: { [key: string]: ICommandOption } = {};
     Object.keys(options).forEach((key) => {
         const option = options[key];
@@ -98,23 +112,53 @@ export default function parseStatus(value: string): IParsedStatus {
             invertedOptions[option.alias] = { alias: key, isAlias: !option.isAlias };
         }
     });
-    const args = parseCliStyleArgs(value, invertedOptions);
-    const flags = args.flags;
-    // if all flags are false, then user might use old subcommands
+    return invertedOptions;
+}
 
-    /**
-     * TODO: handle old sub commands
-     *
-     * - [ ] :share
-     * - [ ] :options
-     * - [ ] :version
-     */
+function merge(argA: IArgs, argB: IArgs): IArgs {
+    const keysA = Object.keys(argA.flags);
+    const keysB = Object.keys(argB.flags);
+
+    const mergedArgs: IArgs = {
+        flags: Object.assign({}, argA.flags),
+        content: argA.content
+    };
+
+    let updated = false;
+    Object.keys(argB.flags).forEach((key) => {
+        if (argB.flags[key] && !argA.flags[key]) {
+            // option is true in argB, and false(not set) in argA
+            mergedArgs.flags[key] = true;
+            updated = true;
+        }
+    });
+
+    if (updated) {
+        mergedArgs.content = argB.content;
+    }
+
+    return mergedArgs;
+}
+
+export default function parseStatus(value: string): IParsedStatus {
+    let result: IParsedStatus;
+    const cliArgs = parseCliStyleArgs(value, invertOptions(options));
+    const cliFlags = cliArgs.flags;
+    let mergedArgs: IArgs = cliArgs;
+
+    // if all flags are false, then user might use old subcommands
+    if (!(cliFlags.share || cliFlags.twitter || cliFlags.slack || cliFlags.version || cliFlags.options)) {
+        const vimArgs = parseVimStyleArgs(value, options);
+        mergedArgs = merge(cliArgs, vimArgs);
+    }
+    const mergedFlags = mergedArgs.flags;
+
     return {
-        share: !!flags.share,
-        slack: !!flags.slack,
-        twitter: !!flags.twitter,
-        version: !!flags.version,
-        options: !!flags.options,
-        status: args.other,
+        share: !!mergedFlags.share,
+        slack: !!mergedFlags.slack,
+        twitter: !!mergedFlags.twitter,
+        version: !!mergedFlags.version,
+        options: !!mergedFlags.options,
+        status: mergedArgs.content,
     };
 }

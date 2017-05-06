@@ -123,7 +123,7 @@ test("previous :share command can be recognized", (t) => {
             slack: false,
             twitter: false,
             version: false,
-            status: "test status　あああ",
+            status: "test status　ああああ",
         },
     );
 });
