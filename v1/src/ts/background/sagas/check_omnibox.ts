@@ -91,7 +91,7 @@ export function* handleOmniboxEvents() {
         if (result.cancel) {
             yield put(Actions.notifyOmniboxCancelled());
         } else {
-            yield put(Actions.notifyOmniboxFinished(result.task));
+            yield put(Actions.notifyOmniboxFixed(result.task));
         }
         yield cancel(watcherTask);
     }

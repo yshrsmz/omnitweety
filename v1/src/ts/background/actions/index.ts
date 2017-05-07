@@ -17,7 +17,7 @@ export const receiveLoginStatus = (loggedIn: boolean) => ({
 });
 
 export const UPDATE_OMNIBOX = "UPDATE_OMNIBOX";
-export const FINISH_OMNIBOX = "FINISH_OMNIBOX";
+export const FIX_OMNIBOX = "FIX_OMNIBOX";
 export const CANCEL_OMNIBOX = "CANCEL_OMNIBOX";
 
 export const notifyOmniboxUpdated = (value: string) => ({
@@ -25,8 +25,8 @@ export const notifyOmniboxUpdated = (value: string) => ({
     payload: value,
 });
 
-export const notifyOmniboxFinished = (value: string) => ({
-    type: FINISH_OMNIBOX,
+export const notifyOmniboxFixed = (value: string) => ({
+    type: FIX_OMNIBOX,
     payload: value,
 });
 
