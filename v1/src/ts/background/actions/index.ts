@@ -32,6 +32,33 @@ export const notifyOmniboxFixed = (value: string) => ({
 
 export const notifyOmniboxCancelled = () => ({ type: CANCEL_OMNIBOX });
 
+export interface IStatusPartsPayload {
+    flags: {
+        options: boolean;
+        share: boolean;
+        slack: boolean;
+        twitter: boolean;
+        version: boolean;
+    };
+    web: {
+        url: string;
+        title: string;
+    };
+    userInput: string;
+    content: string;
+    fixed: boolean;
+}
+
+export const STATUS_PARTS_UPDATED = "STATUS_PARTS_UPDATED";
+export const STATUS_RESET = "STATUS_RESET";
+
+export const notifyStatusPartsUpdated = (parts: IStatusPartsPayload) => ({
+    type: STATUS_PARTS_UPDATED,
+    payload: parts,
+});
+
+export const notifyStatusReset = () => ({ type: STATUS_RESET });
+
 export const SEND_STATUS_REQUEST = "SEND_STATUS_REQUEST";
 export const SEND_STATUS_SUCCESS = "SEND_STATUS_SUCCESS";
 export const SEND_STATUS_FAILURE = "SEND_STATUS_FAILURE";
