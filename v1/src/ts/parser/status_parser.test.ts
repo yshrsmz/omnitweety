@@ -140,6 +140,6 @@ test("only the first colon command should be recognized", (t) => {
             twitter: false,
             version: false,
             status: ":option test status",
-        }
+        },
     );
 });

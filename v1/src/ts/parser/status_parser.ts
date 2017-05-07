@@ -31,6 +31,9 @@ export interface IParsedStatus {
     status: string;
 }
 
+/**
+ * Parse `--share` and `-s` style commands
+ */
 function parseCliStyleArgs(args: string, opts: ICommandOptions): IArgs {
     const splittedArgs = args.split(" ");
 
@@ -47,21 +50,21 @@ function parseCliStyleArgs(args: string, opts: ICommandOptions): IArgs {
             const key = arg.match(/^--(.+)/)[1];
 
             if (opts.hasOwnProperty(key)) {
-                let option = opts[key];
+                const option = opts[key];
                 resultFlags[option.isAlias ? option.alias : key] = true;
             } else {
                 metUnknownOrNonCommand = true;
             }
         } else if (/^-[^-]+/.test(arg)) {
             // "-ts"
-            var letters = arg.slice(1, arg.length).split('');
+            const letters = arg.slice(1, arg.length).split("");
 
             letters.forEach((letter) => {
                 if (opts.hasOwnProperty(letter)) {
-                    let option = opts[letter];
+                    const option = opts[letter];
                     resultFlags[option.isAlias ? option.alias : letter] = true;
                 } else {
-                    if (letters.length == 1) {
+                    if (letters.length === 1) {
                         metUnknownOrNonCommand = true;
                     }
                 }
@@ -81,6 +84,9 @@ function parseCliStyleArgs(args: string, opts: ICommandOptions): IArgs {
     };
 }
 
+/**
+ * Parse `:share` style commands
+ */
 function parseVimStyleArgs(args: string, opts: ICommandOptions): IArgs {
     const resultFlags: { [key: string]: boolean } = {};
     const splittedArgs = args.trim().split(" ");
@@ -103,10 +109,10 @@ function parseVimStyleArgs(args: string, opts: ICommandOptions): IArgs {
     };
 }
 
-function invertOptions(options: ICommandOptions): ICommandOptions {
-    let invertedOptions: { [key: string]: ICommandOption } = {};
-    Object.keys(options).forEach((key) => {
-        const option = options[key];
+function invertOptions(opts: ICommandOptions): ICommandOptions {
+    const invertedOptions: { [key: string]: ICommandOption } = {};
+    Object.keys(opts).forEach((key) => {
+        const option = opts[key];
         invertedOptions[key] = option;
         if (option.alias !== undefined) {
             invertedOptions[option.alias] = { alias: key, isAlias: !option.isAlias };
@@ -121,7 +127,7 @@ function merge(argA: IArgs, argB: IArgs): IArgs {
 
     const mergedArgs: IArgs = {
         flags: Object.assign({}, argA.flags),
-        content: argA.content
+        content: argA.content,
     };
 
     let updated = false;
@@ -141,7 +147,6 @@ function merge(argA: IArgs, argB: IArgs): IArgs {
 }
 
 export default function parseStatus(value: string): IParsedStatus {
-    let result: IParsedStatus;
     const cliArgs = parseCliStyleArgs(value, invertOptions(options));
     const cliFlags = cliArgs.flags;
     let mergedArgs: IArgs = cliArgs;

@@ -1,8 +1,8 @@
 import { END, eventChannel } from "redux-saga";
 import { call, cancel, cancelled, fork, put, race, take, takeEvery } from "redux-saga/effects";
 
-import * as Actions from "../actions";
 import parseStatus, { IParsedStatus } from "../../parser/status_parser";
+import * as Actions from "../actions";
 
 function checkOmniboxInputStarted() {
     return eventChannel((emitter) => {

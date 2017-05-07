@@ -1,14 +1,14 @@
 import { TwitterConfig } from "../common/config";
 
-const save = function(key: string, value: string | boolean) {
+const save = (key: string, value: string | boolean) => {
     localStorage[key] = value;
 };
 
-const load = function(key: string) {
+const load = (key: string) => {
     return localStorage[key];
 };
 
-const clear = function(key: string) {
+const clear = (key: string) => {
     delete localStorage[key];
 };
 
@@ -20,10 +20,6 @@ class ConfigDataStore {
     private static readonly KEY_USE_SLACK = "slack_use";
     private static readonly KEY_SLACK_TOKEN = "slack_token";
     private static readonly KEY_SLACK_ROOM = "slack_room";
-
-    constructor() {
-
-    }
 
     public getAccessToken(): string {
         return load(ConfigDataStore.KEY_TWITTER_TOKEN);
