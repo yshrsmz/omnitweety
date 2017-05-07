@@ -2,7 +2,7 @@ import test from "ava";
 
 import parseStatus, { IParsedStatus } from "./status_parser";
 
-test("no options", (t) => {
+test("no commands", (t) => {
     const result = parseStatus("test test -t");
 
     t.deepEqual<IParsedStatus>(
@@ -32,7 +32,7 @@ test("shorthand can be parsed", (t) => {
         });
 });
 
-test("multiple options can be parsed", (t) => {
+test("multiple commands can be parsed", (t) => {
     const result = parseStatus("--twitter --share test status");
 
     t.deepEqual<IParsedStatus>(
@@ -48,7 +48,7 @@ test("multiple options can be parsed", (t) => {
     );
 });
 
-test("unknown options should be treated as a part of status", (t) => {
+test("unknown commands should be treated as a part of status", (t) => {
     const result = parseStatus("--twitter --share --unknown test status");
 
     t.deepEqual<IParsedStatus>(
@@ -64,7 +64,7 @@ test("unknown options should be treated as a part of status", (t) => {
     );
 });
 
-test("unknown shorthand options should be treated as a part of status", (t) => {
+test("unknown shorthand commands should be treated as a part of status", (t) => {
     const result = parseStatus("-ts -u test status 123");
 
     t.deepEqual<IParsedStatus>(
@@ -80,7 +80,7 @@ test("unknown shorthand options should be treated as a part of status", (t) => {
     );
 });
 
-test("unknown combined shorthand options should be ignored", (t) => {
+test("unknown combined shorthand commands should be ignored", (t) => {
     const result = parseStatus("-tsu test status 123");
 
     t.deepEqual<IParsedStatus>(
@@ -96,7 +96,7 @@ test("unknown combined shorthand options should be ignored", (t) => {
     );
 });
 
-test("option-like string appeard in the middle of parameter should not treated as a option", (t) => {
+test("command-like string appeard in the middle of parameter should not treated as a command", (t) => {
     const result = parseStatus("-t test -s ssss");
 
     t.deepEqual<IParsedStatus>(
@@ -112,7 +112,7 @@ test("option-like string appeard in the middle of parameter should not treated a
     );
 });
 
-test("previous :share command can be recognized", (t) => {
+test("old :share command can be recognized", (t) => {
     const result = parseStatus(":share test status　ああああ");
 
     t.deepEqual<IParsedStatus>(
@@ -125,5 +125,21 @@ test("previous :share command can be recognized", (t) => {
             version: false,
             status: "test status　ああああ",
         },
+    );
+});
+
+test("only the first colon command should be recognized", (t) => {
+    const result = parseStatus(":share :option test status");
+
+    t.deepEqual<IParsedStatus>(
+        result,
+        {
+            options: false,
+            share: true,
+            slack: false,
+            twitter: false,
+            version: false,
+            status: ":option test status",
+        }
     );
 });
