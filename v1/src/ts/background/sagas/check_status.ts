@@ -21,7 +21,7 @@ async function getWebPageInfo() {
     });
 }
 
-function* runCalculateStatus(fixed: boolean, { payload }: Actions.IAction<string>) {
+function* runCalculateStatus(fixed: boolean, { payload }: Actions.IPayloadAction<string>) {
     const parsed = parseStatus(payload);
 
     let page: IPage = null;
