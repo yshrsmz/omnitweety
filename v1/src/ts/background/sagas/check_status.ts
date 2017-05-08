@@ -9,7 +9,7 @@ interface IPage {
     url: string;
 }
 
-async function getWebPageInfo() {
+async function getWebPageInfo(): Promise<IPage> {
     return new Promise<IPage>((resolve, reject) => {
         chrome.tabs.query({active: true, currentWindow: true}, (pages) => {
             if (pages.length > 0) {
