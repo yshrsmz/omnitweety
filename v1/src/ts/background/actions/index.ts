@@ -1,9 +1,10 @@
+import { Action } from "redux";
+
 export const CHECK_LOGIN_REQUEST = "CHECK_LOGIN_REQUEST";
 export const CHECK_LOGIN_RECEIVE = "CHECK_LOGIN_SUCCESS";
 export const CHECK_LOGIN_FAILURE = "CHECK_LOGIN_FAILURE";
 
-export interface IAction<T> {
-    type: string;
+export interface IAction<T> extends Action {
     payload: T;
 }
 
