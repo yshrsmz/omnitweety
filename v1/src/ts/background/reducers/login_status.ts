@@ -10,7 +10,7 @@ const initialState = {
     isLoggedIn: false,
 };
 
-const loginStatus = (state = initialState, action: Actions.IAction<boolean>) => {
+const loginStatus = (state = initialState, action: Actions.IPayloadAction<boolean>) => {
     switch (action.type) {
         case Actions.CHECK_LOGIN_RECEIVE:
             return {
