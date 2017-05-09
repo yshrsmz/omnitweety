@@ -1,8 +1,8 @@
 import { END, eventChannel } from "redux-saga";
-import { call, cancel, cancelled, fork, put, race, take, takeEvery } from "redux-saga/effects";
+import { call, cancel, cancelled, fork, put, race, take, takeEvery, takeLatest } from "redux-saga/effects";
 
-import * as Actions from "../actions";
 import parseStatus from "../../parser/status_parser";
+import * as Actions from "../actions";
 
 interface IPage {
     title: string;
@@ -21,12 +21,12 @@ async function getWebPageInfo(): Promise<IPage> {
     });
 }
 
-function* runCalculateStatus(fixed: boolean, { payload }: Actions.IPayloadAction<string>) {
-    const parsed = parseStatus(payload);
+function* runCalculateStatus(fixed: boolean, input: string) {
+    const parsed = parseStatus(input);
 
     let page: IPage = null;
     if (parsed.share) {
-        page = yield getWebPageInfo()
+        page = yield getWebPageInfo();
     }
 
     const newPayload: Actions.IStatusPartsPayload = {
@@ -43,29 +43,40 @@ function* runCalculateStatus(fixed: boolean, { payload }: Actions.IPayloadAction
         },
         userInput: parsed.status,
         content: "",
-        fixed: fixed,
+        fixed,
     };
-    console.log("newPayload", newPayload);
-    yield put(Actions.notifyStatusPartsUpdated(newPayload));
+    return newPayload;
 }
 
 function* handleStatusUpdated() {
-    yield takeEvery(Actions.UPDATE_OMNIBOX, runCalculateStatus, false);
+    while (true) {
+        const { payload }: Actions.IPayloadAction<string> = yield take(Actions.UPDATE_OMNIBOX);
+        const newPayload = yield call(runCalculateStatus, false, payload);
+        yield put(Actions.notifyStatusPartsUpdated(newPayload));
+    }
 }
 
 function* handleStatusFixed() {
-    yield takeEvery(Actions.FIX_OMNIBOX, runCalculateStatus, true);
+    while (true) {
+        const { payload }: Actions.IPayloadAction<string> = yield take(Actions.FIX_OMNIBOX);
+        const newPayload = yield call(runCalculateStatus, true, payload);
+
+        yield put(Actions.notifyStatusPartsUpdated(newPayload)); // update store
+
+        // call update api
+    }
 }
 
 function* runCancelStatus() {
     yield put(Actions.notifyStatusReset());
 }
 
-function* handleOmniboxCancelled() {
-    yield takeEvery(Actions.CANCEL_OMNIBOX, runCancelStatus);
+function* handleStatusCancelled() {
+    yield takeLatest(Actions.CANCEL_OMNIBOX, runCancelStatus);
 }
 
 export function* handleStatusChange() {
     yield fork(handleStatusUpdated);
-    yield fork(handleOmniboxCancelled);
+    yield fork(handleStatusFixed);
+    yield fork(handleStatusCancelled);
 }
