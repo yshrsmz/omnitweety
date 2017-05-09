@@ -4,6 +4,7 @@ var merge = require("webpack-merge");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 
 var baseConfig = require("./webpack.config.base.js");
+var packageJson = require("./package.json");
 var apikey = require("./apikey-dev.json");
 
 const config = merge(baseConfig, {
@@ -20,7 +21,7 @@ const config = merge(baseConfig, {
             inject: false,
             appname: "Omnitweety - Dev",
             shortcut: "twd",
-            appversion: "0.9.1" // TODO: get from package.json
+            appversion: packageJson.version,
         }),
     ]
 });

@@ -1,6 +1,6 @@
 {
   "name": "omnitweety",
-  "version": "1.0.0-dev",
+  "version": "0.9.1",
   "description": "Chrome Extension just for tweeting from omnibox",
   "main": "index.js",
   "repository": "https://github.com/yshrsmz/omnitweety",
