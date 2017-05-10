@@ -29,17 +29,19 @@ function* runCalculateStatus(fixed: boolean, input: string) {
         page = yield getWebPageInfo();
     }
 
+    const isShare = parsed.share && page !== null;
+
     const newPayload: Actions.IStatusPartsPayload = {
         flags: {
             options: parsed.options,
-            share: parsed.share,
+            share: isShare,
             slack: parsed.slack,
             twitter: parsed.twitter,
             version: parsed.version,
         },
         web: {
-            url: parsed.share ? page.url : "",
-            title: parsed.share ? page.title : "",
+            url: isShare ? page.url : "",
+            title: isShare ? page.title : "",
         },
         userInput: parsed.status,
         content: "",
