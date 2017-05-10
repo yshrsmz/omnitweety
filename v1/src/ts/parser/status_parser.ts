@@ -4,7 +4,7 @@ interface ICommandOption {
 }
 
 interface ICommandOptions {
-    [ key: string ]: ICommandOption;
+    [key: string]: ICommandOption;
 }
 
 const options: ICommandOptions = {
@@ -73,7 +73,7 @@ function parseCliStyleArgs(args: string, opts: ICommandOptions): IArgs {
             metUnknownOrNonCommand = true;
         }
         if (!metUnknownOrNonCommand) {
-                index++;
+            index++;
         }
     });
     const other = splittedArgs.slice(index, splittedArgs.length);

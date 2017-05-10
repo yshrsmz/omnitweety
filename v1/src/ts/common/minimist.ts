@@ -11,7 +11,7 @@ export interface IOptions {
 
 interface IFlags {
     bools: { [key: string]: boolean };
-    strings: { [key: string]: boolean};
+    strings: { [key: string]: boolean };
     allBools: boolean;
     unknownFn: (arg: string) => boolean;
 }
@@ -43,10 +43,11 @@ const minimist = function minimist(args: string[], opts: IOptions): IArgv {
     }
 
     const flags: IFlags = {
-        bools : {},
+        bools: {},
         allBools: false,
-        strings : {},
-        unknownFn: null };
+        strings: {},
+        unknownFn: null
+    };
 
     if (typeof opts.unknown === "function") {
         flags.unknownFn = opts.unknown;
@@ -75,11 +76,11 @@ const minimist = function minimist(args: string[], opts: IOptions): IArgv {
         if (aliases[key]) {
             flags.strings[aliases[key].join(",")] = true;
         }
-     });
+    });
 
     const defaults = opts.default || {};
 
-    const argv: IArgv = { _ : [] };
+    const argv: IArgv = { _: [] };
     Object.keys(flags.bools).forEach((key) => {
         setArg(key, defaults[key] === undefined ? false : defaults[key]);
     });
@@ -99,7 +100,7 @@ const minimist = function minimist(args: string[], opts: IOptions): IArgv {
     function setArg(key: string, val: any, arg: string = null) {
         if (arg && flags.unknownFn && !argDefined(key, arg)) {
             if (flags.unknownFn(arg) === false) {
-return;
+                return;
             }
         }
 
@@ -126,14 +127,14 @@ return;
         } else if (Array.isArray(o[key])) {
             o[key].push(value);
         } else {
-            o[key] = [ o[key], value ];
+            o[key] = [o[key], value];
         }
     }
 
     function aliasIsBoolean(key: string) {
-      return aliases[key].some((x) => {
-          return flags.bools[x];
-      });
+        return aliases[key].some((x) => {
+            return flags.bools[x];
+        });
     }
 
     for (let i = 0; i < args.length; i++) {
@@ -159,9 +160,9 @@ return;
             const key = arg.match(/^--(.+)/)[1];
             const next = args[i + 1];
             if (next !== undefined && !/^-/.test(next)
-            && !flags.bools[key]
-            && !flags.allBools
-            && (aliases[key] ? !aliasIsBoolean(key) : true)) {
+                && !flags.bools[key]
+                && !flags.allBools
+                && (aliases[key] ? !aliasIsBoolean(key) : true)) {
                 setArg(key, next, arg);
                 i++;
 
@@ -190,7 +191,7 @@ return;
                 }
 
                 if (/[A-Za-z]/.test(letters[j])
-                && /-?\d+(\.\d*)?(e-?\d+)?$/.test(next)) {
+                    && /-?\d+(\.\d*)?(e-?\d+)?$/.test(next)) {
                     setArg(letters[j], next, arg);
                     broken = true;
                     break;
@@ -208,8 +209,8 @@ return;
             const key = arg.slice(-1)[0];
             if (!broken && key !== "-") {
                 if (args[i + 1] && !/^(-|--)[^-]/.test(args[i + 1])
-                && !flags.bools[key]
-                && (aliases[key] ? !aliasIsBoolean(key) : true)) {
+                    && !flags.bools[key]
+                    && (aliases[key] ? !aliasIsBoolean(key) : true)) {
                     setArg(key, args[i + 1], arg);
                     i++;
 
