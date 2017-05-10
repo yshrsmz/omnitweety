@@ -1,6 +1,8 @@
 import { END, eventChannel } from "redux-saga";
-import { call, cancel, cancelled, fork, put, race, take, takeEvery, takeLatest } from "redux-saga/effects";
+import { call, cancel, cancelled, fork, put, race, take, takeEvery, takeLatest, select } from "redux-saga/effects";
+import * as TwitterText from "twitter-text";
 
+import { TwitterConfig } from "../../common/config";
 import parseStatus from "../../parser/status_parser";
 import * as Actions from "../actions";
 
@@ -9,11 +11,43 @@ interface IPage {
     url: string;
 }
 
+interface IContent {
+    content: string;
+    length: number;
+}
+
+function buildShareText(prefix: string, title: string, url: string, shortUrlLength: number): IContent {
+    const options = { short_url_length: 29, short_url_length_https: 29 };
+    const textLength = TwitterText.getTweetLength(`${prefix} ${title} ${url}`,
+        options);
+    const lengthDiff = TwitterConfig.STATUS_LENGTH - textLength;
+
+    let resultText: string;
+    if (lengthDiff < 0) {
+        resultText = `${prefix} ${title.slice(0, lengthDiff)} ${url}`;
+    } else {
+        resultText = `${prefix} ${title} ${url}`;
+    }
+
+    return {
+        content: resultText,
+        length: TwitterText.getTweetLength(resultText, options),
+    };
+}
+
+function buildText(text: string, shortUrlLength: number): IContent {
+    const options = { short_url_length: 29, short_url_length_https: 29 };
+    return {
+        content: text,
+        length: TwitterText.getTweetLength(text, options),
+    };
+}
+
 async function getWebPageInfo(): Promise<IPage> {
     return new Promise<IPage>((resolve, reject) => {
-        chrome.tabs.query({active: true, currentWindow: true}, (pages) => {
+        chrome.tabs.query({ active: true, currentWindow: true }, (pages) => {
             if (pages.length > 0) {
-                resolve({ title: pages[0].title, url: pages[0].url} );
+                resolve({ title: pages[0].title, url: pages[0].url });
             } else {
                 reject(null);
             }
@@ -24,27 +58,31 @@ async function getWebPageInfo(): Promise<IPage> {
 function* runCalculateStatus(fixed: boolean, input: string) {
     const parsed = parseStatus(input);
 
-    let page: IPage = null;
+    let page: IPage;
+    let content: IContent;
     if (parsed.share) {
         page = yield getWebPageInfo();
+        content = buildShareText(parsed.status, page.title, page.url, 29);
+    } else {
+        page = null;
+        content = buildText(parsed.status, 29);
     }
-
-    const isShare = parsed.share && page !== null;
 
     const newPayload: Actions.IStatusPartsPayload = {
         flags: {
             options: parsed.options,
-            share: isShare,
+            share: parsed.share,
             slack: parsed.slack,
             twitter: parsed.twitter,
             version: parsed.version,
         },
-        web: {
-            url: isShare ? page.url : "",
-            title: isShare ? page.title : "",
+        web: (page === null) ? null : {
+            url: page.url,
+            title: page.title,
         },
         userInput: parsed.status,
-        content: "",
+        content: content.content,
+        length: content.length,
         fixed,
     };
     return newPayload;
@@ -63,9 +101,7 @@ function* handleStatusFixed() {
         const { payload }: Actions.IPayloadAction<string> = yield take(Actions.FIX_OMNIBOX);
         const newPayload = yield call(runCalculateStatus, true, payload);
 
-        yield put(Actions.notifyStatusPartsUpdated(newPayload)); // update store
-
-        // call update api
+        yield put(Actions.notifyStatusPartsUpdated(newPayload));
     }
 }
 

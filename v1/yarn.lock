@@ -91,6 +91,10 @@
   dependencies:
     redux-saga "*"
 
+"@types/twitter-text@^1.13.17":
+  version "1.13.17"
+  resolved "https://registry.yarnpkg.com/@types/twitter-text/-/twitter-text-1.13.17.tgz#6a0a840e73e563bb0775e97eddb9b2b67b515b60"
+
 abbrev@1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.0.tgz#d0554c2256636e2f56e7c2e5ad183f859428d81f"
@@ -4559,6 +4563,10 @@ twit@^2.2.5:
     bluebird "^3.1.5"
     mime "^1.3.4"
     request "^2.68.0"
+
+twitter-text@^1.14.3:
+  version "1.14.3"
+  resolved "https://registry.yarnpkg.com/twitter-text/-/twitter-text-1.14.3.tgz#72af718ba672d829a6e70eaefa8e18528cf49062"
 
 type-is@~1.6.14:
   version "1.6.15"

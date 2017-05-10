@@ -28,7 +28,8 @@
     "redux-logger": "^3.0.1",
     "redux-saga": "^0.15.3",
     "rx": "^4.1.0",
-    "twit": "^2.2.5"
+    "twit": "^2.2.5",
+    "twitter-text": "^1.14.3"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
@@ -37,6 +38,7 @@
     "@types/react": "^15.0.24",
     "@types/react-dom": "^15.5.0",
     "@types/redux-logger": "^3.0.0",
+    "@types/twitter-text": "^1.13.17",
     "ava": "^0.19.1",
     "cpx": "^1.5.0",
     "dts-gen": "^0.5.6",
