@@ -50,6 +50,7 @@ export interface IStatusPartsPayload {
     };
     userInput: string;
     content: string;
+    length: number;
     fixed: boolean;
 }
 
