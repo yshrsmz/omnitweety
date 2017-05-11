@@ -1,5 +1,5 @@
 import { END, eventChannel } from "redux-saga";
-import { call, cancel, cancelled, fork, put, race, take, takeEvery, takeLatest, select } from "redux-saga/effects";
+import { call, cancel, cancelled, fork, put, race, select, take, takeEvery, takeLatest } from "redux-saga/effects";
 import * as TwitterText from "twitter-text";
 
 import { TwitterConfig } from "../../common/config";

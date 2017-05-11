@@ -35,10 +35,9 @@ const initialStateusContent = {
 };
 
 const statusFlags = (state: IStatusFlags = initialStatusFlags, action: IPayloadAction<IStatusPartsPayload>) => {
-    let flags;
     switch (action.type) {
         case Actions.STATUS_PARTS_UPDATED:
-            flags = action.payload.flags;
+            const flags = action.payload.flags;
             return {
                 ...state,
                 options: flags.options,
@@ -48,7 +47,6 @@ const statusFlags = (state: IStatusFlags = initialStatusFlags, action: IPayloadA
                 version: flags.version,
             };
         case Actions.STATUS_RESET:
-            flags = action.payload.flags;
             return {
                 ...state,
                 options: false,
@@ -86,8 +84,8 @@ const statusContent = (state: IStatusContent = initialStateusContent, action: IP
     }
 };
 
-export const getTweetStatusFlags = (state: any): IStatusFlags => state.tweetStatusFlags;
-export const getTweetStatusContent = (state: any): IStatusContent => state.tweetStatusContent;
+export const getTweetStatusFlags = (state: any): IStatusFlags => state.tweet.statusFlags;
+export const getTweetStatusContent = (state: any): IStatusContent => state.tweet.statusContent;
 
 const tweet = combineReducers({
     statusFlags,

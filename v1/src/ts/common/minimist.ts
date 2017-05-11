@@ -46,7 +46,7 @@ const minimist = function minimist(args: string[], opts: IOptions): IArgv {
         bools: {},
         allBools: false,
         strings: {},
-        unknownFn: null
+        unknownFn: null,
     };
 
     if (typeof opts.unknown === "function") {

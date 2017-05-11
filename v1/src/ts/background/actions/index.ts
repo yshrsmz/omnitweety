@@ -5,6 +5,7 @@ export const CHECK_LOGIN_RECEIVE = "CHECK_LOGIN_SUCCESS";
 export const CHECK_LOGIN_FAILURE = "CHECK_LOGIN_FAILURE";
 
 export interface IAction extends Action {
+    type: string;
 }
 
 export interface IPayloadAction<T> extends IAction {
