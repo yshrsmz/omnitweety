@@ -1,6 +1,6 @@
 import { AppConfig, TwitterConfig } from "../common/config";
 import { getLoginStatus } from "./reducers/login_status";
-import { getTweetStatusContent, getTweetStatusFlags, IStatusContent } from "./reducers/tweet_status";
+import { getStatusContent, getStatusFlags, IStatusContent } from "./reducers/tweet_status";
 
 function renderDefaultSuggestion(description: string) {
     chrome.omnibox.setDefaultSuggestion({
@@ -19,11 +19,11 @@ function buildVersionMessage(): string {
 
 const renderSuggestion = (state: any) => {
     const loginStatus = getLoginStatus(state);
-    const tweetFlags = getTweetStatusFlags(state);
-    const tweetContent = getTweetStatusContent(state);
+    const statusFlags = getStatusFlags(state);
+    const statusContent = getStatusContent(state);
 
-    if (tweetContent.fixed) {
-        if (tweetFlags.options) {
+    if (statusContent.fixed) {
+        if (statusFlags.options) {
             // navigate to options page
         } else if (loginStatus.isLoaded && !loginStatus.isLoggedIn) {
             // navigate to login page
@@ -34,7 +34,7 @@ const renderSuggestion = (state: any) => {
         // FIXME: these messages can be created inside saga
         // user is still editing
         let message;
-        if (tweetFlags.options) {
+        if (statusFlags.options) {
             message = "Open options page.";
         } else if (loginStatus.isLoaded && !loginStatus.isLoggedIn) {
             // show login suggestion
@@ -42,12 +42,12 @@ const renderSuggestion = (state: any) => {
         } else {
             // show status preview or status length
 
-            if (tweetFlags.version) {
+            if (statusFlags.version) {
                 message = buildVersionMessage();
-            } else if (tweetFlags.share) {
-                message = tweetContent.composed;
+            } else if (statusFlags.share) {
+                message = statusContent.composed;
             } else {
-                message = buildRemainingLengthMessage(tweetContent);
+                message = buildRemainingLengthMessage(statusContent);
             }
         }
         renderDefaultSuggestion(message);

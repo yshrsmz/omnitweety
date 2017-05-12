@@ -18,7 +18,7 @@ export interface IStatusContent {
     fixed: boolean;
 }
 
-const initialStatusFlags = {
+const initialFlags = {
     options: false,
     share: false,
     slack: false,
@@ -26,7 +26,7 @@ const initialStatusFlags = {
     version: false,
 };
 
-const initialStateusContent = {
+const initialContent = {
     userInput: "",
     prefix: "",
     composed: "",
@@ -34,7 +34,7 @@ const initialStateusContent = {
     fixed: false,
 };
 
-const statusFlags = (state: IStatusFlags = initialStatusFlags, action: IPayloadAction<IStatusPartsPayload>) => {
+const flags = (state: IStatusFlags = initialFlags, action: IPayloadAction<IStatusPartsPayload>) => {
     switch (action.type) {
         case Actions.STATUS_PARTS_UPDATED:
             const flags = action.payload.flags;
@@ -60,7 +60,7 @@ const statusFlags = (state: IStatusFlags = initialStatusFlags, action: IPayloadA
     }
 };
 
-const statusContent = (state: IStatusContent = initialStateusContent, action: IPayloadAction<IStatusPartsPayload>) => {
+const content = (state: IStatusContent = initialContent, action: IPayloadAction<IStatusPartsPayload>) => {
     switch (action.type) {
         case Actions.STATUS_PARTS_UPDATED:
             const payload = action.payload;
@@ -84,12 +84,12 @@ const statusContent = (state: IStatusContent = initialStateusContent, action: IP
     }
 };
 
-export const getTweetStatusFlags = (state: any): IStatusFlags => state.tweet.statusFlags;
-export const getTweetStatusContent = (state: any): IStatusContent => state.tweet.statusContent;
+export const getTweetStatusFlags = (state: any): IStatusFlags => state.tweet.flags;
+export const getTweetStatusContent = (state: any): IStatusContent => state.tweet.content;
 
 const tweet = combineReducers({
-    statusFlags,
-    statusContent,
+    flags,
+    content,
 });
 
 export default tweet;
