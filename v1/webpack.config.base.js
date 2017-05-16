@@ -1,6 +1,7 @@
 var path = require("path");
 var webpack = require("webpack");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
+var CopyWebpackPlugin = require("copy-webpack-plugin");
 
 
 const config = {
@@ -18,12 +19,7 @@ const config = {
     },
     module: {
         rules: [
-            {
-                test: /\.tsx?$/,
-                use: [
-                    {loader: "ts-loader"}
-                ]
-            }
+            { test: /\.tsx?$/, use: [ {loader: "ts-loader"}] },
         ]
     },
     plugins: [
@@ -34,6 +30,9 @@ const config = {
                 return module.context && module.context.indexOf("node_modules") !== -1;
             }
         }),
+        new CopyWebpackPlugin([
+            { from: "src/css", to: "css" }
+        ]),
         new HtmlWebpackPlugin({
             title: "Omnitweety - Background",
             filename: "background.html",
@@ -42,6 +41,7 @@ const config = {
         new HtmlWebpackPlugin({
             title: "Omnitweety - Options",
             filename: "options.html",
+            template: "./src/options.html.ejs",
             chunks: ["js/options", "js/vendor"],
         }),
         new HtmlWebpackPlugin({
