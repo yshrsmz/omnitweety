@@ -14,7 +14,7 @@ function buildRemainingLengthMessage(tweetContent: IStatusContent): string {
 
 function buildVersionMessage(): string {
     const version = chrome.runtime.getManifest().version;
-    return `I\'m using Omnitweet for Chrome Version ${version} - ${AppConfig.URL_CHROME_WEBSTORE}`;
+    return `I\'m using Omnitweety for Chrome Version ${version} - ${AppConfig.URL_CHROME_WEBSTORE}`;
 }
 
 const renderSuggestion = (state: any) => {
