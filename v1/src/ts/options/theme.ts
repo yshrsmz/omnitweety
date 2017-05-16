@@ -7,10 +7,10 @@ import {
     white,
 } from "material-ui/styles/colors";
 import { fade } from "material-ui/utils/colorManipulator";
-import Spacing from "material-ui/styles/spacing";
+import spacing from "material-ui/styles/spacing";
 
 const theme = getMuiTheme({
-    spacing: Spacing,
+    spacing: spacing,
     fontFamily: "Roboto, sans-serif",
     palette: {
         primary1Color: lightGreen500,
