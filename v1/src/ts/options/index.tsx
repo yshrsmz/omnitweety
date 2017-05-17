@@ -10,6 +10,7 @@ import * as ReactDOM from "react-dom";
 import * as injectTapEventPlugin from "react-tap-event-plugin";
 
 import theme from "./theme";
+import Home from "./home";
 
 injectTapEventPlugin();
 
@@ -59,7 +60,7 @@ class App extends React.Component<{}, IState> {
                     />
                     <div style={styles.root}>
                         <div style={styles.content}>
-                            <RaisedButton primary={true} label="Default" />
+                            <Home useSlack={false} prefix={"NowBrowsing"} slackRoom="" slackToken="" />
                         </div>
                     </div>
                 </div>
