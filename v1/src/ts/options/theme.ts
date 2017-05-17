@@ -6,11 +6,11 @@ import {
     lightGreen700,
     white,
 } from "material-ui/styles/colors";
-import { fade } from "material-ui/utils/colorManipulator";
 import spacing from "material-ui/styles/spacing";
+import { fade } from "material-ui/utils/colorManipulator";
 
 const theme = getMuiTheme({
-    spacing: spacing,
+    spacing,
     fontFamily: "Roboto, sans-serif",
     palette: {
         primary1Color: lightGreen500,

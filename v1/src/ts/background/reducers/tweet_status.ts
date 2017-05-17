@@ -37,14 +37,14 @@ const initialContent = {
 const flags = (state: IStatusFlags = initialFlags, action: IPayloadAction<IStatusPartsPayload>) => {
     switch (action.type) {
         case Actions.STATUS_PARTS_UPDATED:
-            const flags = action.payload.flags;
+            const statusFlags = action.payload.flags;
             return {
                 ...state,
-                options: flags.options,
-                share: flags.share,
-                slack: flags.slack,
-                twitter: flags.twitter,
-                version: flags.version,
+                options: statusFlags.options,
+                share: statusFlags.share,
+                slack: statusFlags.slack,
+                twitter: statusFlags.twitter,
+                version: statusFlags.version,
             };
         case Actions.STATUS_RESET:
             return {
