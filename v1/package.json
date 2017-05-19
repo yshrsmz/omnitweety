@@ -16,7 +16,6 @@
     "test": "tsc -p ./tsconfig.test.json && nyc ava \"app/**/*test.js\""
   },
   "dependencies": {
-    "@types/redux-saga": "^0.10.5",
     "axios": "^0.16.1",
     "lodash-es": "^4.17.4",
     "material-ui": "^0.18.1",
@@ -40,8 +39,10 @@
     "@types/material-ui": "^0.17.7",
     "@types/react": "^15.0.24",
     "@types/react-dom": "^15.5.0",
+    "@types/react-redux": "^4.4.40",
     "@types/react-tap-event-plugin": "^0.0.30",
     "@types/redux-logger": "^3.0.0",
+    "@types/redux-saga": "^0.10.5",
     "@types/twitter-text": "^1.13.17",
     "ava": "^0.19.1",
     "copy-webpack-plugin": "^4.0.1",
