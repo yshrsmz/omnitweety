@@ -5,6 +5,7 @@ import * as TwitterText from "twitter-text";
 import { TwitterConfig } from "../../common/config";
 import parseStatus from "../../parser/status_parser";
 import * as Actions from "../actions";
+import { IAction, IPayloadAction } from "../../common/actions";
 
 interface IPage {
     title: string;
@@ -90,7 +91,7 @@ function* runCalculateStatus(fixed: boolean, input: string) {
 
 function* handleStatusUpdated() {
     while (true) {
-        const { payload }: Actions.IPayloadAction<string> = yield take(Actions.UPDATE_OMNIBOX);
+        const { payload }: IPayloadAction<string> = yield take(Actions.UPDATE_OMNIBOX);
         const newPayload = yield call(runCalculateStatus, false, payload);
         yield put(Actions.notifyStatusPartsUpdated(newPayload));
     }
@@ -98,7 +99,7 @@ function* handleStatusUpdated() {
 
 function* handleStatusFixed() {
     while (true) {
-        const { payload }: Actions.IPayloadAction<string> = yield take(Actions.FIX_OMNIBOX);
+        const { payload }: IPayloadAction<string> = yield take(Actions.FIX_OMNIBOX);
         const newPayload = yield call(runCalculateStatus, true, payload);
 
         yield put(Actions.notifyStatusPartsUpdated(newPayload));

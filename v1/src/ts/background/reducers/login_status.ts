@@ -1,4 +1,5 @@
 import * as Actions from "../actions";
+import { IPayloadAction } from "../../common/actions";
 
 export interface ILoginStatus {
     isLoaded: boolean;
@@ -10,7 +11,7 @@ const initialState = {
     isLoggedIn: false,
 };
 
-const loginStatus = (state = initialState, action: Actions.IPayloadAction<boolean>) => {
+const loginStatus = (state = initialState, action: IPayloadAction<boolean>) => {
     switch (action.type) {
         case Actions.CHECK_LOGIN_RECEIVE:
             return {
