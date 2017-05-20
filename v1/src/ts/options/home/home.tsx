@@ -29,6 +29,8 @@ export interface IProps {
     useSlack: boolean;
     slackToken: string;
     slackRoom: string;
+    updatePrefix: (prefix: string) => any;
+    updateUseSlack: (useSlack: boolean) => any;
 }
 
 class Home extends React.Component<IProps, IState> {
@@ -133,7 +135,7 @@ class Home extends React.Component<IProps, IState> {
     }
 
     private onUseSlackToggleChanged = (event: any, checked: boolean) => {
-        // TODO dispatch action to update props
+        this.props.updateUseSlack(checked);
     }
 
     private getPrefixDialog() {
@@ -163,7 +165,7 @@ class Home extends React.Component<IProps, IState> {
     }
 
     private onSavePrefix = () => {
-        console.log(this.state.prefixInput);
+        this.props.updatePrefix(this.state.prefixInput);
         this.onClosePrefixDialog();
     }
 

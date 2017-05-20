@@ -36,7 +36,7 @@ class App extends React.Component<{}, IState> {
                     />
                     <div style={styles.root}>
                         <div style={styles.content}>
-                            <Home useSlack={false} prefix={"NowBrowsing"} slackRoom="" slackToken="" />
+                            <Home />
                         </div>
                     </div>
                 </div>
