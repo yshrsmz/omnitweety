@@ -53,7 +53,7 @@
     "remote-redux-devtools": "^0.5.11",
     "remotedev-server": "^0.2.2",
     "rimraf": "^2.6.1",
-    "ts-loader": "^2.0.3",
+    "ts-loader": "^2.1.0",
     "tslint": "^5.2.0",
     "tslint-react": "^3.0.0",
     "typescript": "^2.3.2",
