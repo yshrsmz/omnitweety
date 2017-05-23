@@ -5,6 +5,7 @@ const urlUpdate = "https://api.twitter.com/1.1/statuses/update.json";
 const urlConfig = "https://api.twitter.com/1.1/help/configuration.json";
 
 export const AppConfig = {
+    PREFIX: "NowBrowsing:",
     URL_DEVELOPER: "https://twitter.com/yslibnet",
     URL_CHROME_WEBSTORE: "https://chrome.google.com/webstore/detail/omnitweety/jkghejckpigfbolkdkplfokccgpjjilb",
 };
