@@ -8,4 +8,4 @@ const options = combineReducers({
 export const getPrefix = (state: any): IPrefix => state.prefix;
 
 export { IPrefix } from "./prefix";
-export default options;
+export default { options };

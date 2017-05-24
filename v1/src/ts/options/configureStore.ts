@@ -7,6 +7,7 @@ import {
 import logger from "redux-logger";
 import createSagaMiddleware from "redux-saga";
 import { composeWithDevTools } from "remote-redux-devtools";
+import reducers from "./reducers";
 
 declare const window: any;
 

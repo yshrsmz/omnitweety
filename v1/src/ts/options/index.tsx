@@ -8,11 +8,14 @@ import SettingIcon from "material-ui/svg-icons/action/settings";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import * as injectTapEventPlugin from "react-tap-event-plugin";
+import { Provider, Store } from "react-redux";
 
 import Home from "./home";
 import theme from "./theme";
+import configureStore from "./configureStore";
 
 injectTapEventPlugin();
+const store = configureStore()
 
 interface IState {
     muiTheme: MuiTheme;
@@ -70,6 +73,8 @@ class App extends React.Component<{}, IState> {
 }
 
 ReactDOM.render(
-    <App />,
+    <Provider store={store}>
+        <App />
+    </Provider>,
     document.getElementById("app"),
 );

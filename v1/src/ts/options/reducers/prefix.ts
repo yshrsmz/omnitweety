@@ -1,4 +1,4 @@
-import * as Actions from "../home/actions";
+import * as Actions from "../actions";
 import { IPayloadAction } from "../../common/actions";
 import { AppConfig } from "../../common/config";
 
