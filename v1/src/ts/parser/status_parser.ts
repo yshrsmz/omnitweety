@@ -126,7 +126,7 @@ function merge(argA: IArgs, argB: IArgs): IArgs {
     const keysB = Object.keys(argB.flags);
 
     const mergedArgs: IArgs = {
-        flags: Object.assign({}, argA.flags),
+        flags: {...argA.flags},
         content: argA.content,
     };
 

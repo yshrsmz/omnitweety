@@ -11,7 +11,6 @@ import reducers from "./reducers";
 
 declare const window: any;
 
-
 const configureStore = (preloadedState = {}) => {
     const sagaMiddleware = createSagaMiddleware();
     const composeEnhancers = composeWithDevTools({ realtime: true, hostname: "localhost", port: 8080 });

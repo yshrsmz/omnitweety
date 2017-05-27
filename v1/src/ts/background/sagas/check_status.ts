@@ -2,10 +2,10 @@ import { END, eventChannel } from "redux-saga";
 import { call, cancel, cancelled, fork, put, race, select, take, takeEvery, takeLatest } from "redux-saga/effects";
 import * as TwitterText from "twitter-text";
 
+import { IAction, IPayloadAction } from "../../common/actions";
 import { TwitterConfig } from "../../common/config";
 import parseStatus from "../../parser/status_parser";
 import * as Actions from "../actions";
-import { IAction, IPayloadAction } from "../../common/actions";
 
 interface IPage {
     title: string;

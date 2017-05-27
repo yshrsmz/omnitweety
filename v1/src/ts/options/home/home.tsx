@@ -47,6 +47,12 @@ class Home extends React.Component<IProps, IState> {
         };
     }
 
+    public componentWillMount() {
+        this.setState({
+            muiTheme: getMuiTheme(),
+        });
+    }
+
     public render() {
         const useSlack = this.props.useSlack;
 
@@ -113,12 +119,6 @@ class Home extends React.Component<IProps, IState> {
                 {this.getSlackTokenDialog()}
             </Paper>
         );
-    }
-
-    private componentWillMount() {
-        this.setState({
-            muiTheme: getMuiTheme(),
-        });
     }
 
     private getStyles() {

@@ -7,7 +7,6 @@ export const notifyPrefixUpdated = (prefix: string): IPayloadAction<string> => (
     payload: prefix,
 });
 
-
 export const USE_SLACK_UPDATED = "USE_SLACK_UPDATED";
 export const SLACK_TOKEN_UPDATED = "SLACK_TOKEN_UPDATED";
 export const SLACK_ROOM_UPDATED = "SLACK_ROOM_UPDATED";

@@ -7,21 +7,27 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import SettingIcon from "material-ui/svg-icons/action/settings";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import * as injectTapEventPlugin from "react-tap-event-plugin";
 import { Provider, Store } from "react-redux";
+import * as injectTapEventPlugin from "react-tap-event-plugin";
 
+import configureStore from "./configureStore";
 import Home from "./home";
 import theme from "./theme";
-import configureStore from "./configureStore";
 
 injectTapEventPlugin();
-const store = configureStore()
+const store = configureStore();
 
 interface IState {
     muiTheme: MuiTheme;
 }
 
 class App extends React.Component<{}, IState> {
+
+    public componentWillMount() {
+        this.setState({
+            muiTheme: getMuiTheme(),
+        });
+    }
 
     public render() {
 
@@ -45,12 +51,6 @@ class App extends React.Component<{}, IState> {
                 </div>
             </MuiThemeProvider>
         );
-    }
-
-    private componentWillMount() {
-        this.setState({
-            muiTheme: getMuiTheme(),
-        });
     }
 
     private getStyles() {

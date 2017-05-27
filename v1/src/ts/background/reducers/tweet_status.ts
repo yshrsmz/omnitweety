@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
+import { IPayloadAction } from "../../common/actions";
 import * as Actions from "../actions";
 import { IStatusPartsPayload } from "../actions";
-import { IPayloadAction } from "../../common/actions";
 
 export interface IStatusFlags {
     options: boolean;

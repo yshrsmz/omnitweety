@@ -1,8 +1,8 @@
-import { Dispatch } from "redux";
 import { connect } from "react-redux";
+import { Dispatch } from "redux";
 
-import Home from "./home";
 import * as Actions from "../actions";
+import Home from "./home";
 
 const mapStateToProps = (state: any) => {
     return {

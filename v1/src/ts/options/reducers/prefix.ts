@@ -1,6 +1,6 @@
-import * as Actions from "../actions";
 import { IPayloadAction } from "../../common/actions";
 import { AppConfig } from "../../common/config";
+import * as Actions from "../actions";
 
 export interface IPrefix {
     prefix: string;
@@ -11,7 +11,7 @@ const initialPrefix = {
 };
 
 const prefix = (state: IPrefix = initialPrefix, action: IPayloadAction<string>) => {
-    switch(action.type) {
+    switch (action.type) {
         case Actions.PREFIX_UPDATED:
             return {
                 ...state,

@@ -1,5 +1,5 @@
-import * as Actions from "../actions";
 import { IPayloadAction } from "../../common/actions";
+import * as Actions from "../actions";
 
 export interface ILoginStatus {
     isLoaded: boolean;
