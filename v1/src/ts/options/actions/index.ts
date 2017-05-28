@@ -1,5 +1,10 @@
 import { IAction, IPayloadAction } from "../../common/actions";
 
+export const INITIAL_DATA_REQUESTED = "INITIAL_DATE_REQUESTED";
+
+export const notifyInitialDataRequested = (): IAction => ({ type: INITIAL_DATA_REQUESTED });
+
+
 export const PREFIX_UPDATED = "PREFIX_UPDATED";
 
 export const notifyPrefixUpdated = (prefix: string): IPayloadAction<string> => ({

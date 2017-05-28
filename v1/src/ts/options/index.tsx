@@ -14,10 +14,12 @@ import configureStore from "./configureStore";
 import Home from "./home";
 import theme from "./theme";
 import saga from "./sagas";
+import * as Actions from "./actions";
 
 injectTapEventPlugin();
 const store = configureStore();
 store.runSaga(saga);
+store.dispatch(Actions.notifyInitialDataRequested());
 
 interface IState {
     muiTheme: MuiTheme;
