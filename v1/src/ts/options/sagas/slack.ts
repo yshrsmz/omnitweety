@@ -4,6 +4,14 @@ import { IPayloadAction } from "../../common/actions";
 import configDataStore from "../../data/config_datastore";
 import * as Actions from "../actions";
 
+function runInitialDataRequested() {
+
+}
+
+function* handleInitialDataRequested() {
+    yield takeEvery(Actions.INITIAL_DATA_REQUESTED, runInitialDataRequested);
+}
+
 function runUseSlackUpdated({ payload }: IPayloadAction<boolean>) {
     configDataStore.setUseSlack(payload);
 }
@@ -29,6 +37,7 @@ function* handleSlackRoomUpdated() {
 }
 
 export function* handleSlackConfigEvents() {
+    yield fork(handleInitialDataRequested);
     yield fork(handleUseSlackUpdated);
     yield fork(handleSlackTokenUpdated);
     yield fork(handleSlackRoomUpdated);
