@@ -17,6 +17,8 @@ const mapDispatchToProps = (dispatch: Dispatch<any>) => {
     return {
         updatePrefix: (prefix: string) => dispatch(Actions.notifyPrefixUpdated(status)),
         updateUseSlack: (useSlack: boolean) => dispatch(Actions.notifyUseSlackUpdated(useSlack)),
+        updateSlackToken: (token: string) => dispatch(Actions.notifySlackTokenUpdated(token)),
+        updateSlackRoom: (room: string) => dispatch(Actions.notifySlackRoomUpdated(room)),
     };
 };
 

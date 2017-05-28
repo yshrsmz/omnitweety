@@ -13,9 +13,11 @@ import * as injectTapEventPlugin from "react-tap-event-plugin";
 import configureStore from "./configureStore";
 import Home from "./home";
 import theme from "./theme";
+import saga from "./sagas";
 
 injectTapEventPlugin();
 const store = configureStore();
+store.runSaga(saga);
 
 interface IState {
     muiTheme: MuiTheme;

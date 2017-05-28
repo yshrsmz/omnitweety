@@ -31,6 +31,8 @@ export interface IProps {
     slackRoom: string;
     updatePrefix: (prefix: string) => any;
     updateUseSlack: (useSlack: boolean) => any;
+    updateSlackToken: (token: string) => any;
+    updateSlackRoom: (room: string) => any;
 }
 
 class Home extends React.Component<IProps, IState> {
@@ -204,7 +206,7 @@ class Home extends React.Component<IProps, IState> {
     }
 
     private onSaveSlackToken = () => {
-        console.log(this.state.slackTokenInput);
+        this.props.updateSlackToken(this.state.slackTokenInput);
         this.onCloseSlackTokenDialog();
     }
 
@@ -243,7 +245,7 @@ class Home extends React.Component<IProps, IState> {
     }
 
     private onSaveSlackRoom = () => {
-        console.log(this.state.slackTokenInput);
+        this.props.updateSlackRoom(this.state.slackRoomInput);
         this.onCloseSlackRoomDialog();
     }
 
