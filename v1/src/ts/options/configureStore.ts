@@ -17,9 +17,7 @@ const configureStore = (preloadedState = {}) => {
 
     return {
         ...createStore(
-            combineReducers({
-                ...reducers,
-            }),
+            reducers,
             preloadedState,
             composeEnhancers(
                 applyMiddleware(

@@ -12,4 +12,4 @@ export const getSlack = (state: any): ISlack => state.slack;
 
 export { IPrefix } from "./prefix";
 export { ISlack } from "./slack";
-export default { options };
+export default options;
