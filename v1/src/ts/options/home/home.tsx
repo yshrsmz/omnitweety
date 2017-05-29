@@ -86,6 +86,7 @@ class Home extends React.Component<IProps, IState> {
                         rightToggle={
                             <Toggle
                                 defaultToggled={this.props.useSlack}
+                                onToggle={this.onUseSlackToggleChanged}
                             />}
                     />
                     <ListItem
