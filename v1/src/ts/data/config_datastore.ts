@@ -68,15 +68,15 @@ class ConfigDataStore {
     }
 
     public getSlackToken(): string {
-        return load(ConfigDataStore.KEY_SLACK_TOKEN);
+        return load(ConfigDataStore.KEY_SLACK_TOKEN) || "";
     }
 
     public setSlackToken(token: string) {
-        save(ConfigDataStore.KEY_SLACK_TOKEN, token);
+        save(ConfigDataStore.KEY_SLACK_TOKEN, token) || "";
     }
 
     public getSlackRoom(): string {
-        return load(ConfigDataStore.KEY_SLACK_ROOM);
+        return load(ConfigDataStore.KEY_SLACK_ROOM) || "";
     }
 
     public setSlackRoom(room: string) {
