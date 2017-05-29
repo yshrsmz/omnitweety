@@ -13,8 +13,16 @@ const initialState = {
     room: "",
 };
 
-const slack = (state: ISlack = initialState, action: IPayloadAction<boolean | string>) => {
+const slack = (state: ISlack = initialState, action: IPayloadAction<boolean | string | Actions.ISlack>) => {
     switch (action.type) {
+        case Actions.SLACK_INITIAL_DATA_LOADED:
+            const payload = action.payload as Actions.ISlack;
+            return {
+                ...state,
+                use: payload.use,
+                token: payload.token,
+                room: payload.room,
+            };
         case Actions.USE_SLACK_UPDATED:
             return {
                 ...state,

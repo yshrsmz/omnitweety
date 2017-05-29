@@ -4,8 +4,15 @@ import { IPayloadAction } from "../../common/actions";
 import configDataStore from "../../data/config_datastore";
 import * as Actions from "../actions";
 
-function runInitialDataRequested() {
-
+function* runInitialDataRequested() {
+    yield put(Actions.notifyPrefixInitialDataLoaded(
+        configDataStore.getStatusPrefix(),
+    ));
+    yield put(Actions.notifySlackInitialDataLoaded(
+        configDataStore.useSlack(),
+        configDataStore.getSlackToken(),
+        configDataStore.getSlackRoom(),
+    ));
 }
 
 function* handleInitialDataRequested() {
@@ -17,7 +24,7 @@ function runUseSlackUpdated({ payload }: IPayloadAction<boolean>) {
 }
 
 function* handleUseSlackUpdated() {
-    yield takeEvery(Actions.USE_SLACK_UPDATED, runSlackTokenUpdated);
+    yield takeEvery(Actions.USE_SLACK_UPDATED, runUseSlackUpdated);
 }
 
 function runSlackTokenUpdated({ payload }: IPayloadAction<string>) {

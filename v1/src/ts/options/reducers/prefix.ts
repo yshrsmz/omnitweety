@@ -12,6 +12,11 @@ const initialPrefix = {
 
 const prefix = (state: IPrefix = initialPrefix, action: IPayloadAction<string>) => {
     switch (action.type) {
+        case Actions.PREFIX_INITIAL_DATA_LOADED:
+            return {
+                ...state,
+                prefix: action.payload,
+            };
         case Actions.PREFIX_UPDATED:
             return {
                 ...state,
