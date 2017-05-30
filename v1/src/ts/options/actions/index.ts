@@ -27,16 +27,16 @@ export const notifyPrefixInitialDataLoaded = (prefix: string): IPayloadAction<st
 });
 
 export interface ITwitter {
-    id: string;
+    name: string;
     screenName: string,
-    thumb: string;
+    profileImageUrl: string;
 }
-export const notifyTwitterInitialDataLoaded = (id: string, screenName: string, thumb: string): IPayloadAction<ITwitter> => ({
+export const notifyTwitterInitialDataLoaded = (name: string, screenName: string, profileImageUrl: string): IPayloadAction<ITwitter> => ({
     type: TWITTER_INITIAL_DATA_LOADED,
     payload: {
-        id,
+        name,
         screenName,
-        thumb,
+        profileImageUrl,
     },
 });
 
