@@ -5,9 +5,6 @@ import configDataStore from "../../data/config_datastore";
 import * as Actions from "../actions";
 
 function* runInitialDataRequested() {
-    yield put(Actions.notifyPrefixInitialDataLoaded(
-        configDataStore.getStatusPrefix(),
-    ));
     yield put(Actions.notifySlackInitialDataLoaded(
         configDataStore.useSlack(),
         configDataStore.getSlackToken(),

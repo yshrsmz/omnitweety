@@ -3,6 +3,7 @@ import * as Actions from "../actions";
 
 export interface ITwitter {
     loaded: boolean;
+    authorized: boolean;
     name: string;
     screenName: string;
     profileImageUrl: string;
@@ -10,6 +11,7 @@ export interface ITwitter {
 
 const initialState: ITwitter = {
     loaded: false,
+    authorized: false,
     name: "",
     screenName: "",
     profileImageUrl: "",
