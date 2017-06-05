@@ -85,8 +85,8 @@ const content = (state: IStatusContent = initialContent, action: IPayloadAction<
     }
 };
 
-export const getStatusFlags = (state: any): IStatusFlags => state.tweet.flags;
-export const getStatusContent = (state: any): IStatusContent => state.tweet.content;
+export const getStatusFlags = (state: any): IStatusFlags => state.status.flags;
+export const getStatusContent = (state: any): IStatusContent => state.status.content;
 
 const status = combineReducers({
     flags,
