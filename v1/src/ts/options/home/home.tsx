@@ -24,16 +24,25 @@ export interface IState {
     openSlackRoomDialog: boolean;
 }
 
-export interface IProps {
+export interface IValueProps {
     prefix: string;
     useSlack: boolean;
     slackToken: string;
     slackRoom: string;
+}
+
+export interface IDispatchProps {
     updatePrefix: (prefix: string) => any;
     updateUseSlack: (useSlack: boolean) => any;
     updateSlackToken: (token: string) => any;
     updateSlackRoom: (room: string) => any;
 }
+
+export interface IProps extends IValueProps, IDispatchProps {
+
+}
+
+
 
 class Home extends React.Component<IProps, IState> {
 

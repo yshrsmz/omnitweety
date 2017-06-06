@@ -2,10 +2,10 @@ import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
 import * as Actions from "../actions";
-import Home from "./home";
+import Home, {IValueProps,IDispatchProps, IProps} from "./home";
 import { getPrefix, getSlack } from "../reducers";
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: any): IValueProps => {
     const slack = getSlack(state);
     return {
         prefix: getPrefix(state).prefix,
@@ -15,7 +15,7 @@ const mapStateToProps = (state: any) => {
     };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch<any>) => {
+const mapDispatchToProps = (dispatch: Dispatch<any>):IDispatchProps => {
     return {
         updatePrefix: (prefix: string) => dispatch(Actions.notifyPrefixUpdated(prefix)),
         updateUseSlack: (useSlack: boolean) => dispatch(Actions.notifyUseSlackUpdated(useSlack)),
@@ -24,4 +24,4 @@ const mapDispatchToProps = (dispatch: Dispatch<any>) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect<IValueProps, IDispatchProps, IProps>(mapStateToProps, mapDispatchToProps)<IProps>(Home);
