@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "lodash-es": "^4.17.4",
-    "material-ui": "^0.18.1",
+    "material-ui": "^0.18.2",
     "minimist": "^1.2.0",
     "oauth": "^0.9.15",
     "react": "^15.5.4",
@@ -51,7 +51,7 @@
     "remotedev-server": "^0.2.2",
     "rimraf": "^2.6.1",
     "ts-loader": "^2.1.0",
-    "tslint": "^5.4.2",
+    "tslint": "^5.4.3",
     "tslint-react": "^3.0.0",
     "typescript": "^2.3.4",
     "typescript-formatter": "^5.2.0",

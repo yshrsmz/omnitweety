@@ -24,4 +24,4 @@ const mapDispatchToProps = (dispatch: Dispatch<any>):IDispatchProps => {
     };
 };
 
-export default connect<IValueProps, IDispatchProps, IProps>(mapStateToProps, mapDispatchToProps)<IProps>(Home);
+export default connect<IValueProps, IDispatchProps, IProps>(mapStateToProps, mapDispatchToProps)<IProps>(Home) as any;

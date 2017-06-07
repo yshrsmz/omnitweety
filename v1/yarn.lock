@@ -2963,9 +2963,9 @@ matcher@^0.1.1:
   dependencies:
     escape-string-regexp "^1.0.4"
 
-material-ui@^0.18.1:
-  version "0.18.1"
-  resolved "https://registry.yarnpkg.com/material-ui/-/material-ui-0.18.1.tgz#1c8a47d7e930ff0b07064dd8633035984a5a3569"
+material-ui@^0.18.2:
+  version "0.18.2"
+  resolved "https://registry.yarnpkg.com/material-ui/-/material-ui-0.18.2.tgz#d2d4fed1ea12da485c87a41003763e24dc19b241"
   dependencies:
     babel-runtime "^6.23.0"
     inline-style-prefixer "^3.0.2"
@@ -4704,9 +4704,9 @@ tslint-react@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/tslint-react/-/tslint-react-3.0.0.tgz#00c48ab7f22e91533b62bdef2c162b49447af00a"
 
-tslint@^5.4.2:
-  version "5.4.2"
-  resolved "https://registry.yarnpkg.com/tslint/-/tslint-5.4.2.tgz#609b6640cc0424f4a395a9adf68c375563c549c7"
+tslint@^5.4.3:
+  version "5.4.3"
+  resolved "https://registry.yarnpkg.com/tslint/-/tslint-5.4.3.tgz#761c8402b80e347b7733a04390a757b253580467"
   dependencies:
     babel-code-frame "^6.22.0"
     colors "^1.1.2"
