@@ -42,8 +42,6 @@ export interface IProps extends IValueProps, IDispatchProps {
 
 }
 
-
-
 class Home extends React.Component<IProps, IState> {
 
     constructor(props: IProps) {

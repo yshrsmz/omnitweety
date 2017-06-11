@@ -10,11 +10,11 @@ import * as ReactDOM from "react-dom";
 import { Provider, Store } from "react-redux";
 import * as injectTapEventPlugin from "react-tap-event-plugin";
 
+import * as Actions from "./actions";
 import configureStore from "./configureStore";
 import Home from "./home";
-import theme from "./theme";
 import saga from "./sagas";
-import * as Actions from "./actions";
+import theme from "./theme";
 
 injectTapEventPlugin();
 const store = configureStore();

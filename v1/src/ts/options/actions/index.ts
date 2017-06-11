@@ -17,7 +17,7 @@ export const notifySlackInitialDataLoaded = (use: boolean, token: string, room: 
     payload: {
         use,
         token,
-        room
+        room,
     },
 });
 
@@ -28,7 +28,7 @@ export const notifyPrefixInitialDataLoaded = (prefix: string): IPayloadAction<st
 
 export interface ITwitter {
     name: string;
-    screenName: string,
+    screenName: string;
     profileImageUrl: string;
 }
 export const notifyTwitterInitialDataLoaded = (name: string, screenName: string, profileImageUrl: string): IPayloadAction<ITwitter> => ({
@@ -39,7 +39,6 @@ export const notifyTwitterInitialDataLoaded = (name: string, screenName: string,
         profileImageUrl,
     },
 });
-
 
 export const PREFIX_UPDATED = "PREFIX_UPDATED";
 

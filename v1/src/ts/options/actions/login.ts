@@ -17,4 +17,4 @@ export const notifyLoginTokenReceived = (token: string, tokenSecret: string): IP
 });
 
 export const LOGIN_USER_RECEIVED = "LOGIN_USER_RECEIVED";
-export const notifyLoginUserReceived = ():IAction => ({type: LOGIN_USER_RECEIVED});
+export const notifyLoginUserReceived = (): IAction => ({ type: LOGIN_USER_RECEIVED });
