@@ -17,6 +17,18 @@ function* handleLoginRequested() {
     yield takeEvery(Actions.LOGIN_REQUESTED, runLoginRequested);
 }
 
+function runPincodeReceived({ payload }: IPayloadAction<string>) {
+    authorizer.accept(payload)
+        .then((token) => {
+            console.log(`token: ${token}`);
+        });
+}
+
+function* handlePincodeReceived() {
+    yield takeEvery(Actions.LOGIN_PINCODE_RECEIVED, runPincodeReceived);
+}
+
 export function* handleLoginEvents() {
     yield fork(handleLoginRequested);
+    yield fork(handlePincodeReceived);
 }
