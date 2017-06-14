@@ -1,3 +1,4 @@
+import Avatar from "material-ui/Avatar";
 import Dialog from "material-ui/Dialog";
 import Divider from "material-ui/Divider";
 import FlatButton from "material-ui/FlatButton";
@@ -13,6 +14,7 @@ import { fade } from "material-ui/utils/colorManipulator";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { AppConfig } from "../../common/config";
+import Account from "../account";
 
 export interface IState {
     muiTheme?: MuiTheme;
@@ -76,58 +78,61 @@ class Home extends React.Component<IProps, IState> {
         const appVersion = `App Version: ${chrome.runtime.getManifest().version}`;
 
         return (
-            <Paper style={styles.content}>
-                <List>
-                    <Subheader>General</Subheader>
-                    <ListItem
-                        primaryText="Status Prefix"
-                        secondaryText={this.props.prefix}
-                        onClick={this.onOpenPrefixDialog}
-                    />
-                </List>
-                <Divider />
-                <List>
-                    <Subheader>Slack Integration</Subheader>
-                    <ListItem
-                        primaryText="Use Slack Inegration"
-                        rightToggle={
-                            <Toggle
-                                defaultToggled={this.props.useSlack}
-                                onToggle={this.onUseSlackToggleChanged}
-                            />}
-                    />
-                    <ListItem
-                        primaryText="Slack Access Token"
-                        secondaryText={slackTokenSecondary}
-                        disabled={!useSlack}
-                        style={useSlack ? {} : styles.disabledListItem}
-                    />
-                    <ListItem
-                        primaryText="Slack Room"
-                        secondaryText={slackRoomSecondary}
-                        disabled={!useSlack}
-                        style={useSlack ? {} : styles.disabledListItem}
-                    />
-                </List>
-                <Divider />
-                <List>
-                    <Subheader>Others</Subheader>
-                    <ListItem primaryText={appVersion} />
-                    <ListItem
-                        href={AppConfig.URL_DEVELOPER}
-                        target="_blank"
-                        primaryText="Developer"
-                        secondaryText={<p>@yslibnet(yslibrary.net)</p>}
-                    />
-                    <ListItem
-                        href={AppConfig.URL_CHROME_WEBSTORE}
-                        target="_blank"
-                        primaryText="Rate on Chrome Web Store"
-                    />
-                </List>
-                {this.getPrefixDialog()}
-                {this.getSlackTokenDialog()}
-            </Paper>
+            <div>
+                <Paper style={styles.content}>
+                    <Account/>
+                    <List>
+                        <Subheader>General</Subheader>
+                        <ListItem
+                            primaryText="Status Prefix"
+                            secondaryText={this.props.prefix}
+                            onClick={this.onOpenPrefixDialog}
+                        />
+                    </List>
+                    <Divider />
+                    <List>
+                        <Subheader>Slack Integration</Subheader>
+                        <ListItem
+                            primaryText="Use Slack Inegration"
+                            rightToggle={
+                                <Toggle
+                                    defaultToggled={this.props.useSlack}
+                                    onToggle={this.onUseSlackToggleChanged}
+                                />}
+                        />
+                        <ListItem
+                            primaryText="Slack Access Token"
+                            secondaryText={slackTokenSecondary}
+                            disabled={!useSlack}
+                            style={useSlack ? {} : styles.disabledListItem}
+                        />
+                        <ListItem
+                            primaryText="Slack Room"
+                            secondaryText={slackRoomSecondary}
+                            disabled={!useSlack}
+                            style={useSlack ? {} : styles.disabledListItem}
+                        />
+                    </List>
+                    <Divider />
+                    <List>
+                        <Subheader>Others</Subheader>
+                        <ListItem primaryText={appVersion} />
+                        <ListItem
+                            href={AppConfig.URL_DEVELOPER}
+                            target="_blank"
+                            primaryText="Developer"
+                            secondaryText={<p>@yslibnet(yslibrary.net)</p>}
+                        />
+                        <ListItem
+                            href={AppConfig.URL_CHROME_WEBSTORE}
+                            target="_blank"
+                            primaryText="Rate on Chrome Web Store"
+                        />
+                    </List>
+                    {this.getPrefixDialog()}
+                    {this.getSlackTokenDialog()}
+                </Paper>
+            </div>
         );
     }
 
