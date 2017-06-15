@@ -8,9 +8,11 @@ import Subheader from "material-ui/Subheader";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { ITwitter } from "../reducers/twitter";
+import ActionDispatcher from "./dispatcher";
 
-export interface IProps {
+export interface IProps extends React.Props<{}> {
     twitter: ITwitter;
+    actions: ActionDispatcher;
 }
 
 export interface IState {
@@ -45,8 +47,8 @@ class Account extends React.Component<IProps, {}> {
             };
             content = (
                 <ListItem style={style}>
-            <RaisedButton label="Login to Twitter" primary={true} />
-            </ListItem>
+                    <RaisedButton label="Login to Twitter" primary={true} />
+                </ListItem>
             );
         }
         return (

@@ -80,7 +80,7 @@ class Home extends React.Component<IProps, IState> {
         return (
             <div>
                 <Paper style={styles.content}>
-                    <Account/>
+                    <Account />
                     <List>
                         <Subheader>General</Subheader>
                         <ListItem

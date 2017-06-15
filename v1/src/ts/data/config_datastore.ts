@@ -20,6 +20,9 @@ class ConfigDataStore {
     private static readonly KEY_USE_SLACK = "slack_use";
     private static readonly KEY_SLACK_TOKEN = "slack_token";
     private static readonly KEY_SLACK_ROOM = "slack_room";
+    private static readonly KEY_TWITTER_NAME = "twitter_name";
+    private static readonly KEY_TWITTER_SCREEN_NAME = "twitter_screen_name";
+    private static readonly KEY_TWITTER_THUMB_URL = "twitter_thumb_url";
 
     public getAccessToken(): string {
         return load(ConfigDataStore.KEY_TWITTER_TOKEN);
@@ -81,6 +84,42 @@ class ConfigDataStore {
 
     public setSlackRoom(room: string) {
         save(ConfigDataStore.KEY_SLACK_ROOM, room);
+    }
+
+    public getTwitterName(): string {
+        return load(ConfigDataStore.KEY_TWITTER_NAME) || "";
+    }
+
+    public setTwitterName(name: string) {
+        save(ConfigDataStore.KEY_TWITTER_NAME, name);
+    }
+
+    public clearTwitterName() {
+        clear(ConfigDataStore.KEY_TWITTER_NAME);
+    }
+
+    public getTwitterScreenName(): string {
+        return load(ConfigDataStore.KEY_TWITTER_SCREEN_NAME) || "";
+    }
+
+    public setTwitterScreenName(screenName: string) {
+        save(ConfigDataStore.KEY_TWITTER_SCREEN_NAME, screenName);
+    }
+
+    public clearTwitterScreenName() {
+        clear(ConfigDataStore.KEY_TWITTER_SCREEN_NAME);
+    }
+
+    public getTwitterThumbUrl(): string {
+        return load(ConfigDataStore.KEY_TWITTER_THUMB_URL) || "";
+    }
+
+    public setTwitterThumbUrl(thumbUrl: string) {
+        save(ConfigDataStore.KEY_TWITTER_THUMB_URL, thumbUrl);
+    }
+
+    public clearTwitterThumbUrl() {
+        clear(ConfigDataStore.KEY_TWITTER_THUMB_URL);
     }
 }
 
