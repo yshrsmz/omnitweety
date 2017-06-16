@@ -7,19 +7,19 @@ class AccessTokenRepository {
     constructor() {
     }
 
-    public setAccessToken(token: AccessToken) {
+    public set(token: AccessToken) {
         configDataStore.setAccessToken(token.token);
         configDataStore.setAccessTokenSecret(token.tokenSecret);
     }
 
-    public getAccessToken(): AccessToken {
+    public get(): AccessToken {
         const token: string = configDataStore.getAccessToken();
         const secret: string = configDataStore.getAccessTokenSecret();
         return new AccessToken(token, secret);
     }
 
     public isAuthorized(): boolean {
-        return !!this.getAccessToken().token;
+        return !!this.get().token;
     }
 
     public clear() {

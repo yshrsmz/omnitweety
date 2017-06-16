@@ -23,3 +23,5 @@ class AccountRepository {
         configDataStore.clearTwitterThumbUrl();
     }
 }
+
+export default new AccountRepository();

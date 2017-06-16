@@ -1,5 +1,6 @@
 import { IPayloadAction } from "../../common/actions";
 import * as Actions from "../actions";
+import AccessToken from "../../data/access_token";
 
 export interface ITwitter {
     loaded: boolean;
