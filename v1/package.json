@@ -28,11 +28,11 @@
     "redux-logger": "^3.0.6",
     "redux-saga": "^0.15.3",
     "rx": "^4.1.0",
-    "twit": "^2.2.5",
+    "twit": "^2.2.9",
     "twitter-text": "^1.14.3"
   },
   "devDependencies": {
-    "@types/chrome": "^0.0.46",
+    "@types/chrome": "^0.0.47",
     "@types/lodash-es": "^4.14.5",
     "@types/material-ui": "^0.17.10",
     "@types/react": "^15.0.26",
