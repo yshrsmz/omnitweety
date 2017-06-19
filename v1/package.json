@@ -24,12 +24,12 @@
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.5",
     "react-tap-event-plugin": "^2.0.1",
-    "redux": "^3.6.0",
+    "redux": "^3.7.0",
     "redux-logger": "^3.0.6",
     "redux-saga": "^0.15.3",
     "rx": "^4.1.0",
     "twit": "^2.2.9",
-    "twitter-text": "^1.14.3"
+    "twitter-text": "^1.14.6"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.47",
