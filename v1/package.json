@@ -10,8 +10,7 @@
     "build": "webpack --progress --colors --config ./webpack.config.dev.js && cpx 'assets/**/*.png' app/assets",
     "build:release": "webpack --progress --colors --config ./webpack.config.release.js && cpx 'assets/**/*.png' app/assets",
     "clean": "rimraf ./app",
-    "tsfmt": "tsfmt -r --useTsconfig=./tsconfig.json",
-    "tslint:fix": "tslint --fix -c tslint.json 'src/**/*.{ts,tsx}'",
+    "lint:fix": "tsfmt -r --useTsconfig=./tsconfig.json && tslint --fix -c tslint.json 'src/**/*.{ts,tsx}'",
     "remotedev": "remotedev --hostname=localhost --port=8080",
     "test": "tsc -p ./tsconfig.test.json && nyc ava \"app/**/*test.js\""
   },
