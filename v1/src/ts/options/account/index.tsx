@@ -3,8 +3,8 @@ import { Dispatch } from "redux";
 
 import { IAction, IPayloadAction } from "../../common/actions";
 import * as Actions from "../actions";
-import * as AccountActions from "../actions/account";
 import * as LoginActions from "../actions/login";
+import * as TwitterActions from "../actions/twitter";
 import { getTwitter } from "../reducers";
 import Account, { IProps } from "./account";
 import ActionDispatcher from "./dispatcher";

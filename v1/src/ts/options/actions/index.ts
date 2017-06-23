@@ -3,7 +3,6 @@ import { IAction, IPayloadAction } from "../../common/actions";
 export const INITIAL_DATA_REQUESTED = "INITIAL_DATE_REQUESTED";
 export const PREFIX_INITIAL_DATA_LOADED = "PREFIX_INITIAL_DATA_LOADED";
 export const SLACK_INITIAL_DATA_LOADED = "SLACK_INITIAL_DATA_LOADED";
-export const TWITTER_INITIAL_DATA_LOADED = "TWITTER_INITIAL_DATA_LOADED";
 
 export const notifyInitialDataRequested = (): IAction => ({ type: INITIAL_DATA_REQUESTED });
 
@@ -24,20 +23,6 @@ export const notifySlackInitialDataLoaded = (use: boolean, token: string, room: 
 export const notifyPrefixInitialDataLoaded = (prefix: string): IPayloadAction<string> => ({
     type: PREFIX_INITIAL_DATA_LOADED,
     payload: prefix,
-});
-
-export interface ITwitter {
-    name: string;
-    screenName: string;
-    profileImageUrl: string;
-}
-export const notifyTwitterInitialDataLoaded = (name: string, screenName: string, profileImageUrl: string): IPayloadAction<ITwitter> => ({
-    type: TWITTER_INITIAL_DATA_LOADED,
-    payload: {
-        name,
-        screenName,
-        profileImageUrl,
-    },
 });
 
 export const PREFIX_UPDATED = "PREFIX_UPDATED";

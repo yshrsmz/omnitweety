@@ -2,7 +2,7 @@ import Account from "./account";
 import configDataStore from "./config_datastore";
 
 class AccountRepository {
-    constructor() {}
+    constructor() { }
 
     public set(account: Account) {
         configDataStore.setTwitterName(account.name);
@@ -10,7 +10,7 @@ class AccountRepository {
         configDataStore.setTwitterThumbUrl(account.thumbUrl);
     }
 
-    public get():Account {
+    public get(): Account {
         const name = configDataStore.getTwitterName();
         const screenName = configDataStore.getTwitterScreenName();
         const thumbUrl = configDataStore.getTwitterThumbUrl();

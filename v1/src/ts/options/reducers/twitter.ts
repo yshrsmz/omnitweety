@@ -1,6 +1,6 @@
 import { IPayloadAction } from "../../common/actions";
-import * as Actions from "../actions";
 import AccessToken from "../../data/access_token";
+import * as TwitterActions from "../actions/twitter";
 
 export interface ITwitter {
     loaded: boolean;
@@ -20,9 +20,10 @@ const initialState: ITwitter = {
 
 const twitter = (state: ITwitter = initialState, action: IPayloadAction<any>) => {
     switch (action.type) {
-        case Actions.TWITTER_INITIAL_DATA_LOADED:
+        case TwitterActions.ACCOUNT_INITIAL_DATA_LOADED:
             return {
                 ...state,
+                ...action.payload,
                 loaded: true,
             };
         default:

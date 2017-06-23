@@ -47,7 +47,7 @@ class Account extends React.Component<IProps, {}> {
             };
             content = (
                 <ListItem style={style}>
-                    <RaisedButton label="Login to Twitter" primary={true} />
+                    <RaisedButton label="Login to Twitter" primary={true} onClick={this.onLoginClick} />
                 </ListItem>
             );
         }
@@ -57,6 +57,10 @@ class Account extends React.Component<IProps, {}> {
                 {content}
             </List>
         );
+    }
+
+    private onLoginClick = () => {
+        this.props.actions.requestLogin();
     }
 }
 
