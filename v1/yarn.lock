@@ -63,9 +63,9 @@
   version "4.14.66"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.66.tgz#3dbb83477becf130611f8fac82a8fdb199805981"
 
-"@types/material-ui@^0.17.11":
-  version "0.17.11"
-  resolved "https://registry.yarnpkg.com/@types/material-ui/-/material-ui-0.17.11.tgz#3cb1cec6139f341d09fd05d8ba8330c6798a994e"
+"@types/material-ui@^0.17.12":
+  version "0.17.12"
+  resolved "https://registry.yarnpkg.com/@types/material-ui/-/material-ui-0.17.12.tgz#2d109cf48a561c7564d4c02d194ec1f172bfbd84"
   dependencies:
     "@types/react" "*"
     "@types/react-addons-linked-state-mixin" "*"
@@ -76,15 +76,15 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-dom@^15.5.0":
-  version "15.5.0"
-  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-15.5.0.tgz#7f4fb9613d4051141773242f7b6b5f1a46b34bd9"
+"@types/react-dom@^15.5.1":
+  version "15.5.1"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-15.5.1.tgz#f3c3e14c682785923c7d64583537df319442dec1"
   dependencies:
     "@types/react" "*"
 
-"@types/react-redux@^4.4.42":
-  version "4.4.44"
-  resolved "https://registry.yarnpkg.com/@types/react-redux/-/react-redux-4.4.44.tgz#821c99b0eac22c3e32621bc0eba08062f1c07b63"
+"@types/react-redux@^4.4.45":
+  version "4.4.45"
+  resolved "https://registry.yarnpkg.com/@types/react-redux/-/react-redux-4.4.45.tgz#afad851d8592119225aa6bcc402c7f6b9c7e4106"
   dependencies:
     "@types/react" "*"
     redux "^3.6.0"
@@ -93,9 +93,9 @@
   version "0.0.30"
   resolved "https://registry.yarnpkg.com/@types/react-tap-event-plugin/-/react-tap-event-plugin-0.0.30.tgz#123f35080412f489b6770c5a65c159ff96654cb5"
 
-"@types/react@*", "@types/react@^15.0.26":
-  version "15.0.30"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-15.0.30.tgz#a4e153e1e83fbef341fc9aad1a7d62bf8c1f52a3"
+"@types/react@*", "@types/react@^15.0.31":
+  version "15.0.31"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-15.0.31.tgz#21dfc5d41ee1600ff7d7b738ad21a9502aa3ecf2"
 
 "@types/redux-logger@^3.0.0":
   version "3.0.0"
@@ -2301,9 +2301,9 @@ html-minifier@^3.2.3:
     relateurl "0.2.x"
     uglify-js "3.0.x"
 
-html-webpack-plugin@^2.28.0:
-  version "2.28.0"
-  resolved "https://registry.yarnpkg.com/html-webpack-plugin/-/html-webpack-plugin-2.28.0.tgz#2e7863b57e5fd48fe263303e2ffc934c3064d009"
+html-webpack-plugin@^2.29.0:
+  version "2.29.0"
+  resolved "https://registry.yarnpkg.com/html-webpack-plugin/-/html-webpack-plugin-2.29.0.tgz#e987f421853d3b6938c8c4c8171842e5fd17af23"
   dependencies:
     bluebird "^3.4.7"
     html-minifier "^3.2.3"
@@ -3068,9 +3068,9 @@ matcher@^0.1.1:
   dependencies:
     escape-string-regexp "^1.0.4"
 
-material-ui@^0.18.3:
-  version "0.18.3"
-  resolved "https://registry.yarnpkg.com/material-ui/-/material-ui-0.18.3.tgz#db1cf7190b322b304867e7ffb96b17ef79443bc9"
+material-ui@^0.18.4:
+  version "0.18.4"
+  resolved "https://registry.yarnpkg.com/material-ui/-/material-ui-0.18.4.tgz#afa0db1658d66b432ec0e0edb83727d65e6390a1"
   dependencies:
     babel-runtime "^6.23.0"
     inline-style-prefixer "^3.0.2"
@@ -4007,13 +4007,22 @@ redux-logger@^3.0.6:
   dependencies:
     deep-diff "^0.3.5"
 
-redux-saga@^0.15.3:
-  version "0.15.3"
-  resolved "https://registry.yarnpkg.com/redux-saga/-/redux-saga-0.15.3.tgz#be2b86b4ad46bf0d84fcfcb0ca96cfc33db91acb"
+redux-saga@^0.15.4:
+  version "0.15.4"
+  resolved "https://registry.yarnpkg.com/redux-saga/-/redux-saga-0.15.4.tgz#27982a947280053b7ecbb5d3170c837a5fe6b261"
 
-redux@^3.6.0, redux@^3.7.0:
+redux@^3.6.0:
   version "3.7.0"
   resolved "https://registry.yarnpkg.com/redux/-/redux-3.7.0.tgz#07a623cafd92eee8abe309d13d16538f6707926f"
+  dependencies:
+    lodash "^4.2.1"
+    lodash-es "^4.2.1"
+    loose-envify "^1.1.0"
+    symbol-observable "^1.0.3"
+
+redux@^3.7.1:
+  version "3.7.1"
+  resolved "https://registry.yarnpkg.com/redux/-/redux-3.7.1.tgz#bfc535c757d3849562ead0af18ac52122cd7268e"
   dependencies:
     lodash "^4.2.1"
     lodash-es "^4.2.1"
