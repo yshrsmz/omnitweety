@@ -17,7 +17,6 @@
   "dependencies": {
     "lodash-es": "^4.17.4",
     "material-ui": "^0.18.4",
-    "minimist": "^1.2.0",
     "oauth": "^0.9.15",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
