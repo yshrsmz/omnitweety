@@ -67,7 +67,7 @@ class Home extends React.Component<IProps, IState> {
     public render() {
         const useSlack = this.props.useSlack;
 
-        const { prepareStyles } = this.state.muiTheme;
+        const { prepareStyles } = this.state.muiTheme as any;
         const styles = prepareStyles(this.getStyles());
 
         const hintSlackToken = "Enter Slack access token";

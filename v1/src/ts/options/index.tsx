@@ -35,7 +35,7 @@ class App extends React.Component<{}, IState> {
 
     public render() {
 
-        const { prepareStyles } = this.state.muiTheme;
+        const { prepareStyles } = this.state.muiTheme as any;
         const styles = prepareStyles(this.getStyles());
 
         return (

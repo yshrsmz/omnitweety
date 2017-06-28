@@ -5,5 +5,5 @@ export interface IAction extends Action {
 }
 
 export interface IPayloadAction<T> extends IAction {
-    payload: T;
+    payload?: T;
 }
