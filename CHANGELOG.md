@@ -1,6 +1,12 @@
 Change Log
 ===
 
+Version 0.6.0 *(2018-02-10)*
+----------------------------
+
+- NEW: Support Twitter's new text length.
+
+
 Version 0.5.3 *(2015-12-07)*
 ----------------------------
 

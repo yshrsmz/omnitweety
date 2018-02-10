@@ -1,10 +1,13 @@
 {
   "name": "omnitweety",
-  "version": "0.2.2",
+  "version": "0.6.0",
   "description": "Tweet your status & share what you are browsing now, from Omnibox(URL bar)!",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "gulp clean",
+    "build": "gulp build",
+    "release": "gulp build --production"
   },
   "repository": {
     "type": "git",
@@ -40,6 +43,6 @@
     "react-router": "^1.0.0",
     "react-tap-event-plugin": "^0.2.1",
     "superagent": "^1.4.0",
-    "twitter-text": "^1.13.2"
+    "twitter-text": "^2.0.4"
   }
 }

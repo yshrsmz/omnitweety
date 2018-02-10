@@ -52,25 +52,12 @@ class OmniTweety {
         });
     }
 
-
-    isSlackCommand(text) {
-        return SubCommands.sl.regex.test(text) || SubCommands.sl.textRegex.test(text);
-    }
-
     isTweetCommand(text) {
         return SubCommands.tw.regex.test(text) || SubCommands.tw.textRegex.test(text);
     }
 
     isShareCommand(text) {
         return SubCommands.share.regex.test(text) || SubCommands.share.textRegex.test(text);
-    }
-
-    isShareSlackCommand(text) {
-        return SubCommands.sharesl.regex.test(text) || SubCommands.sharesl.textRegex.test(text);
-    }
-
-    isShareTwitterCommand(text) {
-        return SubCommands.sharetw.regex.test(text) || SubCommands.sharetw.textRegex.test(text);
     }
 
     isOptionsCommand(text) {
@@ -81,18 +68,8 @@ class OmniTweety {
         return SubCommands.version.regex.test(text);
     }
 
-    isAnyShareCommand(text) {
-        return this.isShareCommand(text) || this.isShareSlackCommand(text) || this.isShareTwitterCommand(text);
-    }
-
     getShareCommandRegex(text) {
-        if (this.isShareCommand(text)) {
-            return SubCommands.share.textRegex;
-        } else if (this.isShareTwitterCommand(text)) {
-            return SubCommands.sharetw.textRegex;
-        } else {
-            return SubCommands.sharesl.textRegex;
-        }
+        return SubCommands.share.textRegex;
     }
 
     getUserInputContent(text, regex) {
@@ -124,7 +101,7 @@ class OmniTweety {
 
     handleEvents() {
         chrome.omnibox.onInputChanged.addListener((text) => {
-            if (this.isAnyShareCommand(text)) {
+            if (this.isShareCommand(text)) {
                 this.getCurrentPage((page) => {
                     let message = 'unable to share this page';
                     this.getShortUrlMaxLength((urlMaxLength = page.url.length) => {
@@ -150,15 +127,8 @@ class OmniTweety {
                     description: this.getVersionString()
                 });
             } else {
-                let sendMessage;
-                if (this.isSlackCommand(text)) {
-                    sendMessage = this.getUserInputContent(text, SubCommands.sl.textRegex);
-                } else if (this.isTweetCommand(text)) {
-                    sendMessage = this.getUserInputContent(text, SubCommands.tw.textRegex);
-                } else {
-                    sendMessage = text;
-                }
-                let message = `${140 - sendMessage.length} characters remaining.`;
+                let lengthInfo = TwitterText.parseTweet(text);
+                let message = `${280 - lengthInfo.weightedLength} characters remaining.`;
                 chrome.omnibox.setDefaultSuggestion({
                     description: message
                 });
@@ -166,8 +136,7 @@ class OmniTweety {
         });
 
         chrome.omnibox.onInputEntered.addListener((text) => {
-            if (this.isAnyShareCommand(text)) {
-
+            if (this.isShareCommand(text)) {
                 this.getCurrentPage((page) => {
                     this.getShortUrlMaxLength((maxLength = page.url.length) => {
                         let sendMessage = this.buildShareText(
@@ -176,13 +145,7 @@ class OmniTweety {
                             page.url,
                             maxLength);
 
-                        if (this.isShareSlackCommand(text)) {
-                            this.postSlack(sendMessage, true);
-                        } else if (this.isShareTwitterCommand(text)) {
-                            this.postStatus(sendMessage);
-                        } else {
-                            this.postMessage(sendMessage);
-                        }
+                        this.postMessage(sendMessage);
                     });
                 });
             } else if (this.isOptionsCommand(text)) {
@@ -190,9 +153,6 @@ class OmniTweety {
 
             } else if (this.isVersionCommand(text)) {
                 this.postMessage(this.getVersionString());
-
-            } else if (this.isSlackCommand(text)) {
-                this.postSlack(this.getUserInputContent(text, SubCommands.sl.textRegex), true);
 
             } else if (this.isTweetCommand(text)) {
                 this.postStatus(this.getUserInputContent(text, SubCommands.tw.textRegex));
@@ -205,7 +165,7 @@ class OmniTweety {
 
     postMessage(text) {
         this.postStatus(text);
-        this.postSlack(text, false);
+        this.postSlack(text);
     }
 
     postStatus(text) {
@@ -228,7 +188,7 @@ class OmniTweety {
         }, request);
     }
 
-    postSlack(text, shouldNotify) {
+    postSlack(text) {
         if (!ConfigStore.useSlack()) {
             return;
         }
@@ -243,15 +203,6 @@ class OmniTweety {
             .query(data)
             .end((err, res) => {
                 console.log('send to slack', err, res);
-                if (!shouldNotify) {
-                    return;
-                }
-
-                if (err) {
-                    this.notify('./assets/icon_128.png', 'Oops! There was an error.', err.message);
-                } else {
-                    this.notify('./assets/icon_128.png', 'Successfully posted to Slack', text);
-                }
             });
     }
 
@@ -288,22 +239,20 @@ class OmniTweety {
     }
 
     buildShareText(prefix, title, url, urlMaxLength) {
-        let baseMessage = `${prefix} ${title} `;
-        let urlsInBaseMessage = TwitterText.extractUrls(baseMessage);
-        let urlsCount = urlsInBaseMessage.length + 1;
-        let urlsLengthInBaseMessage = 0;
+        let baseMessage = `${prefix} ${title}`;
+        let baseResult = TwitterText.parseTweet(`${baseMessage} ${url}`);
 
-        urlsInBaseMessage.forEach((item) => {
-            urlsLengthInBaseMessage += item.length;
-        });
-
-        let lengthDiff = 140 - ((baseMessage.length - urlsLengthInBaseMessage) + urlMaxLength * urlsCount);
-
-        if (lengthDiff < 0) {
-            title = title.slice(0, lengthDiff);
+        let finalText = "";
+        if (baseResult.valid) {
+            finalText = `${baseMessage} ${url}`;
+        } else {
+            let diff = 280 - baseResult.weightedLength;
+            finalText = baseMessage.slice(0, diff) + ` ${url}`;
         }
-
-        return `${prefix} ${title} ${url}`;
+        let finalResult = TwitterText.parseTweet(finalText);
+        // console.log(finalText);
+        // console.log(finalResult.valid, finalResult.weightedLength);
+        return finalText;
     }
 
     escapeText(text) {
