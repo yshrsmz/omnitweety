@@ -7,6 +7,7 @@
                     <v-list-tile-title>Auth Status: {{ isAuthorized ? "Authorized" : "Not Authorized"}}</v-list-tile-title>
                 </v-list-tile-content>
             </v-list-tile>
+            <v-divider/>
             <v-subheader>General</v-subheader>
             <v-list-tile>
                 <v-list-tile-content>
@@ -38,20 +39,23 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { mapState, mapGetters } from "vuex";
 import { Component, Prop } from "vue-property-decorator";
 import accessTokenRepository from "../../data/AccessTokenRepository";
 import AccessToken from "../../data/AccessToken";
 
 @Component({
-    name: 'setting-list'
+    name: 'setting-list',
+    computed: {
+        ...mapState(['accessToken']),
+        ...mapGetters(['isAuthorized'])
+        }
 })
 export default class SettingList extends Vue {
 
-    isAuthorized: Boolean;
+    accessToken: AccessToken;
 
     mounted() {
-        let accessToken: AccessToken = accessTokenRepository.get();
-        this.isAuthorized = accessTokenRepository.isAuthorized();
     }
 
 }

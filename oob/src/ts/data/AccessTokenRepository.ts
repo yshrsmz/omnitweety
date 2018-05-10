@@ -15,7 +15,7 @@ class AccessTokenRepository {
     }
 
     isAuthorized(): boolean {
-        return !!this.get().token;
+        return this.get().isAuthorized();
     }
 
     clear() {

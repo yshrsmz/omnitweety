@@ -10,4 +10,12 @@ export default class AccessToken {
         this.token = token;
         this.tokenSecret = tokenSecret;
     }
+
+    isAuthorized(): boolean {
+        return !!this.token || !!this.tokenSecret;
+    }
+
+    static empty(): AccessToken {
+        return new AccessToken("", "");
+    }
 }
