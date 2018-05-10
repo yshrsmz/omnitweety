@@ -23,9 +23,11 @@
     "webpack-merge": "^4.1.2"
   },
   "dependencies": {
+    "twitter-text": "^2.0.4",
     "vue": "^2.5.16",
     "vue-class-component": "^6.2.0",
     "vue-property-decorator": "^6.0.0",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vuetify": "^1.0.17"
   }
 }

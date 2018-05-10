@@ -62,7 +62,8 @@ module.exports = {
     plugins: [
         new VueLoaderPlugin(),
         new CopyWebpackPlugin([
-            './assets/*.png'
+            './assets/*.png',
+            { from: './node_modules/vuetify/dist/vuetify.min.css', to: './css', flatten: true }
         ]),
         new HtmlWebpackPlugin({
             title: "Omnitweety - Background",
