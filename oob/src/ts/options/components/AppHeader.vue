@@ -1,9 +1,10 @@
 <template>
   <v-toolbar
-    color="indigo"
+    color="light-green"
     dark
     fixed
     app>
+    <v-icon>settings</v-icon>
     <v-toolbar-title>
         {{ title }}
     </v-toolbar-title>
