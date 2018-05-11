@@ -57,8 +57,9 @@ const store = new Vuex.Store({
             const template = tweetTemplateRepository.get();
             commit('updateTweetTemplate', template);
         },
-        updatePrefix({ commit }, payload: UpdatePrefixActionPayload) {
-            commit('updatePrefix', payload.prefix);
+        updateTweetTemplate({ commit }, template: TweetTemplate) {
+            tweetTemplateRepository.set(template);
+            commit('updateTweetTemplate', tweetTemplateRepository.get());
         }
     }
 });
