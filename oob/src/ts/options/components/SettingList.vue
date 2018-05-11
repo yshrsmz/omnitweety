@@ -14,13 +14,17 @@
           <v-list-tile-sub-title>hoge</v-list-tile-sub-title>
         </v-list-tile-content>
       </v-list-tile>
-      <v-list-tile>
+      <v-list-tile
+        :href="developerUrl"
+        target="_blank">
         <v-list-tile-content>
           <v-list-tile-title>Developer</v-list-tile-title>
-          <v-list-tile-sub-title>hoge</v-list-tile-sub-title>
+          <v-list-tile-sub-title>{{ developerName }}</v-list-tile-sub-title>
         </v-list-tile-content>
       </v-list-tile>
-      <v-list-tile>
+      <v-list-tile
+        :href="webstoreUrl"
+        target="_blank">
         <v-list-tile-content>
           <v-list-tile-title>Rate on Chrome Webstore</v-list-tile-title>
         </v-list-tile-content>
@@ -35,6 +39,7 @@ import { mapState, mapGetters } from 'vuex';
 import { Component, Prop } from 'vue-property-decorator';
 import AuthListItem from './AuthListItem';
 import TweetTemplateListItem from './TweetTemplateListItem';
+import { AppConfig } from '../../Config';
 
 @Component({
     name: 'setting-list',
@@ -49,6 +54,11 @@ import TweetTemplateListItem from './TweetTemplateListItem';
 export default class SettingList extends Vue {
 
     isPrefixDialogActive: boolean = false;
+
+    developerName: string = AppConfig.DEVELOPER_NAME;
+    developerUrl: string = AppConfig.URL_DEVELOPER
+
+    webstoreUrl: string = AppConfig.URL_CHROME_WEBSTORE;
 
     mounted() {
     }

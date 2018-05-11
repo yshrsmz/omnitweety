@@ -4,6 +4,7 @@ const urlConfig = 'https://api.twitter.com/1.1/help/configuration.json';
 const AppConfig = {
     NAME: 'Omnitweety for Chrome',
     PREFIX: 'NowBrowsing:',
+    DEVELOPER_NAME: '@yslibnet(yslibrary.net)',
     URL_DEVELOPER: 'https://twitter.com/yslibnet',
     URL_CHROME_WEBSTORE: 'https://chrome.google.com/webstore/detail/omnitweety/jkghejckpigfbolkdkplfokccgpjjilb',
 };
