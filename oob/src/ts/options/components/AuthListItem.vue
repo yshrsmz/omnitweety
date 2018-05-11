@@ -1,48 +1,70 @@
 <template>
-  <v-list-tile>
-    <v-list-tile-content>
-      <v-list-tile-title>Auth Status: {{ isAuthorized ? "Authorized" : "Not Authorized" }}</v-list-tile-title>
-    </v-list-tile-content>
-    <v-list-tile-action>
-      <v-btn
-        v-if="!isAuthorized"
-        color="blue lighten-1 white--text"
-        @click="beginAuthFlow">Login with Twitter</v-btn>
-      <v-btn
-        v-else
-        color="red lighten-1 white--text"
-        @click="logout">Logout from Twitter</v-btn>
-    </v-list-tile-action>
-    <!-- Auth Dialog -->
-    <v-dialog
-      v-model="isPinCodeDialogActive"
-      persistent
-      max-width="500px">
-      <v-card>
-        <v-card-title>Enter Pin Code</v-card-title>
-        <v-card-text>
-          <v-text-field
-            id="authPinCode"
-            name="authPinCodeInput"
-            label="Enter Pin Code(Number only)"
-            type="number"
-            required
-            @input="updatePinCode"/>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer/>
-          <v-btn
-            color="primary"
-            flat
-            @click.stop="isPinCodeDialogActive=false">Close</v-btn>
-          <v-btn
-            :disabled="!isValidPinCode"
-            color="primary"
-            flat
-            @click.stop="onPinCodeEntered">Authorize</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+    <v-list-tile>
+        <v-list-tile-content>
+            <v-list-tile-title>Auth Status: {{ isAuthorized ? "Authorized" : "Not Authorized" }}</v-list-tile-title>
+        </v-list-tile-content>
+        <v-list-tile-action>
+            <!-- Auth Dialog -->
+            <v-dialog
+                v-if="!isAuthorized"
+                v-model="isPinCodeDialogActive"
+                persistent
+                max-width="500px">
+                <v-btn
+                    slot="activator"
+                    color="blue lighten-1 white--text"
+                    @click.stop="beginAuthFlow">Login with Twitter</v-btn>
+                <v-card>
+                    <v-card-title class="title">Enter Pin Code</v-card-title>
+                    <v-card-text>
+                        <v-text-field
+                            id="authPinCode"
+                            name="authPinCodeInput"
+                            label="Enter Pin Code(Number only)"
+                            type="number"
+                            required
+                            @input="updatePinCode"/>
+                    </v-card-text>
+                    <v-card-actions>
+                    <v-spacer/>
+                    <v-btn
+                        color="primary"
+                        flat
+                        @click.stop="isPinCodeDialogActive=false">Close</v-btn>
+                    <v-btn
+                        :disabled="!isValidPinCode"
+                        color="primary"
+                        flat
+                        @click.stop="onPinCodeEntered">Authorize</v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-dialog>
+
+            <!-- Logout Dialog -->
+            <v-dialog
+                v-else
+                v-model="isLogoutDialogActive"
+                max-width="500px">
+                <v-btn
+                    slot="activator"
+                    color="red lighten-1 white--text">Logout from Twitter</v-btn>
+                <v-card>
+                    <v-card-title class="title">Confirm</v-card-title>
+                    <v-card-text class="body-1">Are you sure to Logout?</v-card-text>
+                    <v-card-actions>
+                        <v-spacer/>
+                        <v-btn
+                            color="primary"
+                            flat
+                            @click.stop="isLogoutDialogActive=false">Close</v-btn>
+                        <v-btn
+                            color="primary"
+                            flat
+                            @click.stop="onLogoutRequested">Logout</v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-dialog>
+        </v-list-tile-action>
   </v-list-tile>
 </template>
 
@@ -61,12 +83,15 @@ import {Getter, Action} from 'vuex-class';
 export default class AuthListItem extends Vue {
 
     isPinCodeDialogActive: boolean = false;
+    isLogoutDialogActive: boolean = false;
 
     pinCode: string = '';
 
     @Getter('isAuthorized') isAuthorized;
 
     @Action('updateAccessToken') updateAccessToken;
+
+    @Action('clearAccessToken') clearAccessToken;
 
     get isValidPinCode():boolean {
         return !!this.pinCode && this.pinCode.length == 7;
@@ -93,8 +118,9 @@ export default class AuthListItem extends Vue {
             });
     }
 
-    logout() {
-
+    onLogoutRequested() {
+        this.clearAccessToken();
+        this.isLogoutDialogActive = false;
     }
 }
 </script>
