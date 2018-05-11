@@ -4,6 +4,7 @@ import Vuetify from 'vuetify';
 import App from './App';
 import AccessToken from '../data/AccessToken';
 import { AppConfig } from '../Config';
+import accessTokenRepository from '../data/AccessTokenRepository';
 
 Vue.use(Vuex);
 Vue.use(Vuetify);
@@ -27,11 +28,19 @@ const store = new Vuex.Store({
         isAuthorized(state: State) {
             return state.accessToken.isAuthorized();
         }
+    },
+    actions: {
+        getAccessToken({ commit }) {
+            commit('updateAccessToken', accessTokenRepository.get());
+        }
     }
 });
 
 let v = new Vue({
     el: '#app',
     store: store,
+    created() {
+        this.$store.dispatch('getAccessToken');
+    },
     render: h=> h(App)
 });
