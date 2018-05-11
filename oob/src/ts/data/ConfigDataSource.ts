@@ -54,6 +54,10 @@ class ConfigDataSource {
         save(ConfigDataSource.KEY_STATUS_PREFIX, prefix);
     }
 
+    public clearStatusPrefix() {
+        clear(ConfigDataSource.KEY_STATUS_PREFIX);
+    }
+
     public getTwitterName(): string {
         return load(ConfigDataSource.KEY_TWITTER_NAME) || '';
     }
