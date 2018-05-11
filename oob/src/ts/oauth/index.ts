@@ -1,1 +1,1 @@
-console.log("oauth");
+console.log('oauth');

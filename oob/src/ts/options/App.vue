@@ -1,30 +1,30 @@
 <template>
   <v-app>
-      <app-header :title="title"/>
-      <v-content>
-          <v-container>
-            <v-layout
-                row
-                justify-center
-                align-center>
-                <v-flex
-                    xs12
-                    sm12
-                    md8>
-                    <setting-list/>
-                </v-flex>
-            </v-layout>
-          </v-container>
-      </v-content>
+    <app-header :title="title"/>
+    <v-content>
+      <v-container>
+        <v-layout
+          row
+          justify-center
+          align-center>
+          <v-flex
+            xs12
+            sm12
+            md8>
+            <setting-list/>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </v-content>
   </v-app>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import { Component, Prop } from "vue-property-decorator";
-import AppHeader from "./components/AppHeader";
+import Vue from 'vue';
+import { Component, Prop } from 'vue-property-decorator';
+import AppHeader from './components/AppHeader';
 import SettingList from './components/SettingList';
-import { AppConfig } from "../Config";
+import { AppConfig } from '../Config';
 
 @Component({
   name: "app",

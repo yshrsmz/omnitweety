@@ -6,13 +6,13 @@
     app>
     <v-icon>settings</v-icon>
     <v-toolbar-title>
-        {{ title }}
+      {{ title }}
     </v-toolbar-title>
   </v-toolbar>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from 'vue';
 import { Component, Prop } from 'vue-property-decorator';
 
 @Component({

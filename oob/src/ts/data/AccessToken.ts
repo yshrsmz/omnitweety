@@ -3,7 +3,7 @@ export default class AccessToken {
     public readonly token: string;
     public readonly tokenSecret: string;
 
-    constructor(
+    public constructor(
         token: string,
         tokenSecret: string
     ) {
@@ -11,11 +11,11 @@ export default class AccessToken {
         this.tokenSecret = tokenSecret;
     }
 
-    isAuthorized(): boolean {
+    public isAuthorized(): boolean {
         return !!this.token || !!this.tokenSecret;
     }
 
-    static empty(): AccessToken {
-        return new AccessToken("", "");
+    public static empty(): AccessToken {
+        return new AccessToken('', '');
     }
 }

@@ -1,4 +1,4 @@
-import { TwitterConfig, AppConfig } from "../Config";
+import { TwitterConfig, AppConfig } from '../Config';
 
 const save = (key: string, value: string) => {
     localStorage[key] = value;
@@ -14,12 +14,12 @@ const clear = (key: string) => {
 
 class ConfigDataSource {
 
-    static readonly KEY_TWITTER_TOKEN = `oauth_token${encodeURI(TwitterConfig.OAUTH_SCOPE)}`;
-    static readonly KEY_TWITTER_SECRET = `oauth_token_secret${encodeURI(TwitterConfig.OAUTH_SCOPE)}`;
-    static readonly KEY_STATUS_PREFIX = "status_prefix";
-    static readonly KEY_TWITTER_NAME = "twitter_name";
-    static readonly KEY_TWITTER_SCREEN_NAME = "twitter_screen_name";
-    static readonly KEY_TWITTER_THUMB_URL = "twitter_thumb_url";
+    private static readonly KEY_TWITTER_TOKEN = `oauth_token${encodeURI(TwitterConfig.OAUTH_SCOPE)}`;
+    private static readonly KEY_TWITTER_SECRET = `oauth_token_secret${encodeURI(TwitterConfig.OAUTH_SCOPE)}`;
+    private static readonly KEY_STATUS_PREFIX = 'status_prefix';
+    private static readonly KEY_TWITTER_NAME = 'twitter_name';
+    private static readonly KEY_TWITTER_SCREEN_NAME = 'twitter_screen_name';
+    private static readonly KEY_TWITTER_THUMB_URL = 'twitter_thumb_url';
 
     public getAccessToken(): string {
         return load(ConfigDataSource.KEY_TWITTER_TOKEN);
@@ -55,7 +55,7 @@ class ConfigDataSource {
     }
 
     public getTwitterName(): string {
-        return load(ConfigDataSource.KEY_TWITTER_NAME) || "";
+        return load(ConfigDataSource.KEY_TWITTER_NAME) || '';
     }
 
     public setTwitterName(name: string) {
@@ -67,7 +67,7 @@ class ConfigDataSource {
     }
 
     public getTwitterScreenName(): string {
-        return load(ConfigDataSource.KEY_TWITTER_SCREEN_NAME) || "";
+        return load(ConfigDataSource.KEY_TWITTER_SCREEN_NAME) || '';
     }
 
     public setTwitterScreenName(screenName: string) {
@@ -79,7 +79,7 @@ class ConfigDataSource {
     }
 
     public getTwitterThumbUrl(): string {
-        return load(ConfigDataSource.KEY_TWITTER_THUMB_URL) || "";
+        return load(ConfigDataSource.KEY_TWITTER_THUMB_URL) || '';
     }
 
     public setTwitterThumbUrl(thumbUrl: string) {

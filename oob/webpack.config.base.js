@@ -1,4 +1,4 @@
-const path = require("path");
+const path = require('path');
 const webpack = require('webpack');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -7,16 +7,16 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
     mode: 'development',
     entry: {
-        "js/background": "./src/ts/background",
-        "js/oauth": "./src/ts/oauth",
-        "js/options": "./src/ts/options",
+        'js/background': './src/ts/background',
+        'js/oauth': './src/ts/oauth',
+        'js/options': './src/ts/options',
     },
     output: {
-        path: path.resolve(__dirname, "app"),
-        filename: "[name].js"
+        path: path.resolve(__dirname, 'app'),
+        filename: '[name].js'
     },
     resolve: {
-        extensions: [".ts", ".vue", ".js"]
+        extensions: ['.ts', '.vue', '.js']
     },
     optimization: {
         splitChunks: {
@@ -61,21 +61,21 @@ module.exports = {
             { from: './node_modules/vuetify/dist/vuetify.min.css', to: './css', flatten: true }
         ]),
         new HtmlWebpackPlugin({
-            title: "Omnitweety - Background",
-            filename: "background.html",
-            chunks: ["js/background", "js/vendor"],
+            title: 'Omnitweety - Background',
+            filename: 'background.html',
+            chunks: ['js/background', 'js/vendor'],
         }),
         new HtmlWebpackPlugin({
-            title: "Omnitweety - Options",
-            filename: "options.html",
-            template: "./src/template/options.html.ejs",
-            chunks: ["js/options", "js/vendor"],
+            title: 'Omnitweety - Options',
+            filename: 'options.html',
+            template: './src/template/options.html.ejs',
+            chunks: ['js/options', 'js/vendor'],
         }),
     ]
 };
 
 if (process.env.NODE_ENV === 'production') {
-    module.exports.devtool = '#source-map'
+    module.exports.devtool = '#source-map';
     // http://vue-loader.vuejs.org/en/workflow/production.html
     module.exports.plugins = (module.exports.plugins || []).concat([
         new webpack.DefinePlugin({
@@ -92,5 +92,5 @@ if (process.env.NODE_ENV === 'production') {
         new webpack.LoaderOptionsPlugin({
             minimize: true
         })
-    ])
+    ]);
 }

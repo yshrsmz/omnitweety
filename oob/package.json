@@ -6,17 +6,26 @@
   "scripts": {
     "build": "webpack --mode production --config ./webpack.config.release.js",
     "dev": "webpack --mode development --config ./webpack.config.dev.js",
-    "watch": "webpack --mode development --watch --config ./webpack.config.dev.js"
+    "watch": "webpack --mode development --watch --config ./webpack.config.dev.js",
+    "clean": "rimraf ./app",
+    "lint": "eslint '**/*.{ts,vue,js}'",
+    "lintAndFix": "eslint --fix '**/*.{ts,vue,js}'"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.65",
     "copy-webpack-plugin": "^4.5.1",
     "css-loader": "^0.28.11",
+    "eslint": "^4.19.1",
+    "eslint-config-typescript": "^1.0.2",
+    "eslint-plugin-typescript": "^0.12.0",
+    "eslint-plugin-vue": "^4.5.0",
     "html-webpack-plugin": "^3.2.0",
+    "rimraf": "^2.6.2",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
     "ts-loader": "^4.3.0",
     "typescript": "^2.8.3",
+    "typescript-eslint-parser": "^15.0.0",
     "vue-loader": "^15.0.9",
     "vue-style-loader": "^4.1.0",
     "vue-template-compiler": "^2.5.16",

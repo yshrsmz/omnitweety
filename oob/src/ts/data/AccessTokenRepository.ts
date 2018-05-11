@@ -1,24 +1,24 @@
-import AccessToken from "./AccessToken";
-import configDataSource from "./ConfigDataSource";
+import AccessToken from './AccessToken';
+import configDataSource from './ConfigDataSource';
 
 class AccessTokenRepository {
 
-    set(token: AccessToken) {
+    public set(token: AccessToken) {
         configDataSource.setAccessToken(token.token);
         configDataSource.setAccessTokenSecret(token.tokenSecret);
     }
 
-    get(): AccessToken {
+    public get(): AccessToken {
         const token: string = configDataSource.getAccessToken();
         const secret: string = configDataSource.getAccessTokenSecret();
         return new AccessToken(token, secret);
     }
 
-    isAuthorized(): boolean {
+    public isAuthorized(): boolean {
         return this.get().isAuthorized();
     }
 
-    clear() {
+    public clear() {
         configDataSource.clearAccessToken();
         configDataSource.clearAccesTokenSecret();
     }

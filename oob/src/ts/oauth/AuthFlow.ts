@@ -9,7 +9,7 @@ class AuthFlow {
     private oauthToken: string;
     private oauthTokenSecret: string;
 
-    constructor(){
+    public constructor(){
         this.oauth = new OAuth(
             TwitterConfig.URL_REQUEST_TOKEN,
             TwitterConfig.URL_ACCESS_TOKEN,
@@ -21,7 +21,7 @@ class AuthFlow {
         );
     }
 
-    request():Promise<string> {
+    public request(): Promise<string> {
         return new Promise<string>((resolve, reject) => {
             this.oauth.getOAuthRequestToken((error, oauthToken, oauthTokenSecret, results) => {
                 if (error) {
@@ -32,11 +32,11 @@ class AuthFlow {
                 this.oauthTokenSecret = oauthTokenSecret;
                 const authUrl = `${TwitterConfig.URL_AUTHORIZE}?oauth_token=${oauthToken}`;
                 resolve(authUrl);
-            })
-        })
+            });
+        });
     }
 
-    accept(pinCode: string): Promise<AccessToken> {
+    public accept(pinCode: string): Promise<AccessToken> {
         return new Promise<AccessToken>((resolve, reject) => {
             this.oauth.getOAuthAccessToken(
                 this.oauthToken,
@@ -47,9 +47,9 @@ class AuthFlow {
                         reject(error);
                         return;
                     }
-                    resolve(new AccessToken(accessToken, accessTokenSecret))
+                    resolve(new AccessToken(accessToken, accessTokenSecret));
                 }
-            )
+            );
         });
     }
 }
