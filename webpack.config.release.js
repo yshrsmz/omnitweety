@@ -7,7 +7,10 @@ const packageJson = require('./package.json');
 const apikey = require('./apikey-release.json');
 
 const config = merge(baseConfig, {
-    devtool: 'source-map',
+    optimization: {
+        minimize: true
+    },
+    devtool: false,
     plugins: [
         new webpack.DefinePlugin({
             TWITTER_API_KEY: JSON.stringify(apikey.consumer_key),
@@ -18,10 +21,13 @@ const config = merge(baseConfig, {
             filename: 'manifest.json',
             template: './src/template/manifest.json.ejs',
             inject: false,
-            appname: 'Omnitweety - Dev',
-            shortcut: 'twd',
+            appname: 'Omnitweety',
+            shortcut: 'tw',
             appversion: packageJson.version,
         }),
+        new webpack.LoaderOptionsPlugin({
+            minimize: true
+        })
     ]
 });
 
