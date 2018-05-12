@@ -8,7 +8,6 @@ module.exports = {
     mode: 'development',
     entry: {
         'js/background': './src/ts/background',
-        'js/oauth': './src/ts/oauth',
         'js/options': './src/ts/options',
     },
     output: {

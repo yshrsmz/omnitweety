@@ -9,12 +9,6 @@ const SubCommands = {
         regex: /^:version(\s*|\s+[\w\W]*)$/,
         description: 'Show Omnitweety\'s version'
     },
-    tw: {
-        name: ':tw',
-        regex: /^:tw\s+([\w\W]+)$/,
-        textRegex: /^:tw\s+([\w\W]+)$/,
-        description: 'Post to Twitter'
-    },
     share: {
         name: ':share',
         regex: /^:share(\s*|\s+[\w\W]*)$/,

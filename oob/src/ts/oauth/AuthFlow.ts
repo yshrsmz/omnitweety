@@ -1,4 +1,4 @@
-import { OAuth, AuthCallback } from 'oauth';
+import { OAuth } from 'oauth';
 import { TwitterConfig } from '../Config';
 import AccessToken from '../data/AccessToken';
 

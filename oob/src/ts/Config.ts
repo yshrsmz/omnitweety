@@ -22,6 +22,7 @@ const TwitterConfig = {
     OAUTH_SCOPE: '$urlUpdate,$urlConfig',
 
     STATUS_LENGTH: 280,
+    URL_LENGTH: 23,
 
     // api keys
     API_KEY: TWITTER_API_KEY,
