@@ -11,7 +11,7 @@
       <v-list-tile>
         <v-list-tile-content>
           <v-list-tile-title>App Version</v-list-tile-title>
-          <v-list-tile-sub-title>hoge</v-list-tile-sub-title>
+          <v-list-tile-sub-title>{{ appVersion }}</v-list-tile-sub-title>
         </v-list-tile-content>
       </v-list-tile>
       <v-list-tile
@@ -59,6 +59,8 @@ export default class SettingList extends Vue {
     developerUrl: string = AppConfig.URL_DEVELOPER
 
     webstoreUrl: string = AppConfig.URL_CHROME_WEBSTORE;
+
+    appVersion: string = chrome.runtime.getManifest().version;
 
     mounted() {
     }

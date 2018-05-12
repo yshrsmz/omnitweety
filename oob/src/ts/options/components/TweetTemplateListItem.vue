@@ -1,6 +1,6 @@
 <template>
   <v-list-tile
-    @click.native.stop="onPrefixClick">
+    @click.stop="onPrefixClick">
     <v-list-tile-content>
       <v-list-tile-title>Status Prefix</v-list-tile-title>
       <v-list-tile-sub-title>{{ tweetTemplate.prefix }}</v-list-tile-sub-title>
@@ -45,11 +45,11 @@ export default class TweetTemplateListItem extends Vue {
 
     isPrefixDialogActive: boolean = false;
 
+    prefix: string = '';
+
     @Getter('tweetTemplate') tweetTemplate: TweetTemplate
 
     @Action('updateTweetTemplate') updateTweetTemplate;
-
-    prefix: string = '';
 
     mounted() {
         this.prefix = this.tweetTemplate.prefix;

@@ -12,7 +12,7 @@ export default class AccessToken {
     }
 
     public isAuthorized(): boolean {
-        return !!this.token || !!this.tokenSecret;
+        return !!this.token && !!this.tokenSecret;
     }
 
     public static empty(): AccessToken {
