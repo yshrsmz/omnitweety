@@ -76,6 +76,7 @@ import accessTokenRepository from '../../data/AccessTokenRepository';
 import AccessToken from '../../data/AccessToken';
 import authFlow from '../../oauth/AuthFlow';
 import {Getter, Action} from 'vuex-class';
+import { openNewTab } from '../../Util';
 
 @Component({
     name: 'auth-list-item'
@@ -102,7 +103,7 @@ export default class AuthListItem extends Vue {
         authFlow.request()
             .then(((url) => {
                 this.isPinCodeDialogActive = true;
-                chrome.tabs.create({ url: url, active: false });
+                openNewTab(url, true);
             }));
     }
 
