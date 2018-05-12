@@ -1,5 +1,11 @@
 Change Log
 ===
+Version 0.7.0 *(2018-05-12)*
+----------------------------
+
+- NEW: use PIN code for twitter login
+- REMOVE: remove Slack integration, since current auth method is deprecated by Slack.
+
 
 Version 0.6.0 *(2018-02-10)*
 ----------------------------
