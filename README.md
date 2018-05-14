@@ -39,11 +39,11 @@ gulp build                  # for development
 gulp build --production     # for production
 ```
 
-you need `apikey.js` in project root directory
+you need `apikey-dev.json` and `apikey-release.json` in project root directory
 
 ```
-export default {
+{
     "consumer_key": "YOUR_CONSUMER_KEY",
     "consumer_secret": "YOUR_CONSUMER_SECRET"
-};
+}
 ```
