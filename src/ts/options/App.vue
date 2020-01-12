@@ -1,17 +1,19 @@
 <template>
   <v-app>
-    <app-header :title="title"/>
+    <app-header :title="title" />
     <v-content>
       <v-container>
         <v-layout
           row
           justify-center
-          align-center>
+          align-center
+        >
           <v-flex
             xs12
             sm12
-            md8>
-            <setting-list/>
+            md8
+          >
+            <setting-list />
           </v-flex>
         </v-layout>
       </v-container>
@@ -21,7 +23,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { Component, Prop } from 'vue-property-decorator';
+import { Component} from 'vue-property-decorator';
 import AppHeader from './components/AppHeader';
 import SettingList from './components/SettingList';
 import { AppConfig } from '../Config';

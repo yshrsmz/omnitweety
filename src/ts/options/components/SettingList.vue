@@ -2,33 +2,35 @@
   <v-card>
     <v-list two-line>
       <v-subheader>Auth</v-subheader>
-      <auth-list-item/>
-      <v-divider/>
+      <auth-list-item />
+      <v-divider />
       <v-subheader>General</v-subheader>
-      <tweet-template-list-item/>
-      <v-divider/>
+      <tweet-template-list-item />
+      <v-divider />
       <v-subheader>Others</v-subheader>
-      <v-list-tile>
-        <v-list-tile-content>
-          <v-list-tile-title>App Version</v-list-tile-title>
-          <v-list-tile-sub-title>{{ appVersion }}</v-list-tile-sub-title>
-        </v-list-tile-content>
-      </v-list-tile>
-      <v-list-tile
+      <v-list-item>
+        <v-list-item-content>
+          <v-list-item-title>App Version</v-list-item-title>
+          <v-list-item-subtitle>{{ appVersion }}</v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
+      <v-list-item
         :href="developerUrl"
-        target="_blank">
-        <v-list-tile-content>
-          <v-list-tile-title>Developer</v-list-tile-title>
-          <v-list-tile-sub-title>{{ developerName }}</v-list-tile-sub-title>
-        </v-list-tile-content>
-      </v-list-tile>
-      <v-list-tile
+        target="_blank"
+      >
+        <v-list-item-content>
+          <v-list-item-title>Developer</v-list-item-title>
+          <v-list-item-subtitle>{{ developerName }}</v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
+      <v-list-item
         :href="webstoreUrl"
-        target="_blank">
-        <v-list-tile-content>
-          <v-list-tile-title>Rate on Chrome Webstore</v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
+        target="_blank"
+      >
+        <v-list-item-content>
+          <v-list-item-title>Rate on Chrome Webstore</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
     </v-list>
   </v-card>
 </template>
@@ -42,27 +44,24 @@ import TweetTemplateListItem from './TweetTemplateListItem';
 import { AppConfig } from '../../Config';
 
 @Component({
-    name: 'setting-list',
-    computed: {
-        ...mapGetters(['tweetTemplate'])
-        },
-        components: {
-            AuthListItem,
-            TweetTemplateListItem
-        }
+  name: 'setting-list',
+  computed: {
+    ...mapGetters(['tweetTemplate'])
+  },
+  components: {
+    AuthListItem,
+    TweetTemplateListItem
+  }
 })
 export default class SettingList extends Vue {
 
-    isPrefixDialogActive: boolean = false;
+  isPrefixDialogActive = false;
 
-    developerName: string = AppConfig.DEVELOPER_NAME;
-    developerUrl: string = AppConfig.URL_DEVELOPER
+  developerName: string = AppConfig.DEVELOPER_NAME;
+  developerUrl: string = AppConfig.URL_DEVELOPER
 
-    webstoreUrl: string = AppConfig.URL_CHROME_WEBSTORE;
+  webstoreUrl: string = AppConfig.URL_CHROME_WEBSTORE;
 
-    appVersion: string = chrome.runtime.getManifest().version;
-
-    mounted() {
-    }
+  appVersion: string = chrome.runtime.getManifest().version;
 }
 </script>

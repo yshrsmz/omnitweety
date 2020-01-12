@@ -3,18 +3,18 @@ import TweetTemplate from './TweetTemplate';
 
 class TweetTemplateRepository {
 
-    public get(): TweetTemplate {
-        const prefix = configDataSource.getStatusPrefix();
-        return new TweetTemplate(prefix);
-    }
+  public get(): TweetTemplate {
+    const prefix = configDataSource.getStatusPrefix();
+    return new TweetTemplate(prefix);
+  }
 
-    public set(template: TweetTemplate) {
-        configDataSource.setStatusPrefix(template.prefix);
-    }
+  public set(template: TweetTemplate): void {
+    configDataSource.setStatusPrefix(template.prefix);
+  }
 
-    public clear() {
-        configDataSource.clearStatusPrefix();
-    }
+  public clear(): void {
+    configDataSource.clearStatusPrefix();
+  }
 }
 
 export default new TweetTemplateRepository();

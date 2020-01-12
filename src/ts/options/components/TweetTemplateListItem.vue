@@ -1,35 +1,45 @@
 <template>
-  <v-list-tile
-    @click.stop="onPrefixClick">
-    <v-list-tile-content>
-      <v-list-tile-title>Status Prefix</v-list-tile-title>
-      <v-list-tile-sub-title>{{ tweetTemplate.prefix }}</v-list-tile-sub-title>
-    </v-list-tile-content>
+  <v-list-item
+    @click.stop="onPrefixClick"
+  >
+    <v-list-item-content>
+      <v-list-item-title>Status Prefix</v-list-item-title>
+      <v-list-item-subtitle>{{ tweetTemplate.prefix }}</v-list-item-subtitle>
+    </v-list-item-content>
     <v-dialog
       v-model="isPrefixDialogActive"
-      max-width="500px">
+      max-width="500px"
+    >
       <v-card>
-        <v-card-title class="title">Edit Status Prefix</v-card-title>
+        <v-card-title class="title">
+          Edit Status Prefix
+        </v-card-title>
         <v-card-text>
           <v-text-field
             v-model="prefix"
-            label="Enter New Prefix"/>
+            label="Enter New Prefix"
+          />
         </v-card-text>
         <v-card-actions>
-          <v-spacer/>
+          <v-spacer />
           <v-btn
             color="primary"
-            flat
-            @click.stop="isPrefixDialogActive=false">Close</v-btn>
+            text
+            @click.stop="isPrefixDialogActive=false"
+          >
+            Close
+          </v-btn>
           <v-btn
             color="primary"
-            flat
-            @click.stop="onUpdatePrefixRequested">Save</v-btn>
+            text
+            @click.stop="onUpdatePrefixRequested"
+          >
+            Save
+          </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
-  </v-list-tile>
-
+  </v-list-item>
 </template>
 
 <script lang="ts">
@@ -39,31 +49,31 @@ import TweetTemplate from '../../data/TweetTemplate';
 import {Getter, Action} from 'vuex-class';
 
 @Component({
-    name: 'tweet-template-list-item'
+  name: 'tweet-template-list-item'
 })
 export default class TweetTemplateListItem extends Vue {
 
-    isPrefixDialogActive: boolean = false;
+  isPrefixDialogActive = false;
 
-    prefix: string = '';
+  prefix = '';
 
-    @Getter('tweetTemplate') tweetTemplate: TweetTemplate
+  @Getter('tweetTemplate') tweetTemplate: TweetTemplate
 
-    @Action('updateTweetTemplate') updateTweetTemplate;
+  @Action('updateTweetTemplate') updateTweetTemplate;
 
-    mounted() {
-        this.prefix = this.tweetTemplate.prefix;
-    }
+  mounted() {
+    this.prefix = this.tweetTemplate.prefix;
+  }
 
-    onPrefixClick() {
-        this.prefix = this.tweetTemplate.prefix;
-        this.isPrefixDialogActive = true;
-    }
+  onPrefixClick() {
+    this.prefix = this.tweetTemplate.prefix;
+    this.isPrefixDialogActive = true;
+  }
 
-    onUpdatePrefixRequested() {
-        const newTemplate = new TweetTemplate(this.prefix);
-        this.updateTweetTemplate(newTemplate);
-        this.isPrefixDialogActive = false;
-    }
+  onUpdatePrefixRequested() {
+    const newTemplate = new TweetTemplate(this.prefix);
+    this.updateTweetTemplate(newTemplate);
+    this.isPrefixDialogActive = false;
+  }
 }
 </script>
