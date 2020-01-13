@@ -1,10 +1,9 @@
-const webpack = require('webpack');
-const merge = require('webpack-merge');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-
-const baseConfig = require('./webpack.config.base.js');
-const packageJson = require('./package.json');
-const apikey = require('./apikey-dev.json');
+import webpack from 'webpack'
+import merge from 'webpack-merge'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import baseConfig from './webpack.config.base'
+import packageJson from './package.json'
+import apikey from './apikey-dev.json'
 
 const config = merge(baseConfig, {
   devtool: 'source-map',
@@ -25,4 +24,4 @@ const config = merge(baseConfig, {
   ]
 });
 
-module.exports = config;
+export default config

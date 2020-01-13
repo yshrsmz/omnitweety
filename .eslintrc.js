@@ -16,6 +16,7 @@ module.exports = {
       '@typescript-eslint/no-unused-vars': ['warn', {'args': 'after-used'}]
     },
     "env": {
-        "webextensions": true
+        "webextensions": true,
+        "node": true,
     }
 }
