@@ -17,13 +17,19 @@
           <v-list-item-subtitle>{{ appVersion }}</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
-      <v-list-item :href="developerUrl" target="_blank">
+      <v-list-item
+        :href="developerUrl"
+        target="_blank"
+      >
         <v-list-item-content>
           <v-list-item-title>Developer</v-list-item-title>
           <v-list-item-subtitle>{{ developerName }}</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
-      <v-list-item :href="webstoreUrl" target="_blank">
+      <v-list-item
+        :href="webstoreUrl"
+        target="_blank"
+      >
         <v-list-item-content>
           <v-list-item-title>Rate on Chrome Webstore</v-list-item-title>
         </v-list-item-content>
