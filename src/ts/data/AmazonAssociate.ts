@@ -10,13 +10,17 @@ export default class AmazonAssociate {
     return this.associateId != '' && this.isValidAmazonDomain(this.domain);
   }
 
-  public buildAssociateUrl(url: URL): string {
-    if (this.isEnabled() && AmazonAssociate.isAmazonProductUrl(url)) {
+  public buildAssociateUrlOrReturnAsIs(url: URL): string {
+    if (this.isEnabled() && this.isUrlForCurrentDomain(url) && AmazonAssociate.isAmazonProductUrl(url)) {
       const productId = AmazonAssociate.getProductId(url)
       return `https://${url.hostname}/dp/${productId}/?tag=${this.associateId}`
     } else {
       return url.href;
     }
+  }
+
+  public isUrlForCurrentDomain(url: URL): boolean{
+    return url.hostname === this.domain
   }
 
   public isValidAmazonDomain(domain: string): boolean {
@@ -28,7 +32,7 @@ export default class AmazonAssociate {
   }
 
   public static getProductId(url: URL): string {
-    return url.pathname.match(AmazonAssociate.PRODUCT_ID_REGEXP)[0];
+    return url.pathname.match(AmazonAssociate.PRODUCT_ID_REGEXP)[1];
   }
 
   public static empty(): AmazonAssociate {
