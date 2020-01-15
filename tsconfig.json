@@ -10,6 +10,7 @@
         "target": "es2015",
         "experimentalDecorators": true,
         "noImplicitAny": false,
+        "types": ["vuetify", "@types/chrome"]
     },
     "include": [
         "./src/ts/**/*",
