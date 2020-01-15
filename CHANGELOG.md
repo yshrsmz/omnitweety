@@ -1,6 +1,13 @@
 Change Log
 ===
 
+Version 0.8.0 *(2020-01-15)*
+----------------------------
+
+- NEW: Amazon Associate support
+- Dependency updates
+
+
 Version 0.7.1 *(2020-01-12)*
 ----------------------------
 

@@ -20,6 +20,8 @@ class ConfigDataSource {
   private static readonly KEY_TWITTER_NAME = 'twitter_name';
   private static readonly KEY_TWITTER_SCREEN_NAME = 'twitter_screen_name';
   private static readonly KEY_TWITTER_THUMB_URL = 'twitter_thumb_url';
+  private static readonly KEY_AMAZON_ASSOCIATE_DOMAIN = "amazon_associate_domain";
+  private static readonly KEY_AMAZON_ASSOCIATE_ID = "amazon_associate_id";
 
   public getAccessToken(): string {
     return load(ConfigDataSource.KEY_TWITTER_TOKEN);
@@ -29,7 +31,7 @@ class ConfigDataSource {
     save(ConfigDataSource.KEY_TWITTER_TOKEN, token);
   }
 
-  public clearAccessToken(): void{
+  public clearAccessToken(): void {
     clear(ConfigDataSource.KEY_TWITTER_TOKEN);
   }
 
@@ -41,7 +43,7 @@ class ConfigDataSource {
     save(ConfigDataSource.KEY_TWITTER_SECRET, secret);
   }
 
-  public clearAccesTokenSecret(): void{
+  public clearAccesTokenSecret(): void {
     clear(ConfigDataSource.KEY_TWITTER_SECRET);
   }
 
@@ -62,11 +64,11 @@ class ConfigDataSource {
     return load(ConfigDataSource.KEY_TWITTER_NAME) || '';
   }
 
-  public setTwitterName(name: string): void{
+  public setTwitterName(name: string): void {
     save(ConfigDataSource.KEY_TWITTER_NAME, name);
   }
 
-  public clearTwitterName(): void{
+  public clearTwitterName(): void {
     clear(ConfigDataSource.KEY_TWITTER_NAME);
   }
 
@@ -90,8 +92,32 @@ class ConfigDataSource {
     save(ConfigDataSource.KEY_TWITTER_THUMB_URL, thumbUrl);
   }
 
-  public clearTwitterThumbUrl(): void{
+  public clearTwitterThumbUrl(): void {
     clear(ConfigDataSource.KEY_TWITTER_THUMB_URL);
+  }
+
+  public getAmazonAssociateDomain(): string {
+    return load(ConfigDataSource.KEY_AMAZON_ASSOCIATE_DOMAIN) || ''
+  }
+
+  public setAmazonAssociateDomain(domain: string): void {
+    save(ConfigDataSource.KEY_AMAZON_ASSOCIATE_DOMAIN, domain);
+  }
+
+  public clearAmazonAssociateDomain(): void {
+    clear(ConfigDataSource.KEY_AMAZON_ASSOCIATE_DOMAIN);
+  }
+
+  public getAmazonAssociateId(): string {
+    return (load(ConfigDataSource.KEY_AMAZON_ASSOCIATE_ID) || '').trim();
+  }
+
+  public setAmazonAssociateId(id: string): void {
+    save(ConfigDataSource.KEY_AMAZON_ASSOCIATE_ID, id.trim());
+  }
+
+  public clearAmazonAssociateId(): void {
+    clear(ConfigDataSource.KEY_AMAZON_ASSOCIATE_ID);
   }
 }
 

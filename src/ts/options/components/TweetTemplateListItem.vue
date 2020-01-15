@@ -1,7 +1,5 @@
 <template>
-  <v-list-item
-    @click.stop="onPrefixClick"
-  >
+  <v-list-item @click.stop="onPrefixClick">
     <v-list-item-content>
       <v-list-item-title>Status Prefix</v-list-item-title>
       <v-list-item-subtitle>{{ tweetTemplate.prefix }}</v-list-item-subtitle>
@@ -43,23 +41,22 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import { Component, Prop } from 'vue-property-decorator';
-import TweetTemplate from '../../data/TweetTemplate';
-import {Getter, Action} from 'vuex-class';
+import Vue from "vue";
+import { Component, Prop } from "vue-property-decorator";
+import TweetTemplate from "../../data/TweetTemplate";
+import { Getter, Action } from "vuex-class";
 
 @Component({
-  name: 'tweet-template-list-item'
+  name: "tweet-template-list-item"
 })
 export default class TweetTemplateListItem extends Vue {
-
   isPrefixDialogActive = false;
 
-  prefix = '';
+  prefix = "";
 
-  @Getter('tweetTemplate') tweetTemplate: TweetTemplate
+  @Getter("tweetTemplate") tweetTemplate: TweetTemplate;
 
-  @Action('updateTweetTemplate') updateTweetTemplate;
+  @Action("updateTweetTemplate") updateTweetTemplate;
 
   mounted() {
     this.prefix = this.tweetTemplate.prefix;
