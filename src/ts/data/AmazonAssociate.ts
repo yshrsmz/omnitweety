@@ -1,19 +1,19 @@
 export default class AmazonAssociate {
   public constructor(
     public readonly domain: string,
-    public readonly asscociateId: string
+    public readonly associateId: string
   ) {
     // no-op
   }
 
   public isEnabled(): boolean {
-    return this.asscociateId != '' && this.isValidAmazonDomain(this.domain);
+    return this.associateId != '' && this.isValidAmazonDomain(this.domain);
   }
 
   public buildAssociateUrl(url: URL): string {
     if (this.isEnabled() && AmazonAssociate.isAmazonProductUrl(url)) {
       const productId = AmazonAssociate.getProductId(url)
-      return `https://${url.hostname}/dp/${productId}/?tag=${this.asscociateId}`
+      return `https://${url.hostname}/dp/${productId}/?tag=${this.associateId}`
     } else {
       return url.href;
     }

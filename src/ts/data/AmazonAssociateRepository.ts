@@ -5,13 +5,13 @@ class AmazonAssociateRepository {
 
   public set(amazonAssociate: AmazonAssociate){
     configDataStore.setAmazonAssociateDomain(amazonAssociate.domain)
-    configDataStore.setAmazonAssociateId(amazonAssociate.asscociateId)
+    configDataStore.setAmazonAssociateId(amazonAssociate.associateId)
   }
 
   public get(): AmazonAssociate{
     const domain: string = configDataStore.getAmazonAssociateDomain()
-    const asscociateId: string = configDataStore.getAmazonAssociateId()
-    return new AmazonAssociate(domain, asscociateId)
+    const associateId: string = configDataStore.getAmazonAssociateId()
+    return new AmazonAssociate(domain, associateId)
   }
 
   public clear() {
