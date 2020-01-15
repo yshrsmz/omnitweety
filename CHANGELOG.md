@@ -4,7 +4,7 @@ Change Log
 Version 0.8.0 *(2020-01-15)*
 ----------------------------
 
-- NEW: Amazon Associate support
+- NEW: Support Amazon Associate. Configure from options page.
 - Dependency updates
 
 
