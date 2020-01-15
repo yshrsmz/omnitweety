@@ -1,9 +1,7 @@
-import Vue from 'vue';
+import Vue, { ComponentOptions } from 'vue';
 import Vuex from 'vuex';
-import Vuetify from 'vuetify';
 import App from './App';
 import AccessToken from '../data/AccessToken';
-import { AppConfig } from '../Config';
 import accessTokenRepository from '../data/AccessTokenRepository';
 import tweetTemplateRepository from '../data/TweetTemplateRepository';
 import amazonAssociateRepository from '../data/AmazonAssociateRepository'
@@ -32,13 +30,13 @@ const store = new Vuex.Store<State>({
     amazonDomains: amazonAssociateRepository.getAmazonDomains(),
   },
   mutations: {
-    updateAccessToken(state: State, token: AccessToken) {
+    updateAccessToken(state: State, token: AccessToken): void {
       state.accessToken = token;
     },
-    updateTweetTemplate(state, template: TweetTemplate) {
+    updateTweetTemplate(state, template: TweetTemplate): void {
       state.tweetTemplate = template;
     },
-    updateAmazonAssociate(state, amazonAssociate: AmazonAssociate) {
+    updateAmazonAssociate(state, amazonAssociate: AmazonAssociate): void {
       state.amazonAssociate = amazonAssociate
     }
   },
@@ -57,14 +55,14 @@ const store = new Vuex.Store<State>({
     },
   },
   actions: {
-    loadAccessToken({ commit }) {
+    loadAccessToken({ commit }): void {
       commit('updateAccessToken', accessTokenRepository.get());
     },
-    updateAccessToken({ commit }, token: AccessToken) {
+    updateAccessToken({ commit }, token: AccessToken): void {
       accessTokenRepository.set(token);
       commit('updateAccessToken', accessTokenRepository.get());
     },
-    clearAccessToken({ commit }) {
+    clearAccessToken({ commit }): void {
       accessTokenRepository.clear();
       commit('updateAccessToken', AccessToken.empty());
     },
@@ -72,7 +70,7 @@ const store = new Vuex.Store<State>({
       const template = tweetTemplateRepository.get();
       commit('updateTweetTemplate', template);
     },
-    updateTweetTemplate({ commit }, template: TweetTemplate) {
+    updateTweetTemplate({ commit }, template: TweetTemplate): void {
       tweetTemplateRepository.set(template);
       commit('updateTweetTemplate', tweetTemplateRepository.get());
     },
