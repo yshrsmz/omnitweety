@@ -3,6 +3,7 @@ import * as TwitterText from 'twitter-text';
 import { AppConfig, TwitterConfig } from '../Config';
 import accessTokenRepository from '../data/AccessTokenRepository';
 import tweetTemplateRepository from '../data/TweetTemplateRepository';
+import amazonAssociateRepository from '../data/AmazonAssociateRepository'
 import SubCommands from '../SubCommands';
 import {
   openOptionsPage,
@@ -79,12 +80,13 @@ class Omnitweety {
       if (this.isShareCommand(text)) {
         getCurrentPage().then((page: chrome.tabs.Tab) => {
           const template = tweetTemplateRepository.get();
+          const associate = amazonAssociateRepository.get();
           let message = 'unable to share this page';
           if (page) {
             message = template.buildTweet(
               this.getUserInputContent(text, this.getShareCommandRegex()),
               page.title,
-              page.url);
+              associate.buildAssociateUrlOrReturnAsIs(new URL(page.url)));
           }
 
           showDefaultSuggestion(message);
@@ -110,11 +112,11 @@ class Omnitweety {
       if (this.isShareCommand(text)) {
         getCurrentPage().then((page: chrome.tabs.Tab) => {
           const template = tweetTemplateRepository.get();
+          const associate = amazonAssociateRepository.get();
           const message = template.buildTweet(
             this.getUserInputContent(text, this.getShareCommandRegex()),
             page.title,
-            page.url);
-
+            associate.buildAssociateUrlOrReturnAsIs(new URL(page.url)));
           this.postStatus(message);
         });
       } else if (this.isOptionsCommand(text)) {
