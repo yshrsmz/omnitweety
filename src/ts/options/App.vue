@@ -16,8 +16,8 @@
 <script lang="ts">
 import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
-import AppHeader from './components/AppHeader'
-import SettingList from './components/SettingList'
+import AppHeader from './components/AppHeader.vue'
+import SettingList from './components/SettingList.vue'
 import { AppConfig } from '../Config'
 
 @Component({
