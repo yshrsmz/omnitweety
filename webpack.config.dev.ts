@@ -21,7 +21,7 @@ const config = merge(baseConfig, {
       shortcut: 'twd',
       appversion: packageJson.version,
     }),
-  ]
-});
+  ],
+})
 
 export default config

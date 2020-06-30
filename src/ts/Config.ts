@@ -1,13 +1,14 @@
-const urlUpdate = 'https://api.twitter.com/1.1/statuses/update.json';
-const urlConfig = 'https://api.twitter.com/1.1/help/configuration.json';
+const urlUpdate = 'https://api.twitter.com/1.1/statuses/update.json'
+const urlConfig = 'https://api.twitter.com/1.1/help/configuration.json'
 
 const AppConfig = {
   NAME: 'Omnitweety for Chrome',
   PREFIX: 'NowBrowsing:',
   DEVELOPER_NAME: '@yslibnet(yslibrary.net)',
   URL_DEVELOPER: 'https://twitter.com/yslibnet',
-  URL_CHROME_WEBSTORE: 'https://chrome.google.com/webstore/detail/omnitweety/jkghejckpigfbolkdkplfokccgpjjilb',
-};
+  URL_CHROME_WEBSTORE:
+    'https://chrome.google.com/webstore/detail/omnitweety/jkghejckpigfbolkdkplfokccgpjjilb',
+}
 
 const TwitterConfig = {
   // for oauth
@@ -27,6 +28,6 @@ const TwitterConfig = {
   // api keys
   API_KEY: TWITTER_API_KEY,
   API_SECRET: TWITTER_API_SECRET,
-};
+}
 
-export { AppConfig, TwitterConfig };
+export { AppConfig, TwitterConfig }

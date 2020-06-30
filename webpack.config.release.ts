@@ -8,7 +8,7 @@ import apikey from './apikey-release.json'
 
 const config = merge(baseConfig, {
   optimization: {
-    minimize: true
+    minimize: true,
   },
   devtool: false,
   plugins: [
@@ -26,9 +26,9 @@ const config = merge(baseConfig, {
       appversion: packageJson.version,
     }),
     new webpack.LoaderOptionsPlugin({
-      minimize: true
-    })
-  ]
-});
+      minimize: true,
+    }),
+  ],
+})
 
 export default config

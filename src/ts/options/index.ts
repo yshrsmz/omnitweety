@@ -1,25 +1,26 @@
-import Vue, { ComponentOptions } from 'vue';
-import Vuex from 'vuex';
-import App from './App';
-import AccessToken from '../data/AccessToken';
-import accessTokenRepository from '../data/AccessTokenRepository';
-import tweetTemplateRepository from '../data/TweetTemplateRepository';
+import Vue from 'vue'
+import Vuex from 'vuex'
+import App from './App'
+import AccessToken from '../data/AccessToken'
+import accessTokenRepository from '../data/AccessTokenRepository'
+import tweetTemplateRepository from '../data/TweetTemplateRepository'
 import amazonAssociateRepository from '../data/AmazonAssociateRepository'
-import TweetTemplate from '../data/TweetTemplate';
-import vuetify from './vuetify';
-import AmazonAssociate from '../data/AmazonAssociate';
+import TweetTemplate from '../data/TweetTemplate'
+import vuetify from './vuetify'
+import AmazonAssociate from '../data/AmazonAssociate'
+import { VNode } from 'vue/types/umd'
 
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 interface State {
-  accessToken: AccessToken;
-  tweetTemplate: TweetTemplate;
-  amazonAssociate: AmazonAssociate;
-  amazonDomains: string[];
+  accessToken: AccessToken
+  tweetTemplate: TweetTemplate
+  amazonAssociate: AmazonAssociate
+  amazonDomains: string[]
 }
 
 interface UpdatePrefixActionPayload {
-  prefix: string;
+  prefix: string
 }
 
 const store = new Vuex.Store<State>({
@@ -31,21 +32,21 @@ const store = new Vuex.Store<State>({
   },
   mutations: {
     updateAccessToken(state: State, token: AccessToken): void {
-      state.accessToken = token;
+      state.accessToken = token
     },
     updateTweetTemplate(state, template: TweetTemplate): void {
-      state.tweetTemplate = template;
+      state.tweetTemplate = template
     },
     updateAmazonAssociate(state, amazonAssociate: AmazonAssociate): void {
       state.amazonAssociate = amazonAssociate
-    }
+    },
   },
   getters: {
     isAuthorized(state: State): boolean {
-      return state.accessToken.isAuthorized();
+      return state.accessToken.isAuthorized()
     },
     tweetTemplate(state: State): TweetTemplate {
-      return state.tweetTemplate;
+      return state.tweetTemplate
     },
     amazonAssociate(state: State): AmazonAssociate {
       return state.amazonAssociate
@@ -56,23 +57,23 @@ const store = new Vuex.Store<State>({
   },
   actions: {
     loadAccessToken({ commit }): void {
-      commit('updateAccessToken', accessTokenRepository.get());
+      commit('updateAccessToken', accessTokenRepository.get())
     },
     updateAccessToken({ commit }, token: AccessToken): void {
-      accessTokenRepository.set(token);
-      commit('updateAccessToken', accessTokenRepository.get());
+      accessTokenRepository.set(token)
+      commit('updateAccessToken', accessTokenRepository.get())
     },
     clearAccessToken({ commit }): void {
-      accessTokenRepository.clear();
-      commit('updateAccessToken', AccessToken.empty());
+      accessTokenRepository.clear()
+      commit('updateAccessToken', AccessToken.empty())
     },
     loadTweetTemplate({ commit }): void {
-      const template = tweetTemplateRepository.get();
-      commit('updateTweetTemplate', template);
+      const template = tweetTemplateRepository.get()
+      commit('updateTweetTemplate', template)
     },
     updateTweetTemplate({ commit }, template: TweetTemplate): void {
-      tweetTemplateRepository.set(template);
-      commit('updateTweetTemplate', tweetTemplateRepository.get());
+      tweetTemplateRepository.set(template)
+      commit('updateTweetTemplate', tweetTemplateRepository.get())
     },
     loadAmazonAssociate({ commit }): void {
       commit('updateAmazonAssociate', amazonAssociateRepository.get())
@@ -84,19 +85,19 @@ const store = new Vuex.Store<State>({
     clearAmazonAssociate({ commit }): void {
       amazonAssociateRepository.clear()
       commit('updateAmazonAssociate', amazonAssociateRepository.get())
-    }
-  }
-});
+    },
+  },
+})
 
-const v = new Vue({
+new Vue({
   vuetify: vuetify,
   el: '#app',
   store: store,
-  created() {
-    const dispatch = this.$store.dispatch;
-    dispatch('loadAccessToken');
-    dispatch('loadTweetTemplate');
+  created(): void {
+    const dispatch = this.$store.dispatch
+    dispatch('loadAccessToken')
+    dispatch('loadTweetTemplate')
     dispatch('loadAmazonAssociate')
   },
-  render: h => h(App)
-});
+  render: (h): VNode => h(App),
+})

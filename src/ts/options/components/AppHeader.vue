@@ -1,10 +1,5 @@
 <template>
-  <v-app-bar
-    color="light-green"
-    dark
-    fixed
-    app
-  >
+  <v-app-bar color="light-green" dark fixed app>
     <v-icon>settings</v-icon>
     <v-toolbar-title>
       {{ title }}
@@ -13,15 +8,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import { Component, Prop } from 'vue-property-decorator';
+import Vue from 'vue'
+import { Component, Prop } from 'vue-property-decorator'
 
 @Component({
-  name: 'app-header'
+  name: 'app-header',
 })
 export default class AppHeader extends Vue {
-
-  @Prop() title: string;
+  @Prop() title: string
 }
 </script>
-

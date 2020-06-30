@@ -8,14 +8,14 @@ import VuetifyLoaderPlugin from 'vuetify-loader/lib/plugin'
 const rules: webpack.RuleSetRule[] = [
   {
     test: /\.vue$/,
-    loader: 'vue-loader'
+    loader: 'vue-loader',
   },
   {
     test: /\.ts$/,
     loader: 'ts-loader',
     options: {
       appendTsSuffixTo: [/\.vue$/],
-    }
+    },
   },
   {
     test: /\.s(c|a)ss$/,
@@ -29,25 +29,31 @@ const rules: webpack.RuleSetRule[] = [
           implementation: require('sass'),
           sassOptions: {
             fiber: require('fibers'),
-            indentedSyntax: true // optional
+            indentedSyntax: true, // optional
           },
         },
       },
     ],
-  }
+  },
 ]
 
 const module: webpack.Module = {
-  rules
+  rules,
 }
 
 const plugins: webpack.Plugin[] = [
   new VueLoaderPlugin(),
   new VuetifyLoaderPlugin(),
-  new CopyWebpackPlugin([
-    './assets/*.png',
-    { from: './node_modules/vuetify/dist/vuetify.min.css', to: './css', flatten: true }
-  ]),
+  new CopyWebpackPlugin({
+    patterns: [
+      './assets/*.png',
+      {
+        from: './node_modules/vuetify/dist/vuetify.min.css',
+        to: './css',
+        flatten: true,
+      },
+    ],
+  }),
   new HtmlWebpackPlugin({
     title: 'Omnitweety - Background',
     filename: 'background.html',
@@ -69,10 +75,10 @@ const config: webpack.Configuration = {
   },
   output: {
     path: path.resolve(__dirname, 'app'),
-    filename: '[name].js'
+    filename: '[name].js',
   },
   resolve: {
-    extensions: ['.ts', '.vue', '.js']
+    extensions: ['.ts', '.vue', '.js'],
   },
   optimization: {
     splitChunks: {
@@ -81,17 +87,17 @@ const config: webpack.Configuration = {
           test: /node_modules/,
           name: 'js/vendor',
           chunks: 'initial',
-          enforce: true
-        }
-      }
-    }
+          enforce: true,
+        },
+      },
+    },
   },
   performance: {
-    hints: false
+    hints: false,
   },
   devtool: '#eval-source-map',
   module,
-  plugins
+  plugins,
 }
 
 export default config

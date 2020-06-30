@@ -28,15 +28,14 @@ check omnitweety's version
 install dependencies.
 
 ```
-npm install -g gulp
-npm install .
+$ yarn install
 ```
 
 then
 
 ```
-gulp build                  # for development
-gulp build --production     # for production
+$ yarn dev    # development build
+$ yarn build  # production build
 ```
 
 you need `apikey-dev.json` and `apikey-release.json` in project root directory

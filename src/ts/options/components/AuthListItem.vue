@@ -1,7 +1,10 @@
 <template>
   <v-list-item>
     <v-list-item-content>
-      <v-list-item-title>Auth Status: {{ isAuthorized ? "Authorized" : "Not Authorized" }}</v-list-item-title>
+      <v-list-item-title
+        >Auth Status:
+        {{ isAuthorized ? 'Authorized' : 'Not Authorized' }}</v-list-item-title
+      >
     </v-list-item-content>
     <v-list-item-action>
       <!-- Auth Dialog -->
@@ -40,7 +43,7 @@
             <v-btn
               color="primary"
               text
-              @click.stop="isPinCodeDialogActive=false"
+              @click.stop="isPinCodeDialogActive = false"
             >
               Close
             </v-btn>
@@ -57,16 +60,9 @@
       </v-dialog>
 
       <!-- Logout Dialog -->
-      <v-dialog
-        v-else
-        v-model="isLogoutDialogActive"
-        max-width="500px"
-      >
+      <v-dialog v-else v-model="isLogoutDialogActive" max-width="500px">
         <template v-slot:activator="{ on }">
-          <v-btn
-            color="red lighten-1 white--text"
-            v-on="on"
-          >
+          <v-btn color="red lighten-1 white--text" v-on="on">
             Logout from Twitter
           </v-btn>
         </template>
@@ -82,15 +78,11 @@
             <v-btn
               color="primary"
               text
-              @click.stop="isLogoutDialogActive=false"
+              @click.stop="isLogoutDialogActive = false"
             >
               Close
             </v-btn>
-            <v-btn
-              color="primary"
-              text
-              @click.stop="onLogoutRequested"
-            >
+            <v-btn color="primary" text @click.stop="onLogoutRequested">
               Logout
             </v-btn>
           </v-card-actions>
@@ -101,56 +93,54 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import { mapActions, mapGetters } from "vuex";
-import { Component, Prop } from "vue-property-decorator";
-import accessTokenRepository from "../../data/AccessTokenRepository";
-import AccessToken from "../../data/AccessToken";
-import authFlow from "../../oauth/AuthFlow";
-import { Getter, Action } from "vuex-class";
-import { openNewTab } from "../../Util";
+import Vue from 'vue'
+import { Component } from 'vue-property-decorator'
+import AccessToken from '../../data/AccessToken'
+import authFlow from '../../oauth/AuthFlow'
+import { Getter, Action } from 'vuex-class'
+import { openNewTab } from '../../Util'
 
 @Component({
-  name: "auth-list-item"
+  name: 'auth-list-item',
 })
 export default class AuthListItem extends Vue {
-  isPinCodeDialogActive = false;
-  isLogoutDialogActive = false;
+  isPinCodeDialogActive = false
+  isLogoutDialogActive = false
 
-  pinCode = "";
+  pinCode = ''
 
-  @Getter("isAuthorized") isAuthorized;
+  @Getter('isAuthorized') isAuthorized
 
-  @Action("updateAccessToken") updateAccessToken;
+  @Action('updateAccessToken') updateAccessToken
 
-  @Action("clearAccessToken") clearAccessToken;
+  @Action('clearAccessToken') clearAccessToken
 
   get isValidPinCode(): boolean {
-    return !!this.pinCode && this.pinCode.length == 7;
+    return !!this.pinCode && this.pinCode.length == 7
   }
 
-  beginAuthFlow() {
-    this.isPinCodeDialogActive = true;
-    authFlow.request().then(url => {
-      this.isPinCodeDialogActive = true;
-      openNewTab(url, true);
-    });
+  beginAuthFlow(): void {
+    this.isPinCodeDialogActive = true
+    authFlow.request().then((url) => {
+      this.isPinCodeDialogActive = true
+      openNewTab(url, true)
+    })
   }
 
-  updatePinCode(value: string) {
-    this.pinCode = value;
+  updatePinCode(value: string): void {
+    this.pinCode = value
   }
 
-  onPinCodeEntered() {
+  onPinCodeEntered(): void {
     authFlow.accept(this.pinCode).then((token: AccessToken) => {
-      this.updateAccessToken(token);
-      this.isPinCodeDialogActive = false;
-    });
+      this.updateAccessToken(token)
+      this.isPinCodeDialogActive = false
+    })
   }
 
-  onLogoutRequested() {
-    this.clearAccessToken();
-    this.isLogoutDialogActive = false;
+  onLogoutRequested(): void {
+    this.clearAccessToken()
+    this.isLogoutDialogActive = false
   }
 }
 </script>

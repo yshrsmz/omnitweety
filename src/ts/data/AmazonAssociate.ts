@@ -7,36 +7,43 @@ export default class AmazonAssociate {
   }
 
   public isEnabled(): boolean {
-    return this.associateId != '' && this.isValidAmazonDomain(this.domain);
+    return this.associateId != '' && this.isValidAmazonDomain(this.domain)
   }
 
   public buildAssociateUrlOrReturnAsIs(url: URL): string {
-    if (this.isEnabled() && this.isUrlForCurrentDomain(url) && AmazonAssociate.isAmazonProductUrl(url)) {
+    if (
+      this.isEnabled() &&
+      this.isUrlForCurrentDomain(url) &&
+      AmazonAssociate.isAmazonProductUrl(url)
+    ) {
       const productId = AmazonAssociate.getProductId(url)
       return `https://${url.hostname}/dp/${productId}/?tag=${this.associateId}`
     } else {
-      return url.href;
+      return url.href
     }
   }
 
-  public isUrlForCurrentDomain(url: URL): boolean{
+  public isUrlForCurrentDomain(url: URL): boolean {
     return url.hostname === this.domain
   }
 
   public isValidAmazonDomain(domain: string): boolean {
-    return AmazonAssociate.AMAZON_DOMAINS.indexOf(domain) >= 0;
+    return AmazonAssociate.AMAZON_DOMAINS.indexOf(domain) >= 0
   }
 
   public static isAmazonProductUrl(url: URL): boolean {
-    return AmazonAssociate.AMAZON_DOMAINS.indexOf(url.hostname) >= 0 && url.pathname.search(AmazonAssociate.PRODUCT_ID_REGEXP) >= 0;
+    return (
+      AmazonAssociate.AMAZON_DOMAINS.indexOf(url.hostname) >= 0 &&
+      url.pathname.search(AmazonAssociate.PRODUCT_ID_REGEXP) >= 0
+    )
   }
 
   public static getProductId(url: URL): string {
-    return url.pathname.match(AmazonAssociate.PRODUCT_ID_REGEXP)[1];
+    return url.pathname.match(AmazonAssociate.PRODUCT_ID_REGEXP)[1]
   }
 
   public static empty(): AmazonAssociate {
-    return new AmazonAssociate('', '');
+    return new AmazonAssociate('', '')
   }
 
   private static PRODUCT_ID_REGEXP = /[^0-9A-Z]([B0-9][0-9A-Z]{9})([^0-9A-Z]|$)/

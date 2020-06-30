@@ -18,24 +18,18 @@
         <v-list-item-subtitle>{{ associateIdOrEmpty }}</v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>
-    <v-dialog
-      v-model="isAssociateIdDialogActive"
-      max-width="500px"
-    >
+    <v-dialog v-model="isAssociateIdDialogActive" max-width="500px">
       <v-card>
         <v-card-title>Edit Associate ID</v-card-title>
         <v-card-text>
-          <v-text-field
-            v-model="associateId"
-            label="Enter New Associate ID"
-          />
+          <v-text-field v-model="associateId" label="Enter New Associate ID" />
         </v-card-text>
         <v-card-actions>
           <v-spacer />
           <v-btn
             color="primary"
             text
-            @click.stop="isAssociateIdDialogActive=false"
+            @click.stop="isAssociateIdDialogActive = false"
           >
             Close
           </v-btn>
@@ -53,60 +47,59 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import { Component } from "vue-property-decorator";
-import { Action, Getter } from "vuex-class";
-import AmazonAssociate from "../../data/AmazonAssociate";
+import Vue from 'vue'
+import { Component } from 'vue-property-decorator'
+import { Action, Getter } from 'vuex-class'
+import AmazonAssociate from '../../data/AmazonAssociate'
 
 @Component({
-  name: "amazon-associate-list-item"
+  name: 'amazon-associate-list-item',
 })
 export default class AmazonAssociateListItem extends Vue {
-  @Getter("amazonDomains") amazonDomains: string[];
+  @Getter('amazonDomains') amazonDomains: string[]
 
-  @Getter("amazonAssociate") amazonAssociate: AmazonAssociate;
+  @Getter('amazonAssociate') amazonAssociate: AmazonAssociate
 
-  @Action("updateAmazonAssociate") updateAmazonAssociate;
+  @Action('updateAmazonAssociate') updateAmazonAssociate
 
-  isAssociateIdDialogActive = false;
+  isAssociateIdDialogActive = false
 
-  currentDomain = "";
-  associateId = "";
+  currentDomain = ''
+  associateId = ''
 
   get associateIdOrEmpty(): string {
-    if (this.amazonAssociate.associateId === "") {
-      return "-";
+    if (this.amazonAssociate.associateId === '') {
+      return '-'
     } else {
-      return this.amazonAssociate.associateId;
+      return this.amazonAssociate.associateId
     }
   }
 
-  mounted() {
+  mounted(): void {
     this.currentDomain = this.amazonAssociate.domain
-    this.associateId = this.amazonAssociate.associateId;
+    this.associateId = this.amazonAssociate.associateId
   }
 
-  onDomainChanged(value: string) {
-    this.doUpdateAmazonAssociate();
+  onDomainChanged(_value: string): void {
+    this.doUpdateAmazonAssociate()
   }
 
-  onAssociateIdClick() {
-    this.associateId = this.amazonAssociate.associateId;
-    this.isAssociateIdDialogActive = true;
+  onAssociateIdClick(): void {
+    this.associateId = this.amazonAssociate.associateId
+    this.isAssociateIdDialogActive = true
   }
 
-  onUpdateAssociateIdRequested() {
-    this.doUpdateAmazonAssociate();
-    this.isAssociateIdDialogActive = false;
+  onUpdateAssociateIdRequested(): void {
+    this.doUpdateAmazonAssociate()
+    this.isAssociateIdDialogActive = false
   }
 
-  doUpdateAmazonAssociate() {
-    console.log('doUpdateAmazonAssociate')
+  doUpdateAmazonAssociate(): void {
     const newAmazonAssociate = new AmazonAssociate(
-      this.currentDomain || "",
-      this.associateId || ""
-    );
-    this.updateAmazonAssociate(newAmazonAssociate);
+      this.currentDomain || '',
+      this.associateId || ''
+    )
+    this.updateAmazonAssociate(newAmazonAssociate)
   }
 }
 </script>
