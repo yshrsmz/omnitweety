@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <app-header :title="title" />
-    <v-content>
+    <v-main>
       <v-container>
         <v-layout row justify-center align-center>
           <v-flex xs12 sm12 md8>
@@ -9,7 +9,7 @@
           </v-flex>
         </v-layout>
       </v-container>
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 

@@ -6,7 +6,7 @@
     </v-list-item-content>
     <v-dialog v-model="isPrefixDialogActive" max-width="500px">
       <v-card>
-        <v-card-title class="title">
+        <v-card-title class="text-h6">
           Edit Status Prefix
         </v-card-title>
         <v-card-text>

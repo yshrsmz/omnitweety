@@ -25,7 +25,7 @@
         </template>
 
         <v-card>
-          <v-card-title class="title">
+          <v-card-title class="text-h6">
             Enter Pin Code
           </v-card-title>
           <v-card-text>
@@ -67,10 +67,10 @@
           </v-btn>
         </template>
         <v-card>
-          <v-card-title class="title">
+          <v-card-title class="text-h6">
             Confirm
           </v-card-title>
-          <v-card-text class="body-1">
+          <v-card-text class="text-body-1">
             Are you sure to Logout?
           </v-card-text>
           <v-card-actions>
