@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import App from './App'
+import App from './App.vue'
 import AccessToken from '../data/AccessToken'
 import accessTokenRepository from '../data/AccessTokenRepository'
 import tweetTemplateRepository from '../data/TweetTemplateRepository'

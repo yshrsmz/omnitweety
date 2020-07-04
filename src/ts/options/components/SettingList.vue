@@ -36,9 +36,9 @@
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import { Component } from 'vue-property-decorator'
-import AuthListItem from './AuthListItem'
-import TweetTemplateListItem from './TweetTemplateListItem'
-import AmazonAssociateListItem from './AmazonAssociateListItem'
+import AuthListItem from './AuthListItem.vue'
+import TweetTemplateListItem from './TweetTemplateListItem.vue'
+import AmazonAssociateListItem from './AmazonAssociateListItem.vue'
 import { AppConfig } from '../../Config'
 
 @Component({

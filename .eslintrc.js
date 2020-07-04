@@ -21,6 +21,19 @@ module.exports = {
       'error',
       { args: 'all', argsIgnorePattern: '^_' },
     ],
+    '@typescript-eslint/member-delimiter-style': [
+      'error',
+      {
+        multiline: {
+          delimiter: 'none',
+          requireLast: false,
+        },
+        singleline: {
+          delimiter: 'comma',
+          requireLast: false,
+        },
+      },
+    ],
   },
   env: {
     webextensions: true,
