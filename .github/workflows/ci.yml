@@ -53,5 +53,8 @@ jobs:
           eslint_flags: '. --ext .js,.ts,.vue --ignore-path .gitignore'
           level: error
 
+      - name: Prepare build
+        run: echo "{ \"consumer_key\":\"\", \"consumer_secret\":\"\"}" > apikey-release.json
+
       - name: Build
         run: yarn build
