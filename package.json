@@ -4,9 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "cross-env TS_NODE_PROJECT=\"tsconfig.webpack.json\" webpack --mode production --config ./webpack.config.release.ts",
-    "dev": "cross-env TS_NODE_PROJECT=\"tsconfig.webpack.json\" webpack --mode development --config ./webpack.config.dev.ts",
-    "watch": "cross-env TS_NODE_PROJECT=\"tsconfig.webpack.json\" webpack --mode development --watch --config ./webpack.config.dev.ts",
+    "build": "TS_NODE_PROJECT=\"tsconfig.webpack.json\" webpack --mode production --config ./webpack.config.release.ts",
+    "dev": "TS_NODE_PROJECT=\"tsconfig.webpack.json\" webpack --mode development --config ./webpack.config.dev.ts",
+    "watch": "TS_NODE_PROJECT=\"tsconfig.webpack.json\" webpack --mode development --watch --config ./webpack.config.dev.ts",
     "clean": "rimraf ./app",
     "lint": "eslint '**/*.{ts,vue,js}'",
     "format": "eslint --fix '**/*.{ts,vue,js}'"
@@ -19,7 +19,6 @@
     "@typescript-eslint/eslint-plugin": "^3.5.0",
     "@typescript-eslint/parser": "^3.5.0",
     "copy-webpack-plugin": "^6.0.2",
-    "cross-env": "^7.0.2",
     "css-loader": "^3.6.0",
     "deepmerge": "^4.2.2",
     "eslint": "^7.3.1",
