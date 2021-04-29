@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "@types/chrome": "0.0.135",
-    "@types/node": "14.0.14",
+    "@types/node": "14.14.43",
     "@types/oauth": "0.9.1",
     "@types/webpack": "4.41.18",
     "@typescript-eslint/eslint-plugin": "3.5.0",
