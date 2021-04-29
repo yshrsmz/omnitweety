@@ -1,5 +1,5 @@
 import webpack from 'webpack'
-import merge from 'webpack-merge'
+import { merge } from 'webpack-merge'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 
 import baseConfig from './webpack.config.base'
