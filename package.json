@@ -12,7 +12,7 @@
     "format": "eslint --fix '**/*.{ts,vue,js}'"
   },
   "devDependencies": {
-    "@types/chrome": "0.0.135",
+    "@types/chrome": "0.0.136",
     "@types/node": "14.14.43",
     "@types/oauth": "0.9.1",
     "@types/webpack": "4.41.27",
