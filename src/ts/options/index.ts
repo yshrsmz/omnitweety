@@ -19,10 +19,6 @@ interface State {
   amazonDomains: string[]
 }
 
-interface UpdatePrefixActionPayload {
-  prefix: string
-}
-
 const store = new Vuex.Store<State>({
   state: {
     accessToken: AccessToken.empty(),

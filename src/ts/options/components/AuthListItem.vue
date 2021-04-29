@@ -14,7 +14,7 @@
         persistent
         max-width="500px"
       >
-        <template v-slot:activator="{ on }">
+        <template #activator="{ on }">
           <v-btn
             color="blue lighten-1 white--text"
             v-on="on"
@@ -25,9 +25,7 @@
         </template>
 
         <v-card>
-          <v-card-title class="text-h6">
-            Enter Pin Code
-          </v-card-title>
+          <v-card-title class="text-h6"> Enter Pin Code </v-card-title>
           <v-card-text>
             <v-text-field
               id="authPinCode"
@@ -61,15 +59,13 @@
 
       <!-- Logout Dialog -->
       <v-dialog v-else v-model="isLogoutDialogActive" max-width="500px">
-        <template v-slot:activator="{ on }">
+        <template #activator="{ on }">
           <v-btn color="red lighten-1 white--text" v-on="on">
             Logout from Twitter
           </v-btn>
         </template>
         <v-card>
-          <v-card-title class="text-h6">
-            Confirm
-          </v-card-title>
+          <v-card-title class="text-h6"> Confirm </v-card-title>
           <v-card-text class="text-body-1">
             Are you sure to Logout?
           </v-card-text>
