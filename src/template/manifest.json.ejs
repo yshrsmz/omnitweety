@@ -11,10 +11,7 @@
         "16": "assets/icon_16.png"
     },
     "background": {
-        "scripts": [
-            "js/vendor.js",
-            "js/background.js"
-        ],
+        "scripts": <%= JSON.stringify(htmlWebpackPlugin.files.js) %>,
         "persistent": false
     },
     "options_page": "options.html",

@@ -42,6 +42,10 @@ const module: webpack.ModuleOptions = {
 }
 
 const plugins: webpack.WebpackPluginInstance[] = [
+  new webpack.ProvidePlugin({
+    process: 'process/browser',
+    Buffer: ['buffer', 'Buffer'],
+  }),
   new VueLoaderPlugin(),
   new VuetifyLoaderPlugin(),
   new CopyWebpackPlugin({
@@ -74,7 +78,6 @@ const config: webpack.Configuration = {
   },
   output: {
     path: path.resolve(__dirname, 'app'),
-    filename: '[name].js',
   },
   resolve: {
     extensions: ['.ts', '.vue', '.js'],
@@ -89,14 +92,7 @@ const config: webpack.Configuration = {
   },
   optimization: {
     splitChunks: {
-      cacheGroups: {
-        vendor: {
-          test: /node_modules/,
-          name: 'js/vendor',
-          chunks: 'initial',
-          enforce: true,
-        },
-      },
+      filename: 'js/[name].js',
     },
   },
   performance: {
