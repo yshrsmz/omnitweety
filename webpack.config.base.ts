@@ -37,11 +37,11 @@ const rules: webpack.RuleSetRule[] = [
   },
 ]
 
-const module: webpack.Module = {
+const module: webpack.ModuleOptions = {
   rules,
 }
 
-const plugins: webpack.Plugin[] = [
+const plugins: webpack.WebpackPluginInstance[] = [
   new VueLoaderPlugin(),
   new VuetifyLoaderPlugin(),
   new CopyWebpackPlugin({
@@ -49,8 +49,7 @@ const plugins: webpack.Plugin[] = [
       './assets/*.png',
       {
         from: './node_modules/vuetify/dist/vuetify.min.css',
-        to: './css',
-        flatten: true,
+        to: './css/[name][ext]',
       },
     ],
   }),
@@ -79,6 +78,14 @@ const config: webpack.Configuration = {
   },
   resolve: {
     extensions: ['.ts', '.vue', '.js'],
+    fallback: {
+      buffer: require.resolve('buffer/'),
+      crypto: require.resolve('crypto-browserify'),
+      http: require.resolve('stream-http'),
+      https: require.resolve('https-browserify'),
+      stream: require.resolve('stream-browserify'),
+      url: require.resolve('url/'),
+    },
   },
   optimization: {
     splitChunks: {

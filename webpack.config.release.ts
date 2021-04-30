@@ -7,6 +7,7 @@ import packageJson from './package.json'
 import apikey from './apikey-release.json'
 
 const config = merge(baseConfig, {
+  mode: 'production',
   optimization: {
     minimize: true,
   },

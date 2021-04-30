@@ -6,6 +6,7 @@ import packageJson from './package.json'
 import apikey from './apikey-dev.json'
 
 const config = merge(baseConfig, {
+  mode: 'development',
   devtool: 'source-map',
   plugins: [
     new webpack.DefinePlugin({
