@@ -35,31 +35,28 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
-import { Component } from 'vue-property-decorator'
 import AuthListItem from './AuthListItem.vue'
 import TweetTemplateListItem from './TweetTemplateListItem.vue'
 import AmazonAssociateListItem from './AmazonAssociateListItem.vue'
 import { AppConfig } from '../../Config'
 
-@Component({
-  name: 'setting-list',
-  computed: {
-    ...mapGetters(['tweetTemplate']),
-  },
+export default Vue.extend({
+  name: 'SettingList',
   components: {
     AuthListItem,
     TweetTemplateListItem,
     AmazonAssociateListItem,
   },
+  data() {
+    return {
+      developerName: AppConfig.DEVELOPER_NAME,
+      developerUrl: AppConfig.URL_DEVELOPER,
+      webstoreUrl: AppConfig.URL_CHROME_WEBSTORE,
+      appVersion: chrome.runtime.getManifest().version,
+    }
+  },
+  computed: {
+    ...mapGetters(['tweetTemplate']),
+  },
 })
-export default class SettingList extends Vue {
-  isPrefixDialogActive = false
-
-  developerName: string = AppConfig.DEVELOPER_NAME
-  developerUrl: string = AppConfig.URL_DEVELOPER
-
-  webstoreUrl: string = AppConfig.URL_CHROME_WEBSTORE
-
-  appVersion: string = chrome.runtime.getManifest().version
-}
 </script>

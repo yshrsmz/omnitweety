@@ -90,53 +90,48 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { Component } from 'vue-property-decorator'
+import { mapGetters, mapActions } from 'vuex'
 import AccessToken from '../../data/AccessToken'
 import authFlow from '../../oauth/AuthFlow'
-import { Getter, Action } from 'vuex-class'
 import { openNewTab } from '../../Util'
 
-@Component({
-  name: 'auth-list-item',
-})
-export default class AuthListItem extends Vue {
-  isPinCodeDialogActive = false
-  isLogoutDialogActive = false
-
-  pinCode = ''
-
-  @Getter('isAuthorized') isAuthorized
-
-  @Action('updateAccessToken') updateAccessToken
-
-  @Action('clearAccessToken') clearAccessToken
-
-  get isValidPinCode(): boolean {
-    return !!this.pinCode && this.pinCode.length == 7
-  }
-
-  beginAuthFlow(): void {
-    this.isPinCodeDialogActive = true
-    authFlow.request().then((url) => {
+export default Vue.extend({
+  name: 'AuthListItem',
+  data() {
+    return {
+      isPinCodeDialogActive: false,
+      isLogoutDialogActive: false,
+      pinCode: '',
+    }
+  },
+  computed: {
+    ...mapGetters(['isAuthorized']),
+    isValidPinCode(): boolean {
+      return !!this.pinCode && this.pinCode.length == 7
+    },
+  },
+  methods: {
+    ...mapActions(['updateAccessToken', 'clearAccessToken']),
+    beginAuthFlow(): void {
       this.isPinCodeDialogActive = true
-      openNewTab(url, true)
-    })
-  }
-
-  updatePinCode(value: string): void {
-    this.pinCode = value
-  }
-
-  onPinCodeEntered(): void {
-    authFlow.accept(this.pinCode).then((token: AccessToken) => {
-      this.updateAccessToken(token)
-      this.isPinCodeDialogActive = false
-    })
-  }
-
-  onLogoutRequested(): void {
-    this.clearAccessToken()
-    this.isLogoutDialogActive = false
-  }
-}
+      authFlow.request().then((url) => {
+        this.isPinCodeDialogActive = true
+        openNewTab(url, true)
+      })
+    },
+    updatePinCode(value: string): void {
+      this.pinCode = value
+    },
+    onPinCodeEntered(): void {
+      authFlow.accept(this.pinCode).then((token: AccessToken) => {
+        this.updateAccessToken(token)
+        this.isPinCodeDialogActive = false
+      })
+    },
+    onLogoutRequested(): void {
+      this.clearAccessToken()
+      this.isLogoutDialogActive = false
+    },
+  },
+})
 </script>

@@ -30,35 +30,34 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { Component } from 'vue-property-decorator'
+import { mapGetters, mapActions } from 'vuex'
 import TweetTemplate from '../../data/TweetTemplate'
-import { Getter, Action } from 'vuex-class'
 
-@Component({
-  name: 'tweet-template-list-item',
+export default Vue.extend({
+  name: 'TweetTemplateListItem',
+  data() {
+    return {
+      isPrefixDialogActive: false,
+      prefix: '',
+    }
+  },
+  computed: {
+    ...mapGetters(['tweetTemplate']),
+  },
+  mounted() {
+    this.prefix = this.tweetTemplate.prefix
+  },
+  methods: {
+    ...mapActions(['updateTweetTemplate']),
+    onPrefixClick(): void {
+      this.prefix = this.tweetTemplate.prefix
+      this.isPrefixDialogActive = true
+    },
+    onUpdatePrefixRequested(): void {
+      const newTemplate = new TweetTemplate(this.prefix)
+      this.updateTweetTemplate(newTemplate)
+      this.isPrefixDialogActive = false
+    },
+  },
 })
-export default class TweetTemplateListItem extends Vue {
-  isPrefixDialogActive = false
-
-  prefix = ''
-
-  @Getter('tweetTemplate') tweetTemplate: TweetTemplate
-
-  @Action('updateTweetTemplate') updateTweetTemplate
-
-  mounted(): void {
-    this.prefix = this.tweetTemplate.prefix
-  }
-
-  onPrefixClick(): void {
-    this.prefix = this.tweetTemplate.prefix
-    this.isPrefixDialogActive = true
-  }
-
-  onUpdatePrefixRequested(): void {
-    const newTemplate = new TweetTemplate(this.prefix)
-    this.updateTweetTemplate(newTemplate)
-    this.isPrefixDialogActive = false
-  }
-}
 </script>

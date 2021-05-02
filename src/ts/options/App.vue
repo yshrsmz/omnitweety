@@ -15,19 +15,20 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { Component } from 'vue-property-decorator'
 import AppHeader from './components/AppHeader.vue'
 import SettingList from './components/SettingList.vue'
 import { AppConfig } from '../Config'
 
-@Component({
-  name: 'app',
+export default Vue.extend({
+  name: 'App',
   components: {
     AppHeader,
     SettingList,
   },
+  data() {
+    return {
+      title: AppConfig.NAME,
+    }
+  },
 })
-export default class App extends Vue {
-  title: string = AppConfig.NAME
-}
 </script>

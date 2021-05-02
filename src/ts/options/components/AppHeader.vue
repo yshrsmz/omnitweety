@@ -9,12 +9,14 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { Component, Prop } from 'vue-property-decorator'
 
-@Component({
-  name: 'app-header',
+export default Vue.extend({
+  name: 'AppHeader',
+  props: {
+    title: {
+      type: String,
+      required: true,
+    },
+  },
 })
-export default class AppHeader extends Vue {
-  @Prop() title: string
-}
 </script>
