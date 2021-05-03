@@ -89,49 +89,62 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import { mapGetters, mapActions } from 'vuex'
-import AccessToken from '../../data/AccessToken'
+import { computed, defineComponent, ref } from '@vue/composition-api'
 import authFlow from '../../oauth/AuthFlow'
 import { openNewTab } from '../../Util'
+import { useStore } from '../store/utils'
 
-export default Vue.extend({
+export default defineComponent({
   name: 'AuthListItem',
-  data() {
-    return {
-      isPinCodeDialogActive: false,
-      isLogoutDialogActive: false,
-      pinCode: '',
+  setup(_props, _ctx) {
+    const store = useStore()
+
+    const isPinCodeDialogActive = ref<boolean>(false)
+    const isLogoutDialogActive = ref<boolean>(false)
+    const pinCode = ref<string>('')
+
+    const isAuthorized = computed<boolean>(() => store.getters.isAuthorized)
+    const isValidPinCode = computed<boolean>(
+      () => !!pinCode.value && pinCode.value.length === 7
+    )
+
+    const beginAuthFlow = async (): Promise<void> => {
+      const url = await authFlow.request()
+
+      isPinCodeDialogActive.value = true
+      openNewTab(url, true)
     }
-  },
-  computed: {
-    ...mapGetters(['isAuthorized']),
-    isValidPinCode(): boolean {
-      return !!this.pinCode && this.pinCode.length == 7
-    },
-  },
-  methods: {
-    ...mapActions(['updateAccessToken', 'clearAccessToken']),
-    beginAuthFlow(): void {
-      this.isPinCodeDialogActive = true
-      authFlow.request().then((url) => {
-        this.isPinCodeDialogActive = true
-        openNewTab(url, true)
-      })
-    },
-    updatePinCode(value: string): void {
-      this.pinCode = value
-    },
-    onPinCodeEntered(): void {
-      authFlow.accept(this.pinCode).then((token: AccessToken) => {
-        this.updateAccessToken(token)
-        this.isPinCodeDialogActive = false
-      })
-    },
-    onLogoutRequested(): void {
-      this.clearAccessToken()
-      this.isLogoutDialogActive = false
-    },
+
+    const updatePinCode = (value: string): void => {
+      pinCode.value = value
+    }
+
+    const onPinCodeEntered = async (): Promise<void> => {
+      const token = await authFlow.accept(pinCode.value)
+
+      store.dispatch('updateAccessToken', token)
+      isPinCodeDialogActive.value = false
+    }
+
+    const onLogoutRequested = (): void => {
+      store.dispatch('clearAccessToken')
+      isLogoutDialogActive.value = false
+    }
+
+    return {
+      // data ---
+      isPinCodeDialogActive,
+      isLogoutDialogActive,
+      pinCode,
+      // computed ---
+      isAuthorized,
+      isValidPinCode,
+      // methods ---
+      beginAuthFlow,
+      updatePinCode,
+      onPinCodeEntered,
+      onLogoutRequested,
+    }
   },
 })
 </script>

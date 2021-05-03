@@ -14,20 +14,21 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
 import AppHeader from './components/AppHeader.vue'
 import SettingList from './components/SettingList.vue'
 import { AppConfig } from '../Config'
+import { defineComponent, ref, SetupContext } from '@vue/composition-api'
 
-export default Vue.extend({
+export default defineComponent({
   name: 'App',
   components: {
     AppHeader,
     SettingList,
   },
-  data() {
+  setup(_props, _ctx: SetupContext) {
+    const title = ref<string>(AppConfig.NAME)
     return {
-      title: AppConfig.NAME,
+      title,
     }
   },
 })

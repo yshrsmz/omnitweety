@@ -33,30 +33,26 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import { mapGetters } from 'vuex'
 import AuthListItem from './AuthListItem.vue'
 import TweetTemplateListItem from './TweetTemplateListItem.vue'
 import AmazonAssociateListItem from './AmazonAssociateListItem.vue'
 import { AppConfig } from '../../Config'
+import { defineComponent, SetupContext } from '@vue/composition-api'
 
-export default Vue.extend({
+export default defineComponent({
   name: 'SettingList',
   components: {
     AuthListItem,
     TweetTemplateListItem,
     AmazonAssociateListItem,
   },
-  data() {
+  setup(_props, _ctx: SetupContext) {
     return {
       developerName: AppConfig.DEVELOPER_NAME,
       developerUrl: AppConfig.URL_DEVELOPER,
       webstoreUrl: AppConfig.URL_CHROME_WEBSTORE,
       appVersion: chrome.runtime.getManifest().version,
     }
-  },
-  computed: {
-    ...mapGetters(['tweetTemplate']),
   },
 })
 </script>

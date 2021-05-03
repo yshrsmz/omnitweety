@@ -47,53 +47,67 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import { mapGetters, mapActions } from 'vuex'
+import { computed, defineComponent, onMounted, ref } from '@vue/composition-api'
 import AmazonAssociate from '../../data/AmazonAssociate'
+import { useStore } from '../store/utils'
 
-export default Vue.extend({
+export default defineComponent({
   name: 'AmazonAssociateListItem',
-  data() {
-    return {
-      isAssociateIdDialogActive: false,
-      currentDomain: '',
-      associateId: '',
-    }
-  },
-  computed: {
-    ...mapGetters(['amazonDomains', 'amazonAssociate']),
-    associateIdOrEmpty(): string {
-      if (this.amazonAssociate.associateId === '') {
-        return '-'
-      } else {
-        return this.amazonAssociate.associateId
-      }
-    },
-  },
-  mounted() {
-    this.currentDomain = this.amazonAssociate.domain
-    this.associateId = this.amazonAssociate.associateId
-  },
-  methods: {
-    ...mapActions(['updateAmazonAssociate']),
-    onDomainChanged(_value: string): void {
-      this.doUpdateAmazonAssociate()
-    },
-    onAssociateIdClick(): void {
-      this.associateId = this.amazonAssociate.associateId
-      this.isAssociateIdDialogActive = true
-    },
-    onUpdateAssociateIdRequested(): void {
-      this.doUpdateAmazonAssociate()
-      this.isAssociateIdDialogActive = false
-    },
-    doUpdateAmazonAssociate(): void {
-      const newAmazonAssociate = new AmazonAssociate(
-        this.currentDomain || '',
-        this.associateId || ''
+  setup(_props, _ctx) {
+    const store = useStore()
+
+    const isAssociateIdDialogActive = ref<boolean>(false)
+    const currentDomain = ref<string>('')
+    const associateId = ref<string>('')
+
+    const amazonDomains = computed<string[]>(() => store.getters.amazonDomains)
+    const amazonAssociate = computed<AmazonAssociate>(
+      () => store.getters.amazonAssociate
+    )
+    const associateIdOrEmpty = computed<string>(() => {
+      const id = amazonAssociate.value.associateId
+      return id === '' ? '-' : id
+    })
+
+    const doUpdateAmazonAssociate = (): void => {
+      const newValue = new AmazonAssociate(
+        currentDomain.value || '',
+        associateId.value || ''
       )
-      this.updateAmazonAssociate(newAmazonAssociate)
-    },
+      store.dispatch('updateAmazonAssociate', newValue)
+    }
+
+    const onDomainChanged = (_value: string): void => {
+      doUpdateAmazonAssociate()
+    }
+
+    const onAssociateIdClick = (): void => {
+      associateId.value = amazonAssociate.value.associateId
+      isAssociateIdDialogActive.value = true
+    }
+
+    const onUpdateAssociateIdRequested = (): void => {
+      doUpdateAmazonAssociate()
+      isAssociateIdDialogActive.value = false
+    }
+
+    onMounted(() => {
+      currentDomain.value = amazonAssociate.value.domain
+      associateId.value = amazonAssociate.value.associateId
+    })
+
+    return {
+      isAssociateIdDialogActive,
+      currentDomain,
+      associateId,
+      amazonDomains,
+      amazonAssociate,
+      associateIdOrEmpty,
+      // methods ---
+      onDomainChanged,
+      onAssociateIdClick,
+      onUpdateAssociateIdRequested,
+    }
   },
 })
 </script>

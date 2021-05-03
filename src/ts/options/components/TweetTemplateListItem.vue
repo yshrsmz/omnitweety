@@ -29,35 +29,52 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import { mapGetters, mapActions } from 'vuex'
+import {
+  computed,
+  defineComponent,
+  onMounted,
+  ref,
+  SetupContext,
+} from '@vue/composition-api'
 import TweetTemplate from '../../data/TweetTemplate'
+import { useStore } from '../store/utils'
 
-export default Vue.extend({
+export default defineComponent({
   name: 'TweetTemplateListItem',
-  data() {
-    return {
-      isPrefixDialogActive: false,
-      prefix: '',
+  setup(_props, _ctx: SetupContext) {
+    const store = useStore()
+
+    const isPrefixDialogActive = ref<boolean>(false)
+    const prefix = ref<string>('')
+
+    const tweetTemplate = computed<TweetTemplate>(
+      () => store.getters.tweetTemplate
+    )
+
+    const updateTweetTemplate = (template: TweetTemplate) => {
+      store.dispatch('updateTweetTemplate', template)
     }
-  },
-  computed: {
-    ...mapGetters(['tweetTemplate']),
-  },
-  mounted() {
-    this.prefix = this.tweetTemplate.prefix
-  },
-  methods: {
-    ...mapActions(['updateTweetTemplate']),
-    onPrefixClick(): void {
-      this.prefix = this.tweetTemplate.prefix
-      this.isPrefixDialogActive = true
-    },
-    onUpdatePrefixRequested(): void {
-      const newTemplate = new TweetTemplate(this.prefix)
-      this.updateTweetTemplate(newTemplate)
-      this.isPrefixDialogActive = false
-    },
+    const onPrefixClick = (): void => {
+      prefix.value = tweetTemplate.value.prefix
+      isPrefixDialogActive.value = true
+    }
+    const onUpdatePrefixRequested = (): void => {
+      const newTemplate = new TweetTemplate(prefix.value)
+      updateTweetTemplate(newTemplate)
+      isPrefixDialogActive.value = false
+    }
+
+    onMounted(() => {
+      prefix.value = tweetTemplate.value.prefix
+    })
+
+    return {
+      isPrefixDialogActive,
+      prefix,
+      tweetTemplate,
+      onPrefixClick,
+      onUpdatePrefixRequested,
+    }
   },
 })
 </script>
