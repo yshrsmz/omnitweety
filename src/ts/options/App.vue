@@ -5,7 +5,7 @@
       <v-container>
         <v-layout row justify-center align-center>
           <v-flex xs12 sm12 md8>
-            <setting-list />
+            <setting-list class="my-8" />
           </v-flex>
         </v-layout>
       </v-container>
