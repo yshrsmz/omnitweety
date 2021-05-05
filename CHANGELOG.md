@@ -1,6 +1,12 @@
 Change Log
 ===
 
+Version 0.8.2 *(2021-05-05)*
+---
+
+- Dependency updates
+
+
 Version 0.8.0 *(2020-01-15)*
 ----------------------------
 
