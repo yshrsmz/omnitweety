@@ -1,19 +1,16 @@
 {
-    "compilerOptions": {
-        "rootDir": "./src/ts",
-        "outDir": "./app/js",
-        "sourceMap": true,
-        "strict": false,
-        "strictPropertyInitialization": false,
-        "module": "es2015",
-        "moduleResolution": "node",
-        "target": "es2015",
-        "experimentalDecorators": true,
-        "noImplicitAny": false,
-        "types": ["vuetify", "@types/chrome"]
-    },
-    "include": [
-        "./src/ts/**/*",
-        "./src/types/**/*"
-    ]
+  "compilerOptions": {
+    "rootDir": "./src/ts",
+    "outDir": "./app/js",
+    "sourceMap": true,
+    "strict": false,
+    "strictPropertyInitialization": false,
+    "module": "es2015",
+    "moduleResolution": "node",
+    "target": "es2015",
+    "experimentalDecorators": true,
+    "noImplicitAny": false,
+    "types": ["vuetify", "@types/chrome"]
+  },
+  "include": ["./src/ts/**/*", "./src/types/**/*"]
 }
