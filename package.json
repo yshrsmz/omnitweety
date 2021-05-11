@@ -30,7 +30,7 @@
     "prettier": "2.2.1",
     "rimraf": "3.0.2",
     "sass": "1.32.12",
-    "sass-loader": "11.0.1",
+    "sass-loader": "11.1.0",
     "ts-loader": "9.1.2",
     "ts-node": "9.1.1",
     "tsconfig-paths": "3.9.0",
