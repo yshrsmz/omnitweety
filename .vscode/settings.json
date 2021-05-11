@@ -1,10 +1,10 @@
 // 既定の設定とユーザー設定を上書きするには、このファイル内に設定を挿入します
 {
-    "editor.wordWrap": "on",
-    "files.insertFinalNewline": true,
-    "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": true
-    },
-    "eslint.format.enable": true,
-    "vetur.completion.tagCasing": "initial"
+  "editor.wordWrap": "on",
+  "files.insertFinalNewline": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.format.enable": true,
+  "vetur.completion.tagCasing": "initial"
 }
