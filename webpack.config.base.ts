@@ -1,6 +1,6 @@
 import path from 'path'
 import webpack from 'webpack'
-import VueLoaderPlugin from 'vue-loader/lib/plugin'
+import { VueLoaderPlugin } from 'vue-loader'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 import VuetifyLoaderPlugin from 'vuetify-loader/lib/plugin'
