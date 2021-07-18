@@ -1,4 +1,5 @@
 {
   "extends": ["config:base"],
-  "lockFileMaintenance": { "enabled": true }
+  "lockFileMaintenance": { "enabled": true },
+  "masterIssue": true
 }
