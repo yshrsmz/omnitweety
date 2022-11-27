@@ -1,5 +1,10 @@
 # Change Log
 
+## Version 0.8.3 _(2022-11-27)_
+
+- Migrated to chrome.storage API
+- Dependency Updates
+
 ## Version 0.8.2 _(2021-05-05)_
 
 - Dependency updates
