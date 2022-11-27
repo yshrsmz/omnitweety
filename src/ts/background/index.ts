@@ -29,9 +29,12 @@ class Omnitweety {
       'HMAC-SHA1'
     )
 
-    if (!accessTokenRepository.isAuthorized()) {
-      openOptionsPage()
-    }
+    accessTokenRepository.isAuthorized().then((authorized) => {
+      if (!authorized) {
+        openOptionsPage()
+      }
+    })
+
     this.handleEvents()
   }
 
@@ -77,70 +80,76 @@ class Omnitweety {
 
   private handleInputChangedEvent(): void {
     chrome.omnibox.onInputChanged.addListener((text: string) => {
-      if (!accessTokenRepository.isAuthorized()) {
-        showDefaultSuggestion(
-          'To use Omnitweety, login to twitter first(press Enter to login)'
-        )
-        return
-      }
-      if (this.isShareCommand(text)) {
-        getCurrentPage().then((page: chrome.tabs.Tab) => {
-          const template = tweetTemplateRepository.get()
-          const associate = amazonAssociateRepository.get()
-          let message = 'unable to share this page'
-          if (page) {
-            message = template.buildTweet(
-              this.getUserInputContent(text, this.getShareCommandRegex()),
-              page.title,
-              associate.buildAssociateUrlOrReturnAsIs(new URL(page.url))
-            )
-          }
+      accessTokenRepository.isAuthorized().then((authorized) => {
+        if (!authorized) {
+          showDefaultSuggestion(
+            'To use Omnitweety, login to twitter first(press Enter to login)'
+          )
+          return
+        }
 
+        if (this.isShareCommand(text)) {
+          getCurrentPage().then(async (page: chrome.tabs.Tab) => {
+            const template = await tweetTemplateRepository.get()
+            const associate = await amazonAssociateRepository.get()
+            let message = 'unable to share this page'
+            if (page) {
+              message = template.buildTweet(
+                this.getUserInputContent(text, this.getShareCommandRegex()),
+                page.title,
+                associate.buildAssociateUrlOrReturnAsIs(new URL(page.url))
+              )
+            }
+
+            showDefaultSuggestion(message)
+          })
+        } else if (this.isOptionsCommand(text)) {
+          showDefaultSuggestion('Open options page')
+        } else if (this.isVersionCommand(text)) {
+          showDefaultSuggestion(this.getVersionString())
+        } else {
+          const lengthInfo = TwitterText.parseTweet(text)
+          const message = `${
+            280 - lengthInfo.weightedLength
+          } characters remaining.`
           showDefaultSuggestion(message)
-        })
-      } else if (this.isOptionsCommand(text)) {
-        showDefaultSuggestion('Open options page')
-      } else if (this.isVersionCommand(text)) {
-        showDefaultSuggestion(this.getVersionString())
-      } else {
-        const lengthInfo = TwitterText.parseTweet(text)
-        const message = `${
-          280 - lengthInfo.weightedLength
-        } characters remaining.`
-        showDefaultSuggestion(message)
-      }
+        }
+      })
     })
   }
 
   private handleInputEnteredEvent(): void {
     chrome.omnibox.onInputEntered.addListener((text: string) => {
-      if (!accessTokenRepository.isAuthorized()) {
-        openOptionsPage()
-        return
-      }
-      if (this.isShareCommand(text)) {
-        getCurrentPage().then((page: chrome.tabs.Tab) => {
-          const template = tweetTemplateRepository.get()
-          const associate = amazonAssociateRepository.get()
-          const message = template.buildTweet(
-            this.getUserInputContent(text, this.getShareCommandRegex()),
-            page.title,
-            associate.buildAssociateUrlOrReturnAsIs(new URL(page.url))
-          )
-          this.postStatus(message)
-        })
-      } else if (this.isOptionsCommand(text)) {
-        openOptionsPage()
-      } else if (this.isVersionCommand(text)) {
-        this.postStatus(this.getVersionString())
-      } else {
-        this.postStatus(text)
-      }
+      accessTokenRepository.isAuthorized().then((authorized) => {
+        if (!authorized) {
+          openOptionsPage()
+          return
+        }
+
+        if (this.isShareCommand(text)) {
+          getCurrentPage().then(async (page: chrome.tabs.Tab) => {
+            const template = await tweetTemplateRepository.get()
+            const associate = await amazonAssociateRepository.get()
+            const message = template.buildTweet(
+              this.getUserInputContent(text, this.getShareCommandRegex()),
+              page.title,
+              associate.buildAssociateUrlOrReturnAsIs(new URL(page.url))
+            )
+            this.postStatus(message)
+          })
+        } else if (this.isOptionsCommand(text)) {
+          openOptionsPage()
+        } else if (this.isVersionCommand(text)) {
+          this.postStatus(this.getVersionString())
+        } else {
+          this.postStatus(text)
+        }
+      })
     })
   }
 
-  private postStatus(message: string): void {
-    const token = accessTokenRepository.get()
+  private async postStatus(message: string): Promise<void> {
+    const token = await accessTokenRepository.get()
     sendSignedPostRequest<TweetResponse>(this.oauth, {
       url: `${TwitterConfig.URL_STATUS_UPDATE}?status=${escapeOAuthText(
         message

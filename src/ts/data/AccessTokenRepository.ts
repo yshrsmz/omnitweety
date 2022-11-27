@@ -2,24 +2,24 @@ import AccessToken from './AccessToken'
 import configDataSource from './ConfigDataSource'
 
 class AccessTokenRepository {
-  public set(token: AccessToken): void {
-    configDataSource.setAccessToken(token.token)
-    configDataSource.setAccessTokenSecret(token.tokenSecret)
+  public async set(token: AccessToken): Promise<void> {
+    await configDataSource.setAccessTokenValues({
+      token: token.token,
+      secret: token.tokenSecret,
+    })
   }
 
-  public get(): AccessToken {
-    const token: string = configDataSource.getAccessToken()
-    const secret: string = configDataSource.getAccessTokenSecret()
+  public async get(): Promise<AccessToken> {
+    const { token, secret } = await configDataSource.getAccessTokenValues()
     return new AccessToken(token, secret)
   }
 
-  public isAuthorized(): boolean {
-    return this.get().isAuthorized()
+  public async isAuthorized(): Promise<boolean> {
+    return (await this.get()).isAuthorized()
   }
 
-  public clear(): void {
-    configDataSource.clearAccessToken()
-    configDataSource.clearAccesTokenSecret()
+  public async clear(): Promise<void> {
+    await configDataSource.clearAccessTokenValues()
   }
 }
 

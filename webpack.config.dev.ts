@@ -3,7 +3,7 @@ import { merge } from 'webpack-merge'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import baseConfig from './webpack.config.base'
 import packageJson from './package.json'
-import apikey from './apikey-dev.json'
+import apikey from './apikey-release.json'
 
 const config = merge(baseConfig, {
   mode: 'development',

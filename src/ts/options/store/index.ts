@@ -48,35 +48,43 @@ const getters: GetterTree<RootState, RootState> = {
 }
 
 const actions: ActionTree<RootState, RootState> = {
-  loadAccessToken({ commit }): void {
-    commit('updateAccessToken', accessTokenRepository.get())
+  async loadAccessToken({ commit }): Promise<void> {
+    commit('updateAccessToken', await accessTokenRepository.get())
   },
-  updateAccessToken({ commit }, token: AccessToken): void {
-    accessTokenRepository.set(token)
-    commit('updateAccessToken', accessTokenRepository.get())
+  async updateAccessToken({ commit }, token: AccessToken): Promise<void> {
+    await accessTokenRepository.set(token)
+    commit('updateAccessToken', await accessTokenRepository.get())
   },
-  clearAccessToken({ commit }): void {
-    accessTokenRepository.clear()
+  async clearAccessToken({ commit }): Promise<void> {
+    await accessTokenRepository.clear()
     commit('updateAccessToken', AccessToken.empty())
   },
-  loadTweetTemplate({ commit }): void {
-    const template = tweetTemplateRepository.get()
+  async loadTweetTemplate({ commit }): Promise<void> {
+    const template = await tweetTemplateRepository.get()
     commit('updateTweetTemplate', template)
   },
-  updateTweetTemplate({ commit }, template: TweetTemplate): void {
-    tweetTemplateRepository.set(template)
-    commit('updateTweetTemplate', tweetTemplateRepository.get())
+  async updateTweetTemplate(
+    { commit },
+    template: TweetTemplate
+  ): Promise<void> {
+    await tweetTemplateRepository.set(template)
+    commit('updateTweetTemplate', await tweetTemplateRepository.get())
   },
-  loadAmazonAssociate({ commit }): void {
-    commit('updateAmazonAssociate', amazonAssociateRepository.get())
+  async loadAmazonAssociate({ commit }): Promise<void> {
+    console.log('loadAmazonAssociate', await amazonAssociateRepository.get())
+    commit('updateAmazonAssociate', await amazonAssociateRepository.get())
   },
-  updateAmazonAssociate({ commit }, amazonAssociate: AmazonAssociate): void {
-    amazonAssociateRepository.set(amazonAssociate)
-    commit('updateAmazonAssociate', amazonAssociateRepository.get())
+  async updateAmazonAssociate(
+    { commit },
+    amazonAssociate: AmazonAssociate
+  ): Promise<void> {
+    await amazonAssociateRepository.set(amazonAssociate)
+    console.log('updateAmazonAssociate', await amazonAssociateRepository.get())
+    commit('updateAmazonAssociate', await amazonAssociateRepository.get())
   },
-  clearAmazonAssociate({ commit }): void {
-    amazonAssociateRepository.clear()
-    commit('updateAmazonAssociate', amazonAssociateRepository.get())
+  async clearAmazonAssociate({ commit }): Promise<void> {
+    await amazonAssociateRepository.clear()
+    commit('updateAmazonAssociate', await amazonAssociateRepository.get())
   },
 }
 
