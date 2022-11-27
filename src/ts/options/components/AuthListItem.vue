@@ -122,12 +122,12 @@ export default defineComponent({
     const onPinCodeEntered = async (): Promise<void> => {
       const token = await authFlow.accept(pinCode.value)
 
-      store.dispatch('updateAccessToken', token)
+      await store.dispatch('updateAccessToken', token)
       isPinCodeDialogActive.value = false
     }
 
-    const onLogoutRequested = (): void => {
-      store.dispatch('clearAccessToken')
+    const onLogoutRequested = async (): Promise<void> => {
+      await store.dispatch('clearAccessToken')
       isLogoutDialogActive.value = false
     }
 

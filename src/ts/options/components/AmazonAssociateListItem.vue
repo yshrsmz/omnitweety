@@ -47,7 +47,13 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, ref } from '@vue/composition-api'
+import {
+  computed,
+  defineComponent,
+  onMounted,
+  ref,
+  watch,
+} from '@vue/composition-api'
 import AmazonAssociate from '../../data/AmazonAssociate'
 import { useStore } from '../store/utils'
 
@@ -74,6 +80,7 @@ export default defineComponent({
         currentDomain.value || '',
         associateId.value || ''
       )
+      console.log(newValue)
       store.dispatch('updateAmazonAssociate', newValue)
     }
 
@@ -91,7 +98,12 @@ export default defineComponent({
       isAssociateIdDialogActive.value = false
     }
 
+    watch(amazonAssociate, (newValue) => {
+      currentDomain.value = newValue.domain
+    })
+
     onMounted(() => {
+      console.log('amazonAssociate.value.domain', amazonAssociate.value)
       currentDomain.value = amazonAssociate.value.domain
       associateId.value = amazonAssociate.value.associateId
     })

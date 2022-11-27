@@ -2,17 +2,17 @@ import configDataSource from './ConfigDataSource'
 import TweetTemplate from './TweetTemplate'
 
 class TweetTemplateRepository {
-  public get(): TweetTemplate {
-    const prefix = configDataSource.getStatusPrefix()
+  public async get(): Promise<TweetTemplate> {
+    const prefix = await configDataSource.getStatusPrefix()
     return new TweetTemplate(prefix)
   }
 
-  public set(template: TweetTemplate): void {
-    configDataSource.setStatusPrefix(template.prefix)
+  public async set(template: TweetTemplate) {
+    await configDataSource.setStatusPrefix(template.prefix)
   }
 
-  public clear(): void {
-    configDataSource.clearStatusPrefix()
+  public async clear() {
+    await configDataSource.clearStatusPrefix()
   }
 }
 
