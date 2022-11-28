@@ -1,7 +1,8 @@
 # Change Log
 
-## Version 0.8.3 _(2022-11-27)_
+## Version 0.8.4 _(2022-11-28)_
 
+- Update extension's icon
 - Migrated to chrome.storage API
 - Dependency Updates
 
