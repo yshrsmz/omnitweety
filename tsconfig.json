@@ -1,16 +1,25 @@
 {
   "compilerOptions": {
-    "rootDir": "./src/ts",
-    "outDir": "./app/js",
-    "sourceMap": true,
-    "strict": false,
-    "strictPropertyInitialization": false,
-    "module": "es2015",
-    "moduleResolution": "node",
-    "target": "es2015",
-    "experimentalDecorators": true,
-    "noImplicitAny": false,
-    "types": ["vuetify", "@types/chrome"]
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "strict": true,
+    "jsx": "preserve",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "lib": ["ESNext", "DOM", "WebWorker"],
+    "skipLibCheck": true,
+    "noEmit": true,
+    "types": ["chrome"]
   },
-  "include": ["./src/ts/**/*", "./src/types/**/*"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "manifest.config.ts"
+  ],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }
