@@ -13,35 +13,36 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node: [14]
 
     env:
       TZ: Asia/Tokyo
 
     steps:
       - name: Checkout 🛎
-        uses: actions/checkout@master
+        uses: actions/checkout@v2.5.0
 
       - name: Setup node env 🏗
         uses: actions/setup-node@v2.5.1
         with:
-          node-version: ${{ matrix.node }}
-          cache: 'yarn'
+          node-version-file: '.node-version'
+          cache: 'pnpm'
 
       - name: Install dependencies 👨🏻‍💻
-        if: steps.yarn-cache.outputs.cache-hit != 'true'
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Run eslint 👀
         uses: reviewdog/action-eslint@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-review
-          eslint_flags: '. --ext .js,.ts,.vue --ignore-path .gitignore'
+          eslint_flags: '. --ext .js,.ts,.vue --ignore-path .eslintignore'
           level: error
 
       - name: Prepare build
         run: echo "{ \"consumer_key\":\"\", \"consumer_secret\":\"\"}" > apikey-release.json
 
+      - name: Test
+        run: pnpm test
+
       - name: Build
-        run: yarn build
+        run: pnpm build
