@@ -25,5 +25,5 @@ dist-ssr
 
 apikey-*.json
 
-app.zip
+dist.zip
 .DS_Store

@@ -1,5 +1,11 @@
 # Change Log
 
+## Version 1.0.0 _(2022-12-06)_
+
+- Migrated to manifest v3
+- Options page UI revamp
+- Internal rewrite
+
 ## Version 0.8.4 _(2022-11-28)_
 
 - Update extension's icon
