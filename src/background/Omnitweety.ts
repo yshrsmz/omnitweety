@@ -27,7 +27,7 @@ class Omnitweety {
   }
 
   async initialize() {
-    const token = await accesstokenRepository.get()
+    const token = await accessTokenRepository.get()
 
     if (token.isAuthorized()) {
       this.oAuthRequestHeader = new OAuthRequestHeader(
