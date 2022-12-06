@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import TheHeader from './components/TheHeader.vue'
 import SettingsList from './components/SettingsList.vue'
-import accesstokenRepository from './data/AccessTokenRepository'
+import accessTokenRepository from './data/AccessTokenRepository'
 import tweetTemplateRepository from './data/TweetTemplateRepository'
 import amazonAssociateRepository from './data/AmazonAssociateRepository'
 import { computed, onMounted, ref } from 'vue'
@@ -24,7 +24,7 @@ const accessToken = computed<AccessToken>({
   get: () => _accessTokenRef.value,
   set: (value: AccessToken) => {
     _accessTokenRef.value = value
-    accesstokenRepository.set(value)
+    accessTokenRepository.set(value)
   },
 })
 
@@ -49,7 +49,7 @@ const tweetTemplate = computed({
 const appVersion = window.chrome.runtime.getManifest().version
 
 onMounted(async () => {
-  _accessTokenRef.value = await accesstokenRepository.get()
+  _accessTokenRef.value = await accessTokenRepository.get()
   _amazonAssociateRef.value = await amazonAssociateRepository.get()
   _tweetTemplateRef.value = await tweetTemplateRepository.get()
 })

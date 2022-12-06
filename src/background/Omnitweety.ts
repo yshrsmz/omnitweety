@@ -4,7 +4,7 @@ import { postSignedRequest } from '../auth/request'
 import { ChromeDelegate } from '../ChromeDelegate'
 import { Clock } from '../Clock'
 import { TwitterConfig } from '../Config'
-import accesstokenRepository from '../data/accesstokenRepository'
+import accessTokenRepository from '../data/AccessTokenRepository'
 import ConsumerKeys from '../data/ConsumerKeys'
 import { escapeOAuthText } from '../utils'
 import SubCommands from './SubCommands'
@@ -39,7 +39,7 @@ class Omnitweety {
   }
 
   async isAuthorized(): Promise<boolean> {
-    return await accesstokenRepository.isAuthorized()
+    return await accessTokenRepository.isAuthorized()
   }
 
   async postStatus(message: string, chrome: ChromeDelegate) {
@@ -47,7 +47,7 @@ class Omnitweety {
       return
     }
 
-    this.oAuthRequestHeader.updateAccessToken(await accesstokenRepository.get())
+    this.oAuthRequestHeader.updateAccessToken(await accessTokenRepository.get())
 
     // URLSearchParams encode space as '+', but Twitter API requires '%20'
     const url = new URL(
