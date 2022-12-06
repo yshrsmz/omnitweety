@@ -21,6 +21,8 @@ jobs:
       - name: Checkout 🛎
         uses: actions/checkout@v2.5.0
 
+      - uses: pnpm/action-setup@v2
+
       - name: Setup node env 🏗
         uses: actions/setup-node@v3
         with:
