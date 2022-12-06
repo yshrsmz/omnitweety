@@ -23,7 +23,7 @@ export const postSignedRequest = async (
 
 export const getSignedRequest = async (
   url: URL,
-  oauthHeader: AuthHeader,
+  oauthHeader: AuthHeader
 ): Promise<Response> => {
   const headers = await (async () => {
     const headers = new Headers()

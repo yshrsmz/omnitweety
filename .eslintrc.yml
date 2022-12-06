@@ -20,3 +20,5 @@ plugins:
   - '@typescript-eslint'
 rules:
   'vue/no-v-model-argument': 'off'
+  'comma-dangle': 'off'
+  '@typescript-eslint/comma-dangle': ['error', 'only-multiline']
