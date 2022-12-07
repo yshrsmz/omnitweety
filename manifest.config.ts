@@ -14,7 +14,7 @@ export default defineManifest(async (env) => {
   console.log('env.mode', env.mode)
   return {
     manifest_version: 3,
-    name: env.mode === 'staging' ? `[DEV] Omnitweety` : 'Omnitweety',
+    name: env.mode === 'development' ? `[DEV] Omnitweety` : 'Omnitweety',
     version: `${major}.${minor}.${patch}.${label}`,
     version_name: version,
     icons: {
