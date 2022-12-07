@@ -25,7 +25,8 @@ export class DefaultChromeDelegate implements ChromeDelegate {
   }
 
   appVersion(): string {
-    return this.chrome.runtime.getManifest().version
+    const manifest = this.chrome.runtime.getManifest()
+    return manifest.version_name ?? manifest.version
   }
 
   showDefaultSuggestion(message: string): void {
