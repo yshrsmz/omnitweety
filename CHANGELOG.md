@@ -1,5 +1,9 @@
 # Change Log
 
+## VersIon 1.0.1 _(2022-12-07)_
+
+- Fix error while sending a tweet.
+
 ## Version 1.0.0 _(2022-12-06)_
 
 - Migrated to manifest v3

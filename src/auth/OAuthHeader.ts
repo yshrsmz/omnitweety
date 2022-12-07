@@ -46,7 +46,7 @@ export class OAuthRequestHeader implements AuthHeader {
     private readonly consumerKeys: ConsumerKeys,
     private accessToken: AccessToken,
     private readonly clock: Clock,
-    private readonly nonceGenerator: NonceGenerator = nonceGenerator
+    private readonly nonceGen: NonceGenerator = nonceGenerator
   ) {}
 
   public updateAccessToken(accessToken: AccessToken) {
@@ -65,7 +65,7 @@ export class OAuthRequestHeader implements AuthHeader {
       body,
       headers,
       this.clock,
-      this.nonceGenerator,
+      this.nonceGen,
       this.consumerKeys,
       this.accessToken
     )
