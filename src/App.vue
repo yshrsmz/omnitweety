@@ -13,12 +13,15 @@ import { OAuthConfig } from './auth/OAuthConfig'
 import { TwitterConfig } from './Config'
 import ConsumerKeys from './data/ConsumerKeys'
 import { openNewTab } from './utils'
+import { DefaultChromeDelegate } from './ChromeDelegate'
 
 const _accessTokenRef = ref<AccessToken>(AccessToken.empty())
 const _amazonAssociateRef = ref<AmazonAssociate>(AmazonAssociate.empty())
 const _tweetTemplateRef = ref<TweetTemplate>(TweetTemplate.empty())
 
 const authFlowRef = ref<AuthFlow | null>(null)
+
+const chromeDelegate = new DefaultChromeDelegate(window.chrome)
 
 const accessToken = computed<AccessToken>({
   get: () => _accessTokenRef.value,
@@ -46,7 +49,7 @@ const tweetTemplate = computed({
   },
 })
 
-const appVersion = window.chrome.runtime.getManifest().version
+const appVersion = chromeDelegate.appVersion()
 
 onMounted(async () => {
   _accessTokenRef.value = await accessTokenRepository.get()
