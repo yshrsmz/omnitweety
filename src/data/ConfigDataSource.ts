@@ -33,6 +33,8 @@ type AmazonAssociateValues = {
 }
 
 class ConfigDataSource {
+  private static readonly KEY_STORAGE_VERSION = 'storage_version'
+
   private static readonly KEY_TWITTER_TOKEN = `oauth_token${encodeURI(
     TwitterConfig.OAUTH_SCOPE
   )}`
@@ -46,6 +48,17 @@ class ConfigDataSource {
   private static readonly KEY_AMAZON_ASSOCIATE_DOMAIN =
     'amazon_associate_domain'
   private static readonly KEY_AMAZON_ASSOCIATE_ID = 'amazon_associate_id'
+
+  public async getStorageVersion(): Promise<number> {
+    const { [ConfigDataSource.KEY_STORAGE_VERSION]: version } = await load({
+      [ConfigDataSource.KEY_STORAGE_VERSION]: 0,
+    })
+    return version
+  }
+
+  public async setStorageVersion(version: number): Promise<void> {
+    await save({ [ConfigDataSource.KEY_STORAGE_VERSION]: version })
+  }
 
   public async getAccessToken(): Promise<string> {
     const { [ConfigDataSource.KEY_TWITTER_TOKEN]: token } = await load({
