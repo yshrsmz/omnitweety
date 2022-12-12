@@ -9,7 +9,7 @@ specifiers:
   '@types/twitter-text': ^3.1.4
   '@typescript-eslint/eslint-plugin': ^5.45.0
   '@typescript-eslint/parser': ^5.45.0
-  '@vitejs/plugin-vue': ^3.2.0
+  '@vitejs/plugin-vue': ^4.0.0
   '@vue/eslint-config-prettier': ^7.0.0
   '@vue/eslint-config-typescript': ^11.0.2
   autoprefixer: ^10.4.13
@@ -42,7 +42,7 @@ devDependencies:
   '@types/twitter-text': 3.1.4
   '@typescript-eslint/eslint-plugin': 5.46.0_5mle7isnkfgjmrghnnczirv6iy
   '@typescript-eslint/parser': 5.46.0_ha6vam6werchizxrnqvarmz2zu
-  '@vitejs/plugin-vue': 3.2.0_vite@3.2.5+vue@3.2.45
+  '@vitejs/plugin-vue': 4.0.0_vite@3.2.5+vue@3.2.45
   '@vue/eslint-config-prettier': 7.0.0_wdw3qg4p7crmsoaizcyntelyni
   '@vue/eslint-config-typescript': 11.0.2_4ajq2belonl3hwwudzbg7tkiqi
   autoprefixer: 10.4.13_postcss@8.4.20
@@ -403,11 +403,11 @@ packages:
       eslint-visitor-keys: 3.3.0
     dev: true
 
-  /@vitejs/plugin-vue/3.2.0_vite@3.2.5+vue@3.2.45:
-    resolution: {integrity: sha512-E0tnaL4fr+qkdCNxJ+Xd0yM31UwMkQje76fsDVBBUCoGOUPexu2VDUYHL8P4CwV+zMvWw6nlRw19OnRKmYAJpw==}
+  /@vitejs/plugin-vue/4.0.0_vite@3.2.5+vue@3.2.45:
+    resolution: {integrity: sha512-e0X4jErIxAB5oLtDqbHvHpJe/uWNkdpYV83AOG2xo2tEVSzCzewgJMtREZM30wXnM5ls90hxiOtAuVU6H5JgbA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
-      vite: ^3.0.0
+      vite: ^4.0.0
       vue: ^3.2.25
     dependencies:
       vite: 3.2.5
