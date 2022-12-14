@@ -1,5 +1,12 @@
 {
   "extends": ["config:base"],
   "lockFileMaintenance": { "enabled": true },
-  "masterIssue": true
+  "masterIssue": true,
+  "packageRules": [
+    {
+      "matchPackagePrefixes": ["@vitejs"],
+      "matchPackageNames": ["vite"],
+      "groupName": "vitejs"
+    }
+  ]
 }
