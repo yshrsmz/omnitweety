@@ -1,4 +1,8 @@
 # Change Log
+## Version 1.1.0 _(2022-12-25)_
+
+- Add an option to enable debug logging
+- Fix the options page always opens upon Chrome relaunch
 
 ## VersIon 1.0.1 _(2022-12-07)_
 
