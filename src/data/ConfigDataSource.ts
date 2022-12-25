@@ -1,6 +1,7 @@
 import { TwitterConfig, AppConfig } from '../Config'
+import consola from 'consola'
 
-const load = async <T extends { [key: string]: string | number }>(
+const load = async <T extends { [key: string]: string | number | boolean }>(
   keysAndDefaults: T
 ): Promise<{ [K in keyof T]: T[K] }> => {
   return new Promise((resolve) => {
@@ -10,7 +11,9 @@ const load = async <T extends { [key: string]: string | number }>(
   })
 }
 
-const save = async (values: Record<string, string | number>): Promise<void> => {
+const save = async (
+  values: Record<string, string | number | boolean>
+): Promise<void> => {
   return new Promise((resolve) => {
     chrome.storage.local.set(values, () => resolve())
   })
@@ -32,7 +35,7 @@ type AmazonAssociateValues = {
   associateId: string
 }
 
-class ConfigDataSource {
+export class ConfigDataSource {
   private static readonly KEY_STORAGE_VERSION = 'storage_version'
 
   private static readonly KEY_TWITTER_TOKEN = `oauth_token${encodeURI(
@@ -48,6 +51,50 @@ class ConfigDataSource {
   private static readonly KEY_AMAZON_ASSOCIATE_DOMAIN =
     'amazon_associate_domain'
   private static readonly KEY_AMAZON_ASSOCIATE_ID = 'amazon_associate_id'
+  public static readonly KEY_LOGGING_ACTIVE = 'logging_active'
+
+  private static readonly STORAGE_VERSION = 2
+
+  public async migrateIfNeeded(): Promise<{
+    previous: number
+    current: number
+  }> {
+    const previousVersion = await this.getStorageVersion()
+    let version = previousVersion
+
+    if (previousVersion === ConfigDataSource.STORAGE_VERSION) {
+      // no migration is needed
+      return {
+        previous: previousVersion,
+        current: version,
+      }
+    }
+
+    if (version === 0) {
+      // 0 -> 1
+      // v1
+      version++
+    }
+
+    if (version === 1) {
+      // 1 -> 2
+      // add KEY_LOGGING_ACTIVE
+      version++
+    }
+
+    const result = {
+      previous: previousVersion,
+      current: version,
+    }
+
+    consola.debug('migrateIfNeeded:result', result)
+
+    if (previousVersion !== version) {
+      await this.setStorageVersion(version)
+    }
+
+    return result
+  }
 
   public async getStorageVersion(): Promise<number> {
     const { [ConfigDataSource.KEY_STORAGE_VERSION]: version } = await load({
@@ -182,6 +229,23 @@ class ConfigDataSource {
       ConfigDataSource.KEY_AMAZON_ASSOCIATE_DOMAIN,
       ConfigDataSource.KEY_AMAZON_ASSOCIATE_ID,
     ])
+  }
+
+  public async isLoggingActive(): Promise<boolean> {
+    const { [ConfigDataSource.KEY_LOGGING_ACTIVE]: loggingActive } = await load(
+      {
+        [ConfigDataSource.KEY_LOGGING_ACTIVE]: false,
+      }
+    )
+    return loggingActive
+  }
+
+  public async setLoggingActive(loggingActive: boolean): Promise<void> {
+    await save({ [ConfigDataSource.KEY_LOGGING_ACTIVE]: loggingActive })
+  }
+
+  public async clearLoggingActive(): Promise<void> {
+    await remove([ConfigDataSource.KEY_LOGGING_ACTIVE])
   }
 }
 

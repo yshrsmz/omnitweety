@@ -6,6 +6,7 @@ import TweetTemplate from '../data/TweetTemplate'
 import { AppConfig } from '../Config'
 import SettingsListHeading from './SettingsList/SettingsListHeading.vue'
 import SettingsListItem from './SettingsList/SettingsListItem.vue'
+import LoggingStateItem from './SettingsList/LoggingStateItem.vue'
 import AmazonAssociateDomainItem from './SettingsList/AmazonAssociateDomainItem.vue'
 import AmazonAssociateIdItem from './SettingsList/AmazonAssociateIdItem.vue'
 import StatusPrefixItem from './SettingsList/StatusPrefixItem.vue'
@@ -17,6 +18,7 @@ const props = defineProps<{
   amazonAssociate: AmazonAssociate
   amazonDomains: string[]
   appVersion: string
+  isLoggingActive: boolean
 }>()
 
 const emit = defineEmits<{
@@ -27,6 +29,7 @@ const emit = defineEmits<{
   (event: 'login:cancel'): void
   (event: 'logout'): void
   (event: 'update:pincode', value: string): void
+  (event: 'update:isLoggingActive', value: boolean): void
 }>()
 
 const isAuthorized = computed(() => props.accessToken.isAuthorized())
@@ -48,6 +51,9 @@ const onTwitterPinCodeUpdate = (value: string) => {
 }
 const onLogout = () => {
   emit('logout')
+}
+const onIsLoggingActiveUpdate = (value: boolean) => {
+  emit('update:isLoggingActive', value)
 }
 
 const onStatusPrefixUpdate = (value: string) => {
@@ -110,6 +116,12 @@ const onAmazonAssociateIdUpdate = (value: string) => {
       <SettingsListItem as="a" :href="chromeWebstoreUrl" target="_blank">
         <p>Rate on Chrome Webstore</p>
       </SettingsListItem>
+      <SettingsListHeading title="Development" />
+      <LoggingStateItem
+        class="!border-t-0"
+        :is-logging-active="isLoggingActive"
+        @update:is-logging-active="onIsLoggingActiveUpdate"
+      />
     </ul>
   </div>
 </template>

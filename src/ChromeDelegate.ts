@@ -7,6 +7,9 @@ export interface ChromeDelegate {
   openNewTab(url: string, active: boolean): void
   openOptionsPage(): void
   createNotification(iconUrl: string, title: string, message: string): void
+  onStorageChanged(
+    listener: (changes: { [key: string]: chrome.storage.StorageChange }) => void
+  ): void
 }
 
 export class DefaultChromeDelegate implements ChromeDelegate {
@@ -58,5 +61,11 @@ export class DefaultChromeDelegate implements ChromeDelegate {
         }, 3000)
       }
     )
+  }
+
+  onStorageChanged(
+    listener: (changes: { [key: string]: chrome.storage.StorageChange }) => void
+  ): void {
+    this.chrome.storage.local.onChanged.addListener(listener)
   }
 }

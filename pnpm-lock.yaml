@@ -13,6 +13,7 @@ specifiers:
   '@vue/eslint-config-prettier': 7.0.0
   '@vue/eslint-config-typescript': 11.0.2
   autoprefixer: 10.4.13
+  consola: ^2.15.3
   date-fns: 2.29.3
   eslint: 8.30.0
   eslint-config-prettier: 8.5.0
@@ -31,6 +32,7 @@ specifiers:
 dependencies:
   '@headlessui/vue': 1.7.7_vue@3.2.45
   '@heroicons/vue': 2.0.13_vue@3.2.45
+  consola: 2.15.3
   date-fns: 2.29.3
   twitter-text: 3.1.0
   vue: 3.2.45
@@ -847,6 +849,10 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /consola/2.15.3:
+    resolution: {integrity: sha512-9vAdYbHj6x2fLKC4+oPH0kFzY/orMZyG2Aj+kNylHxKGJ/Ed4dpNyAQYwJOdqO4zdM7XpVHmyejQDcQHrnuXbw==}
+    dev: false
 
   /core-js/2.6.12:
     resolution: {integrity: sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==}
