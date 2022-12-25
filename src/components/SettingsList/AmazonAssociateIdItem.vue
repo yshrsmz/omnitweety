@@ -28,7 +28,7 @@ const onClick = () => {
     @click.prevent="onClick"
   >
     <p>Amazon Associate ID</p>
-    <template #subtext>{{ associateId }}</template>
+    <template #subtext>{{ associateId ? associateId : '-' }}</template>
     <TextInputDialog
       v-model:show="isDialogOpenRef"
       v-model:text="associateIdRef"

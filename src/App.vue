@@ -14,10 +14,12 @@ import { TwitterConfig } from './Config'
 import ConsumerKeys from './data/ConsumerKeys'
 import { openNewTab } from './utils'
 import { DefaultChromeDelegate } from './ChromeDelegate'
+import debugRepository from './data/DebugRepository'
 
 const _accessTokenRef = ref<AccessToken>(AccessToken.empty())
 const _amazonAssociateRef = ref<AmazonAssociate>(AmazonAssociate.empty())
 const _tweetTemplateRef = ref<TweetTemplate>(TweetTemplate.empty())
+const _isLoggingActiveRef = ref(false)
 
 const authFlowRef = ref<AuthFlow | null>(null)
 
@@ -49,12 +51,21 @@ const tweetTemplate = computed({
   },
 })
 
+const isLoggingActive = computed({
+  get: () => _isLoggingActiveRef.value,
+  set: (value: boolean) => {
+    _isLoggingActiveRef.value = value
+    debugRepository.setLoggingActive(value)
+  },
+})
+
 const appVersion = chromeDelegate.appVersion()
 
 onMounted(async () => {
   _accessTokenRef.value = await accessTokenRepository.get()
   _amazonAssociateRef.value = await amazonAssociateRepository.get()
   _tweetTemplateRef.value = await tweetTemplateRepository.get()
+  _isLoggingActiveRef.value = await debugRepository.isLoggingActive()
 })
 
 const onLoginStart = async () => {
@@ -87,6 +98,7 @@ const onLogout = () => {
       v-model:access-token="accessToken"
       v-model:amazon-associate="amazonAssociate"
       v-model:tweet-template="tweetTemplate"
+      v-model:is-logging-active="isLoggingActive"
       class="max-w-4xl w-full"
       :amazon-domains="amazonDomains"
       :app-version="appVersion"
