@@ -1,9 +1,5 @@
 {
-  "extends": [
-    "config:base",
-    ":pinDependencies",
-    ":pinDevDependencies"
-  ],
+  "extends": ["config:base", ":pinDependencies", ":pinDevDependencies"],
   "lockFileMaintenance": { "enabled": true },
   "masterIssue": true,
   "packageRules": [

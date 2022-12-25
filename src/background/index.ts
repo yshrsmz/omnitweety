@@ -13,7 +13,7 @@ chrome.runtime.onInstalled.addListener(async (detail) => {
   await self.skipWaiting()
   await new Promise((r) => setTimeout(r, 100))
 
-  logger.info("onInstalled:", detail)
+  logger.info('onInstalled:', detail)
   if (detail.reason === chrome.runtime.OnInstalledReason.INSTALL) {
     chrome.runtime.openOptionsPage()
   }
