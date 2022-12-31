@@ -30,7 +30,7 @@
     "@vue/eslint-config-prettier": "7.0.0",
     "@vue/eslint-config-typescript": "11.0.2",
     "autoprefixer": "10.4.13",
-    "eslint": "8.30.0",
+    "eslint": "8.31.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-vue": "9.8.0",
     "jsdom": "20.0.3",
