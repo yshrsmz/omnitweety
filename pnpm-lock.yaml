@@ -6,7 +6,7 @@ specifiers:
   '@heroicons/vue': 2.0.13
   '@tailwindcss/forms': 0.5.3
   '@types/chrome': 0.0.209
-  '@types/twitter-text': 3.1.4
+  '@types/twitter-text': 3.1.5
   '@typescript-eslint/eslint-plugin': 5.48.0
   '@typescript-eslint/parser': 5.48.0
   '@vitejs/plugin-vue': 3.2.0
@@ -41,7 +41,7 @@ devDependencies:
   '@crxjs/vite-plugin': 2.0.0-beta.9
   '@tailwindcss/forms': 0.5.3_tailwindcss@3.2.4
   '@types/chrome': 0.0.209
-  '@types/twitter-text': 3.1.4
+  '@types/twitter-text': 3.1.5
   '@typescript-eslint/eslint-plugin': 5.48.0_k73wpmdolxikpyqun3p36akaaq
   '@typescript-eslint/parser': 5.48.0_iukboom6ndih5an6iafl45j2fe
   '@vitejs/plugin-vue': 3.2.0_vite@3.2.5+vue@3.2.45
@@ -272,8 +272,8 @@ packages:
     resolution: {integrity: sha512-21cFJr9z3g5dW8B0CVI9g2O9beqaThGQ6ZFBqHfwhzLDKUxaqTIy3vnfah/UPkfOiF2pLq+tGz+W8RyCskuslw==}
     dev: true
 
-  /@types/twitter-text/3.1.4:
-    resolution: {integrity: sha512-eG//rhknlHOK9Ta6v3W+ZkD0Y9wveMB3k65REdibu96ZvnnLNATl1YQEHSHmrbSfecWdVtosZmMJJeTmwoU2cA==}
+  /@types/twitter-text/3.1.5:
+    resolution: {integrity: sha512-Gsr5ZHM/7wRUvoWAC/rfEI2WaPcsBI1g13U1VF6j15Z29h815IwobcjZsYibtjnCt5hfXJ37MuMe+cCgeS7EUw==}
     dev: true
 
   /@typescript-eslint/eslint-plugin/5.48.0_k73wpmdolxikpyqun3p36akaaq:
