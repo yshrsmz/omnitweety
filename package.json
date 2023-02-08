@@ -12,7 +12,7 @@
     "format": "eslint --fix --ext .ts,.js,.vue,.cjs . && prettier -w ."
   },
   "dependencies": {
-    "@headlessui/vue": "1.7.7",
+    "@headlessui/vue": "1.7.9",
     "@heroicons/vue": "2.0.14",
     "consola": "2.15.3",
     "date-fns": "2.29.3",
