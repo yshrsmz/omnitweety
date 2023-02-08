@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@crxjs/vite-plugin': 2.0.0-beta.9
+  '@crxjs/vite-plugin': 2.0.0-beta.12
   '@headlessui/vue': 1.7.7
   '@heroicons/vue': 2.0.13
   '@tailwindcss/forms': 0.5.3
@@ -38,7 +38,7 @@ dependencies:
   vue: 3.2.45
 
 devDependencies:
-  '@crxjs/vite-plugin': 2.0.0-beta.9
+  '@crxjs/vite-plugin': 2.0.0-beta.12
   '@tailwindcss/forms': 0.5.3_tailwindcss@3.2.4
   '@types/chrome': 0.0.210
   '@types/twitter-text': 3.1.5
@@ -92,8 +92,8 @@ packages:
       '@babel/helper-validator-identifier': 7.19.1
       to-fast-properties: 2.0.0
 
-  /@crxjs/vite-plugin/2.0.0-beta.9:
-    resolution: {integrity: sha512-hBN8qpYk1j8ltLJgtI7dBGwJXh2P2BTIKFtinid84D0KYjVwOP/ks2V+Wc8ZlBGTizIboWA0I+ZgmJBXEa2mUg==}
+  /@crxjs/vite-plugin/2.0.0-beta.12:
+    resolution: {integrity: sha512-F2SNF8aKGXF1mqg0EQisgdK1fgUud9BR52rpf9iPEKGH+41//t+qj9aRls3+iUOx3niNYujIXTMyrdyPpSzs9g==}
     dependencies:
       '@rollup/pluginutils': 4.2.1
       '@webcomponents/custom-elements': 1.5.1
