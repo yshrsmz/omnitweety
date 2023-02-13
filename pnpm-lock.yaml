@@ -21,7 +21,7 @@ specifiers:
   jsdom: 21.1.0
   postcss: 8.4.21
   prettier: 2.8.4
-  tailwindcss: 3.2.4
+  tailwindcss: 3.2.6
   twitter-text: 3.1.0
   typescript: 4.9.5
   vite: 3.2.5
@@ -39,7 +39,7 @@ dependencies:
 
 devDependencies:
   '@crxjs/vite-plugin': 2.0.0-beta.12
-  '@tailwindcss/forms': 0.5.3_tailwindcss@3.2.4
+  '@tailwindcss/forms': 0.5.3_tailwindcss@3.2.6
   '@types/chrome': 0.0.212
   '@types/twitter-text': 3.1.5
   '@typescript-eslint/eslint-plugin': 5.48.0_vqm4js66qtp4h6afqe3btrngbi
@@ -54,7 +54,7 @@ devDependencies:
   jsdom: 21.1.0
   postcss: 8.4.21
   prettier: 2.8.4
-  tailwindcss: 3.2.4_postcss@8.4.21
+  tailwindcss: 3.2.6_postcss@8.4.21
   typescript: 4.9.5
   vite: 3.2.5
   vitest: 0.28.4_jsdom@21.1.0
@@ -215,13 +215,13 @@ packages:
       picomatch: 2.3.1
     dev: true
 
-  /@tailwindcss/forms/0.5.3_tailwindcss@3.2.4:
+  /@tailwindcss/forms/0.5.3_tailwindcss@3.2.6:
     resolution: {integrity: sha512-y5mb86JUoiUgBjY/o6FJSFZSEttfb3Q5gllE4xoKjAAD+vBrnIhE4dViwUuow3va8mpH4s9jyUbUbrRGoRdc2Q==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
     dependencies:
       mini-svg-data-uri: 1.4.4
-      tailwindcss: 3.2.4_postcss@8.4.21
+      tailwindcss: 3.2.6_postcss@8.4.21
     dev: true
 
   /@tootallnate/once/2.0.0:
@@ -2560,8 +2560,8 @@ packages:
     resolution: {integrity: sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==}
     dev: true
 
-  /tailwindcss/3.2.4_postcss@8.4.21:
-    resolution: {integrity: sha512-AhwtHCKMtR71JgeYDaswmZXhPcW9iuI9Sp2LvZPo9upDZ7231ZJ7eA9RaURbhpXGVlrjX4cFNlB4ieTetEb7hQ==}
+  /tailwindcss/3.2.6_postcss@8.4.21:
+    resolution: {integrity: sha512-BfgQWZrtqowOQMC2bwaSNe7xcIjdDEgixWGYOd6AL0CbKHJlvhfdbINeAW76l1sO+1ov/MJ93ODJ9yluRituIw==}
     engines: {node: '>=12.13.0'}
     hasBin: true
     peerDependencies:
