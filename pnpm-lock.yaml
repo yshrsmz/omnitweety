@@ -3,7 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@crxjs/vite-plugin': 2.0.0-beta.12
   '@headlessui/vue': 1.7.9
-  '@heroicons/vue': 2.0.14
+  '@heroicons/vue': 2.0.15
   '@tailwindcss/forms': 0.5.3
   '@types/chrome': 0.0.212
   '@types/twitter-text': 3.1.5
@@ -31,7 +31,7 @@ specifiers:
 
 dependencies:
   '@headlessui/vue': 1.7.9_vue@3.2.45
-  '@heroicons/vue': 2.0.14_vue@3.2.45
+  '@heroicons/vue': 2.0.15_vue@3.2.45
   consola: 2.15.3
   date-fns: 2.29.3
   twitter-text: 3.1.0
@@ -158,8 +158,8 @@ packages:
       vue: 3.2.45
     dev: false
 
-  /@heroicons/vue/2.0.14_vue@3.2.45:
-    resolution: {integrity: sha512-pA1MLZPX0pyZdaQ5OHD/ILE8V/JCXyWvY2BQig7ZnYO7ZFap9sp969Qasn+1VWxnzB5BLWWcYu80OJPCboWo+g==}
+  /@heroicons/vue/2.0.15_vue@3.2.45:
+    resolution: {integrity: sha512-Ab98jXcuYPCDtwOmdr5REtUfJCrZf7cnOnh9bD99bM5h1yfTnCPBKjMmJ9gcmyGu51Dzf11Mx/A7rKxAXjccvg==}
     peerDependencies:
       vue: '>= 3'
     dependencies:
