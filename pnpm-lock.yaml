@@ -17,7 +17,7 @@ specifiers:
   date-fns: 2.29.3
   eslint: 8.31.0
   eslint-config-prettier: 8.6.0
-  eslint-plugin-vue: 9.8.0
+  eslint-plugin-vue: 9.9.0
   jsdom: 21.1.0
   postcss: 8.4.21
   prettier: 2.8.4
@@ -46,11 +46,11 @@ devDependencies:
   '@typescript-eslint/parser': 5.48.0_ifw3q4r6iq3gw7cspzs2siycvu
   '@vitejs/plugin-vue': 3.2.0_vite@3.2.5+vue@3.2.45
   '@vue/eslint-config-prettier': 7.0.0_hbinqodnuyu2mortn3fpucttm4
-  '@vue/eslint-config-typescript': 11.0.2_q2d33lu7yll3f6g7gpw7pl6avm
+  '@vue/eslint-config-typescript': 11.0.2_dgywzrmvx6ef6a6qenlm262kv4
   autoprefixer: 10.4.13_postcss@8.4.21
   eslint: 8.31.0
   eslint-config-prettier: 8.6.0_eslint@8.31.0
-  eslint-plugin-vue: 9.8.0_eslint@8.31.0
+  eslint-plugin-vue: 9.9.0_eslint@8.31.0
   jsdom: 21.1.0
   postcss: 8.4.21
   prettier: 2.8.4
@@ -533,7 +533,7 @@ packages:
       prettier: 2.8.4
     dev: true
 
-  /@vue/eslint-config-typescript/11.0.2_q2d33lu7yll3f6g7gpw7pl6avm:
+  /@vue/eslint-config-typescript/11.0.2_dgywzrmvx6ef6a6qenlm262kv4:
     resolution: {integrity: sha512-EiKud1NqlWmSapBFkeSrE994qpKx7/27uCGnhdqzllYDpQZroyX/O6bwjEpeuyKamvLbsGdO6PMR2faIf+zFnw==}
     engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
@@ -547,7 +547,7 @@ packages:
       '@typescript-eslint/eslint-plugin': 5.48.0_vqm4js66qtp4h6afqe3btrngbi
       '@typescript-eslint/parser': 5.48.0_ifw3q4r6iq3gw7cspzs2siycvu
       eslint: 8.31.0
-      eslint-plugin-vue: 9.8.0_eslint@8.31.0
+      eslint-plugin-vue: 9.9.0_eslint@8.31.0
       typescript: 4.9.5
       vue-eslint-parser: 9.1.0_eslint@8.31.0
     transitivePeerDependencies:
@@ -1383,8 +1383,8 @@ packages:
       prettier-linter-helpers: 1.0.0
     dev: true
 
-  /eslint-plugin-vue/9.8.0_eslint@8.31.0:
-    resolution: {integrity: sha512-E/AXwcTzunyzM83C2QqDHxepMzvI2y6x+mmeYHbVDQlKFqmKYvRrhaVixEeeG27uI44p9oKDFiyCRw4XxgtfHA==}
+  /eslint-plugin-vue/9.9.0_eslint@8.31.0:
+    resolution: {integrity: sha512-YbubS7eK0J7DCf0U2LxvVP7LMfs6rC6UltihIgval3azO3gyDwEGVgsCMe1TmDiEkl6GdMKfRpaME6QxIYtzDQ==}
     engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: ^6.2.0 || ^7.0.0 || ^8.0.0
