@@ -17,7 +17,7 @@
     "consola": "2.15.3",
     "date-fns": "2.29.3",
     "twitter-text": "3.1.0",
-    "vue": "3.2.45"
+    "vue": "3.2.47"
   },
   "devDependencies": {
     "@crxjs/vite-plugin": "2.0.0-beta.12",
