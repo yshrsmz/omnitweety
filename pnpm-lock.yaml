@@ -5,7 +5,7 @@ specifiers:
   '@headlessui/vue': 1.7.10
   '@heroicons/vue': 2.0.15
   '@tailwindcss/forms': 0.5.3
-  '@types/chrome': 0.0.212
+  '@types/chrome': 0.0.213
   '@types/twitter-text': 3.1.5
   '@typescript-eslint/eslint-plugin': 5.48.0
   '@typescript-eslint/parser': 5.48.0
@@ -40,7 +40,7 @@ dependencies:
 devDependencies:
   '@crxjs/vite-plugin': 2.0.0-beta.12
   '@tailwindcss/forms': 0.5.3_tailwindcss@3.2.7
-  '@types/chrome': 0.0.212
+  '@types/chrome': 0.0.213
   '@types/twitter-text': 3.1.5
   '@typescript-eslint/eslint-plugin': 5.48.0_vqm4js66qtp4h6afqe3btrngbi
   '@typescript-eslint/parser': 5.48.0_ifw3q4r6iq3gw7cspzs2siycvu
@@ -239,8 +239,8 @@ packages:
     resolution: {integrity: sha512-KnRanxnpfpjUTqTCXslZSEdLfXExwgNxYPdiO2WGUj8+HDjFi8R3k5RVKPeSCzLjCcshCAtVO2QBbVuAV4kTnw==}
     dev: true
 
-  /@types/chrome/0.0.212:
-    resolution: {integrity: sha512-O9blKfj6mQyBvkexEa71xcpRfkjAu8izQD3qGYfdwffk+mJhF7eogz628bZr5dETT6Eu7vU0stUGYG/+EQWj9g==}
+  /@types/chrome/0.0.213:
+    resolution: {integrity: sha512-oDF+AGr2gcHzxX5xq8TjmLtnMnV3nL1ci4Y6CjhDqIKI8Ar36JOWnmQx6eGVBBYEX824OIN0NQwDo2cevEBbQQ==}
     dependencies:
       '@types/filesystem': 0.0.32
       '@types/har-format': 1.2.10
