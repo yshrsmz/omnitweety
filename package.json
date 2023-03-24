@@ -22,25 +22,25 @@
   "devDependencies": {
     "@crxjs/vite-plugin": "2.0.0-beta.15",
     "@tailwindcss/forms": "0.5.3",
-    "@types/chrome": "0.0.224",
+    "@types/chrome": "0.0.225",
     "@types/twitter-text": "3.1.5",
-    "@typescript-eslint/eslint-plugin": "5.55.0",
-    "@typescript-eslint/parser": "5.55.0",
+    "@typescript-eslint/eslint-plugin": "5.56.0",
+    "@typescript-eslint/parser": "5.56.0",
     "@vitejs/plugin-vue": "4.1.0",
     "@vue/eslint-config-prettier": "7.1.0",
     "@vue/eslint-config-typescript": "11.0.2",
     "autoprefixer": "10.4.14",
     "eslint": "8.36.0",
-    "eslint-config-prettier": "8.7.0",
-    "eslint-plugin-vue": "9.9.0",
+    "eslint-config-prettier": "8.8.0",
+    "eslint-plugin-vue": "9.10.0",
     "jsdom": "21.1.1",
     "postcss": "8.4.21",
-    "prettier": "2.8.5",
+    "prettier": "2.8.7",
     "tailwindcss": "3.2.7",
     "typescript": "4.9.5",
     "vite": "4.2.1",
-    "vitest": "0.29.5",
+    "vitest": "0.29.7",
     "vue-tsc": "1.2.0"
   },
-  "packageManager": "pnpm@7.30.0"
+  "packageManager": "pnpm@7.30.3"
 }
