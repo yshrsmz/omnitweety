@@ -80,11 +80,11 @@ const initialBaseNonSignedOAuthHeaders = (
 ): Record<string, string> => {
   return {
     oauth_consumer_key: consumerKeys.key,
+    ...(accessToken ? { oauth_token: accessToken.token } : {}),
     oauth_nonce: nonce,
     oauth_signature_method: 'HMAC-SHA1',
-    oauth_timestamp: timestamp,
     oauth_version: '1.0',
-    ...(accessToken ? { oauth_token: accessToken.token } : {}),
+    oauth_timestamp: timestamp,
   }
 }
 
@@ -122,7 +122,7 @@ const applyRequestHeaders = async (
     ...authHeaderValues,
     oauth_signature: signature,
   })
-    .map(([key, value]) => `${key}="${value}"`)
+    .map(([key, value]) => `${key}=${value}`)
     .join(',')
 
   headers.append('Authorization', `OAuth ${authHeader}`)

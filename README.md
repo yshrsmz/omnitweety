@@ -2,8 +2,6 @@
 
 Update your Twitter status right from Chrome's Omnibox (URL bar).
 
-https://chrome.google.com/webstore/detail/omnitweety/jkghejckpigfbolkdkplfokccgpjjilb
-
 ## Omnitweety Command
 
 ### `tw + {space/tab}`

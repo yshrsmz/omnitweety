@@ -7,15 +7,13 @@ export const postSignedRequest = async (
 ): Promise<Response> => {
   const headers = await (async () => {
     const headers = new Headers()
-    headers.append('Content-Type', 'application/json')
+    headers.append('Content-Type', 'application/json; charset=utf8')
     return await oauthHeader.applyAuthHeader('POST', url, body, headers)
   })()
 
-  // return Promise.resolve('') as T
-
   return await fetch(url, {
     method: 'POST',
-    credentials: 'include',
+    credentials: 'omit',
     headers: headers,
     body: JSON.stringify(body),
   })

@@ -38,12 +38,8 @@ type AmazonAssociateValues = {
 export class ConfigDataSource {
   private static readonly KEY_STORAGE_VERSION = 'storage_version'
 
-  private static readonly KEY_TWITTER_TOKEN = `oauth_token${encodeURI(
-    TwitterConfig.OAUTH_SCOPE
-  )}`
-  private static readonly KEY_TWITTER_SECRET = `oauth_token_secret${encodeURI(
-    TwitterConfig.OAUTH_SCOPE
-  )}`
+  private static readonly KEY_TWITTER_TOKEN = `oauth_token`
+  private static readonly KEY_TWITTER_SECRET = `oauth_token_secret`
   private static readonly KEY_STATUS_PREFIX = 'status_prefix'
   private static readonly KEY_TWITTER_NAME = 'twitter_name'
   private static readonly KEY_TWITTER_SCREEN_NAME = 'twitter_screen_name'

@@ -1,5 +1,4 @@
-const urlUpdate = 'https://api.twitter.com/1.1/statuses/update.json'
-const urlConfig = 'https://api.twitter.com/1.1/help/configuration.json'
+const URL_V2_UPDATE = 'https://api.twitter.com/2/tweets'
 
 const AppConfig = {
   NAME: 'Omnitweety for Chrome',
@@ -17,10 +16,7 @@ const TwitterConfig = {
   URL_ACCESS_TOKEN: 'https://api.twitter.com/oauth/access_token',
 
   // for status update
-  URL_STATUS_UPDATE: urlUpdate,
-  URL_CONFIG: urlConfig,
-
-  OAUTH_SCOPE: '$urlUpdate,$urlConfig',
+  URL_STATUS_UPDATE: URL_V2_UPDATE,
 
   STATUS_LENGTH: 280,
   URL_LENGTH: 23,
