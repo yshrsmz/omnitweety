@@ -1,4 +1,17 @@
 # Change Log
+
+## Version 2.0.0 _(2023-04-16)_
+
+### BREAKING
+
+Due to the recent changes in Twitter API, Omnitweety is no longer published on Chrome Web Store.
+If you want to use this extension, please create your own Twitter Developer Account and build Omnitweety on your own.
+
+I'm still planning to develop Omnitweety as this is an essential tool for me, so feel free to contribute ;)
+
+- Migrated to Twitter API v2
+
+
 ## Version 1.1.0 _(2022-12-25)_
 
 - Add an option to enable debug logging
