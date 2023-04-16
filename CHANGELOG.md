@@ -4,7 +4,7 @@
 
 ### BREAKING
 
-Due to the recent changes in Twitter API, Omnitweety is no longer published on Chrome Web Store.
+Due to the recent changes in Twitter API, Omnitweety is no longer published on Chrome Web Store.  
 If you want to use this extension, please create your own Twitter Developer Account and build Omnitweety on your own.
 
 I'm still planning to develop Omnitweety as this is an essential tool for me, so feel free to contribute ;)
