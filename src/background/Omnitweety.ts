@@ -3,18 +3,17 @@ import { OAuthRequestHeader } from '../auth/OAuthHeader'
 import { postSignedRequest } from '../auth/request'
 import { ChromeDelegate } from '../ChromeDelegate'
 import { Clock } from '../Clock'
-import { TwitterConfig } from '../Config'
+import { AppConfig, TwitterConfig } from '../Config'
 import accessTokenRepository from '../data/AccessTokenRepository'
 import ConsumerKeys from '../data/ConsumerKeys'
 import { escapeOAuthText } from '../utils'
 import SubCommands from './SubCommands'
 
 interface TweetResponse {
-  user: {
-    profile_image_url_https: string
-    name: string
+  data: {
+    id: string
+    text: string
   }
-  text: string
 }
 
 class Omnitweety {
@@ -47,17 +46,16 @@ class Omnitweety {
       return
     }
 
-    this.oAuthRequestHeader.updateAccessToken(await accessTokenRepository.get())
+    const token = await accessTokenRepository.get()
 
-    // URLSearchParams encode space as '+', but Twitter API requires '%20'
-    const url = new URL(
-      `${TwitterConfig.URL_STATUS_UPDATE}?status=${escapeOAuthText(message)}`
-    )
+    console.log('token', token)
+
+    this.oAuthRequestHeader.updateAccessToken(token)
 
     try {
       const response = await postSignedRequest(
-        url,
-        null,
+        new URL(TwitterConfig.URL_STATUS_UPDATE),
+        { text: message },
         this.oAuthRequestHeader
       )
 
@@ -74,9 +72,9 @@ class Omnitweety {
 
       const res: TweetResponse = body
       chrome.createNotification(
-        res.user.profile_image_url_https,
-        res.user.name,
-        res.text
+        './src/assets/icon_128.png',
+        AppConfig.NAME,
+        res.data.text
       )
     } catch (error) {
       chrome.createNotification(

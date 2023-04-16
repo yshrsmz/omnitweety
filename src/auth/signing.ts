@@ -43,12 +43,13 @@ export const createSignature = async (
     oauthParameters[key] = [...current, percentEncode(value)]
   })
 
-  if (requestBody) {
-    Object.keys(requestBody).forEach((key) => {
-      const current = oauthParameters[key] || []
-      oauthParameters[key] = [...current, percentEncode(requestBody[key])]
-    })
-  }
+  // It seems like we don't need to include request body in the signature
+  // if (requestBody) {
+  //   Object.keys(requestBody).forEach((key) => {
+  //     const current = oauthParameters[key] || []
+  //     oauthParameters[key] = [...current, percentEncode(requestBody[key])]
+  //   })
+  // }
 
   const params = Object.entries(oauthParameters)
     .sort(([keyA], [keyB]) => {
@@ -69,6 +70,8 @@ export const createSignature = async (
     percentEncode(requestUrl.toString()),
     percentEncode(params),
   ].join('&')
+
+  // console.log('baseString', baseString)
 
   const signingKey = [
     percentEncode(consumerKeys.secret),
