@@ -1,5 +1,9 @@
 # Change Log
 
+## Version 2.0.1 _(2023-07-20)_
+
+- fixed `TypeError: Cannot read properties of undefined (reading 'newValue')`
+
 ## Version 2.0.0 _(2023-04-16)_
 
 ### BREAKING
