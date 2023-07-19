@@ -20,7 +20,7 @@ class DefaultLogger implements Logger {
       const { [ConfigDataSource.KEY_LOGGING_ACTIVE]: loggingActiveChange } =
         changes
 
-      const { newValue = false } = loggingActiveChange
+      const { newValue = false } = loggingActiveChange ?? {}
       consola.level = newValue ? LogLevel.Debug : LogLevel.Silent
     })
 
