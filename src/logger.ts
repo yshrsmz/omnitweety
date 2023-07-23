@@ -1,4 +1,4 @@
-import consola, { Consola, LogLevel } from 'consola'
+import consola, { ConsolaInstance } from 'consola'
 import { ChromeDelegate, DefaultChromeDelegate } from './ChromeDelegate'
 import { ConfigDataSource } from './data/ConfigDataSource'
 import debugRepository, { DebugRepository } from './data/DebugRepository'
@@ -12,7 +12,7 @@ class DefaultLogger implements Logger {
   private enabled = true
 
   constructor(
-    private readonly consola: Consola,
+    private readonly consola: ConsolaInstance,
     private readonly chromeDelegate: ChromeDelegate,
     private readonly debugRepository: DebugRepository
   ) {
@@ -21,11 +21,11 @@ class DefaultLogger implements Logger {
         changes
 
       const { newValue = false } = loggingActiveChange ?? {}
-      consola.level = newValue ? LogLevel.Debug : LogLevel.Silent
+      consola.level = newValue ? 4 : -999
     })
 
     debugRepository.isLoggingActive().then((loggingActive) => {
-      consola.level = loggingActive ? LogLevel.Debug : LogLevel.Silent
+      consola.level = loggingActive ? 4 : -999
     })
   }
 
