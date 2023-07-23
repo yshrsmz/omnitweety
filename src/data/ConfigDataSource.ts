@@ -1,4 +1,4 @@
-import { TwitterConfig, AppConfig } from '../Config'
+import { AppConfig } from '../Config'
 import consola from 'consola'
 
 const load = async <T extends { [key: string]: string | number | boolean }>(
