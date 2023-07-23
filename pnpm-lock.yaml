@@ -43,8 +43,8 @@ devDependencies:
     specifier: 4.2.3
     version: 4.2.3(vite@4.3.7)(vue@3.3.2)
   '@vue/eslint-config-prettier':
-    specifier: 7.1.0
-    version: 7.1.0(eslint@8.40.0)(prettier@3.0.0)
+    specifier: 8.0.0
+    version: 8.0.0(eslint@8.40.0)(prettier@3.0.0)
   '@vue/eslint-config-typescript':
     specifier: 11.0.3
     version: 11.0.3(eslint-plugin-vue@9.13.0)(eslint@8.40.0)(typescript@5.0.4)
@@ -814,16 +814,18 @@ packages:
       '@vue/compiler-dom': 3.3.2
       '@vue/shared': 3.3.2
 
-  /@vue/eslint-config-prettier@7.1.0(eslint@8.40.0)(prettier@3.0.0):
-    resolution: {integrity: sha512-Pv/lVr0bAzSIHLd9iz0KnvAr4GKyCEl+h52bc4e5yWuDVtLgFwycF7nrbWTAQAS+FU6q1geVd07lc6EWfJiWKQ==}
+  /@vue/eslint-config-prettier@8.0.0(eslint@8.40.0)(prettier@3.0.0):
+    resolution: {integrity: sha512-55dPqtC4PM/yBjhAr+yEw6+7KzzdkBuLmnhBrDfp4I48+wy+Giqqj9yUr5T2uD/BkBROjjmqnLZmXRdOx/VtQg==}
     peerDependencies:
-      eslint: '>= 7.28.0'
-      prettier: '>= 2.0.0'
+      eslint: '>= 8.0.0'
+      prettier: '>= 3.0.0'
     dependencies:
       eslint: 8.40.0
       eslint-config-prettier: 8.8.0(eslint@8.40.0)
-      eslint-plugin-prettier: 4.2.1(eslint-config-prettier@8.8.0)(eslint@8.40.0)(prettier@3.0.0)
+      eslint-plugin-prettier: 5.0.0(eslint-config-prettier@8.8.0)(eslint@8.40.0)(prettier@3.0.0)
       prettier: 3.0.0
+    transitivePeerDependencies:
+      - '@types/eslint'
     dev: true
 
   /@vue/eslint-config-typescript@11.0.3(eslint-plugin-vue@9.13.0)(eslint@8.40.0)(typescript@5.0.4):
@@ -1463,23 +1465,6 @@ packages:
       eslint: '>=7.0.0'
     dependencies:
       eslint: 8.40.0
-    dev: true
-
-  /eslint-plugin-prettier@4.2.1(eslint-config-prettier@8.8.0)(eslint@8.40.0)(prettier@3.0.0):
-    resolution: {integrity: sha512-f/0rXLXUt0oFYs8ra4w49wYZBG5GKZpAYsJSm6rnYL5uVDjd+zowwMwVZHnAjf4edNrKpCDYfXDgmRE/Ak7QyQ==}
-    engines: {node: '>=12.0.0'}
-    peerDependencies:
-      eslint: '>=7.28.0'
-      eslint-config-prettier: '*'
-      prettier: '>=2.0.0'
-    peerDependenciesMeta:
-      eslint-config-prettier:
-        optional: true
-    dependencies:
-      eslint: 8.40.0
-      eslint-config-prettier: 8.8.0(eslint@8.40.0)
-      prettier: 3.0.0
-      prettier-linter-helpers: 1.0.0
     dev: true
 
   /eslint-plugin-prettier@5.0.0(eslint-config-prettier@8.8.0)(eslint@8.40.0)(prettier@3.0.0):
