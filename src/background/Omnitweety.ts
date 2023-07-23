@@ -6,7 +6,6 @@ import { Clock } from '../Clock'
 import { AppConfig, TwitterConfig } from '../Config'
 import accessTokenRepository from '../data/AccessTokenRepository'
 import ConsumerKeys from '../data/ConsumerKeys'
-import { escapeOAuthText } from '../utils'
 import SubCommands from './SubCommands'
 
 interface TweetResponse {

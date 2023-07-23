@@ -15,7 +15,6 @@ I'm still planning to develop Omnitweety as this is an essential tool for me, so
 
 - Migrated to Twitter API v2
 
-
 ## Version 1.1.0 _(2022-12-25)_
 
 - Add an option to enable debug logging
