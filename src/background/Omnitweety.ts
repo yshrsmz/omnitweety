@@ -31,13 +31,11 @@ class Omnitweety {
   async initialize() {
     const token = await accessTokenRepository.get()
 
-    if (token.isAuthorized()) {
-      this.oAuthRequestHeader = new OAuthRequestHeader(
-        new ConsumerKeys(TwitterConfig.API_KEY, TwitterConfig.API_SECRET),
-        token,
-        this.clock
-      )
-    }
+    this.oAuthRequestHeader = new OAuthRequestHeader(
+      new ConsumerKeys(TwitterConfig.API_KEY, TwitterConfig.API_SECRET),
+      token,
+      this.clock
+    )
   }
 
   async isAuthorized(): Promise<boolean> {
