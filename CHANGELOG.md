@@ -1,8 +1,12 @@
 # Change Log
 
+## Version 2.0.3 _(2023-07-25)_
+
+- FIX: failed to send tweet because OAuthRequestHeader is not properly updated after login.
+
 ## Version 2.0.1 _(2023-07-20)_
 
-- fixed `TypeError: Cannot read properties of undefined (reading 'newValue')`
+- FIX: `TypeError: Cannot read properties of undefined (reading 'newValue')`
 
 ## Version 2.0.0 _(2023-04-16)_
 
