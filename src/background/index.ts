@@ -6,7 +6,7 @@ import Omnitweety from './Omnitweety'
 declare const self: ServiceWorkerGlobalScope
 export {}
 
-const omnitweety = new Omnitweety(new DefaultClock())
+const omnitweety = new Omnitweety(new DefaultClock(), logger)
 omnitweety.initialize()
 
 chrome.runtime.onInstalled.addListener(async (detail) => {

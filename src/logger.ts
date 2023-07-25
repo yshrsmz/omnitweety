@@ -6,6 +6,9 @@ import debugRepository, { DebugRepository } from './data/DebugRepository'
 export interface Logger {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   info(message?: any, ...optionalParams: any[]): void
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  debug(message?: any, ...optionalParams: any[]): void
 }
 
 class DefaultLogger implements Logger {

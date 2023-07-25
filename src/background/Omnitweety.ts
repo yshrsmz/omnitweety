@@ -7,6 +7,7 @@ import { AppConfig, TwitterConfig } from '../Config'
 import accessTokenRepository from '../data/AccessTokenRepository'
 import ConsumerKeys from '../data/ConsumerKeys'
 import SubCommands from './SubCommands'
+import { Logger } from '../logger'
 
 interface TweetResponse {
   data: {
@@ -20,8 +21,11 @@ class Omnitweety {
 
   private readonly clock: Clock
 
-  constructor(clock: Clock) {
+  private readonly logger: Logger
+
+  constructor(clock: Clock, logger: Logger) {
     this.clock = clock
+    this.logger = logger
   }
 
   async initialize() {
@@ -42,12 +46,17 @@ class Omnitweety {
 
   async postStatus(message: string, chrome: ChromeDelegate) {
     if (!message || !this.oAuthRequestHeader) {
+      this.logger.info(
+        'message or oAuthRequestHeader is null',
+        message,
+        this.oAuthRequestHeader
+      )
       return
     }
 
     const token = await accessTokenRepository.get()
 
-    console.log('token', token)
+    this.logger.debug('token', token)
 
     this.oAuthRequestHeader.updateAccessToken(token)
 
