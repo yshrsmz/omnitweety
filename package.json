@@ -12,7 +12,7 @@
     "format": "eslint --fix --ext .ts,.js,.vue,.cjs . && prettier -w ."
   },
   "dependencies": {
-    "@headlessui/vue": "1.7.14",
+    "@headlessui/vue": "1.7.15",
     "@heroicons/vue": "2.0.18",
     "consola": "3.2.3",
     "date-fns": "2.30.0",
@@ -22,7 +22,7 @@
   "devDependencies": {
     "@crxjs/vite-plugin": "2.0.0-beta.18",
     "@tailwindcss/forms": "0.5.4",
-    "@types/chrome": "0.0.241",
+    "@types/chrome": "0.0.242",
     "@types/twitter-text": "3.1.5",
     "@typescript-eslint/eslint-plugin": "6.2.0",
     "@typescript-eslint/parser": "6.2.0",
@@ -30,8 +30,8 @@
     "@vue/eslint-config-prettier": "8.0.0",
     "@vue/eslint-config-typescript": "11.0.3",
     "autoprefixer": "10.4.14",
-    "eslint": "8.45.0",
-    "eslint-config-prettier": "8.8.0",
+    "eslint": "8.46.0",
+    "eslint-config-prettier": "8.9.0",
     "eslint-plugin-prettier": "5.0.0",
     "eslint-plugin-vue": "9.15.1",
     "jsdom": "22.1.0",
@@ -41,7 +41,7 @@
     "typescript": "5.1.6",
     "vite": "4.4.7",
     "vitest": "0.33.0",
-    "vue-tsc": "1.8.6"
+    "vue-tsc": "1.8.8"
   },
   "packageManager": "pnpm@8.6.10"
 }
