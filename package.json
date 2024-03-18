@@ -15,7 +15,7 @@
     "@headlessui/vue": "1.7.15",
     "@heroicons/vue": "2.0.18",
     "consola": "3.2.3",
-    "date-fns": "2.30.0",
+    "date-fns": "3.6.0",
     "twitter-text": "3.1.0",
     "vue": "3.3.4"
   },
