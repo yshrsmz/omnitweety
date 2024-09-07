@@ -10,7 +10,9 @@
       "matchUpdateTypes": ["minor", "patch"],
       "groupName": "all non-major dependencies",
       "groupSlug": "all-minor-patch",
-      "excludePackageNames": []
+      "excludePackageNames": [
+        "pnpm"
+      ]
     },
     {
       "matchPackagePrefixes": ["@vitejs"],
