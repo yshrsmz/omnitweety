@@ -28,8 +28,8 @@
         "eslint"
       ],
       "matchPackagePrefixes": [
-        "eslint-",
-        "@typescript-eslint/"
+        "@typescript-eslint/",
+        "eslint-"
       ]
     },
     {
@@ -43,11 +43,12 @@
       "groupName": "all non-major dependencies",
       "groupSlug": "all-minor-patch",
       "excludePackageNames": [
+        "eslint",
         "pnpm"
       ],
       "excludePackagePrefixes": [
-        "eslint-",
-        "@typescript-eslint/"
+        "@typescript-eslint/",
+        "eslint-"
       ]
     }
   ]
