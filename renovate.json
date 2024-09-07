@@ -1,23 +1,54 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base", ":pinDependencies", ":pinDevDependencies"],
-  "lockFileMaintenance": { "enabled": true },
+  "extends": [
+    "config:base",
+    ":pinDependencies",
+    ":pinDevDependencies"
+  ],
+  "lockFileMaintenance": {
+    "enabled": true
+  },
   "masterIssue": true,
-  "postUpdateOptions": ["pnpmDedupe"],
+  "postUpdateOptions": [
+    "pnpmDedupe"
+  ],
   "packageRules": [
     {
-      "matchPackagePatterns": ["*"],
-      "matchUpdateTypes": ["minor", "patch"],
+      "matchPackagePrefixes": [
+        "@vitejs"
+      ],
+      "matchPackageNames": [
+        "vite"
+      ],
+      "groupName": "vitejs"
+    },
+    {
+      "groupName": "eslint",
+      "matchPackageNames": [
+        "eslint"
+      ],
+      "matchPackagePrefixes": [
+        "eslint-",
+        "@typescript-eslint/"
+      ]
+    },
+    {
+      "matchPackagePatterns": [
+        "*"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
       "groupName": "all non-major dependencies",
       "groupSlug": "all-minor-patch",
       "excludePackageNames": [
         "pnpm"
+      ],
+      "excludePackagePrefixes": [
+        "eslint-",
+        "@typescript-eslint/"
       ]
-    },
-    {
-      "matchPackagePrefixes": ["@vitejs"],
-      "matchPackageNames": ["vite"],
-      "groupName": "vitejs"
     }
   ]
 }
