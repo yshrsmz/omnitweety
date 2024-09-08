@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "lib": ["ESNext"],
+    "useDefineForClassFields": true,
     "module": "ESNext",
+    "lib": ["ESNext", "DOM", "WebWorker"],
     "skipLibCheck": true,
 
     /* Bundler mode */
@@ -11,6 +12,7 @@
     "isolatedModules": true,
     "moduleDetection": "force",
     "noEmit": true,
+    "jsx": "preserve",
 
     /* Linting */
     "strict": true,
@@ -18,17 +20,16 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
 
-    // "composite": true,
-    // "allowSyntheticDefaultImports": true,
-    // "resolveJsonModule": true
-
-    "types": ["@types/node"]
+    /* Others */
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "types": ["chrome"]
   },
   "include": [
-    "vite.config.ts",
-    "vitest.setup.ts",
-    "manifest.config.ts",
-    "package.json",
-    "apikey-release.json"
-  ]
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "manifest.config.ts"
+  ],
 }

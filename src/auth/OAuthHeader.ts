@@ -17,6 +17,7 @@ export interface AuthHeader {
 export class OAuthFlowHeader implements AuthHeader {
   constructor(
     private readonly consumerKeys: ConsumerKeys,
+    // @ts-expect-error
     private readonly oAuthConfig: OAuthConfig,
     private readonly clock: Clock,
     private readonly nonceGen: NonceGenerator = nonceGenerator

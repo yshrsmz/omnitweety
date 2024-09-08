@@ -30,10 +30,12 @@ class Options implements SubCommand {
     return /^:options(\s*|\s+[\w\W]*)$/i.test(command)
   }
 
+  // @ts-expect-error
   async handleInputEvent(command: string, chrome: ChromeDelegate) {
     chrome.showDefaultSuggestion('Open options page')
   }
 
+  // @ts-expect-error
   async handleEnterEvent(command: string, chrome: ChromeDelegate) {
     chrome.openOptionsPage()
     return null
@@ -54,10 +56,12 @@ class Version implements SubCommand {
     return `I'm using Omnitweety for Chrome Version ${version} - ${url}`
   }
 
+  // @ts-expect-error
   async handleInputEvent(command: string, chrome: ChromeDelegate) {
     chrome.showDefaultSuggestion(this.buildVersionString(chrome))
   }
 
+  // @ts-expect-error
   async handleEnterEvent(command: string, chrome: ChromeDelegate) {
     return this.buildVersionString(chrome)
   }

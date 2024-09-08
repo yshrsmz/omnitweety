@@ -16,7 +16,9 @@ class DefaultLogger implements Logger {
 
   constructor(
     private readonly consola: ConsolaInstance,
+    // @ts-expect-error
     private readonly chromeDelegate: ChromeDelegate,
+    // @ts-expect-error
     private readonly debugRepository: DebugRepository
   ) {
     chromeDelegate.onStorageChanged((changes) => {
