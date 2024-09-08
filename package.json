@@ -26,7 +26,7 @@
     "@types/twitter-text": "3.1.5",
     "@typescript-eslint/eslint-plugin": "6.2.0",
     "@typescript-eslint/parser": "6.2.0",
-    "@vitejs/plugin-vue": "4.6.2",
+    "@vitejs/plugin-vue": "5.1.3",
     "@vue/eslint-config-prettier": "9.0.0",
     "@vue/eslint-config-typescript": "13.0.0",
     "autoprefixer": "10.4.14",
@@ -39,7 +39,7 @@
     "prettier": "3.0.0",
     "tailwindcss": "3.3.3",
     "typescript": "5.1.6",
-    "vite": "4.5.3",
+    "vite": "5.4.3",
     "vitest": "2.0.5",
     "vue-tsc": "1.8.27"
   },
