@@ -17,7 +17,7 @@
     "consola": "3.2.3",
     "date-fns": "3.6.0",
     "twitter-text": "3.1.0",
-    "vue": "3.3.4"
+    "vue": "3.5.3"
   },
   "devDependencies": {
     "@crxjs/vite-plugin": "2.0.0-beta.18",
@@ -41,7 +41,7 @@
     "typescript": "5.1.6",
     "vite": "4.5.3",
     "vitest": "2.0.5",
-    "vue-tsc": "1.8.8"
+    "vue-tsc": "1.8.27"
   },
   "packageManager": "pnpm@9.9.0"
 }
