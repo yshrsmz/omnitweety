@@ -44,5 +44,5 @@
     "vitest": "2.1.1",
     "vue-tsc": "2.1.6"
   },
-  "packageManager": "pnpm@9.10.0"
+  "packageManager": "pnpm@9.15.9"
 }
