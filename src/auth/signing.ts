@@ -27,7 +27,7 @@ export const createSignature = async (
   method: 'GET' | 'POST',
   url: URL,
   headers: Record<string, string>,
-  // @ts-expect-error
+  // @ts-expect-error - kept for API compatibility, may be used in future
   requestBody: Record<string, string> | null,
   consumerKeys: ConsumerKeys,
   accessToken: AccessToken | null

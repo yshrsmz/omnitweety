@@ -29,7 +29,10 @@
       "type": "volume"
     }
   ],
-  "runArgs": ["--env-file", "${localWorkspaceFolder}/.devcontainer/runtime.env"],
+  "runArgs": [
+    "--env-file",
+    "${localWorkspaceFolder}/.devcontainer/runtime.env"
+  ],
   "features": {
     "ghcr.io/devcontainers/features/github-cli:1": {
       "installDirectlyFromGitHubRelease": true,
@@ -41,10 +44,16 @@
     "-c",
     "cd ${localWorkspaceFolder} && if [ ! -f .devcontainer/runtime.env ]; then cp .devcontainer/runtime.env.template .devcontainer/runtime.env; fi"
   ],
-  "onCreateCommand": ["/bin/bash", "/home/vscode/workspace/.devcontainer/scripts/on-create.sh"],
+  "onCreateCommand": [
+    "/bin/bash",
+    "/home/vscode/workspace/.devcontainer/scripts/on-create.sh"
+  ],
   "postCreateCommand": [
     "/bin/bash",
     "/home/vscode/workspace/.devcontainer/scripts/on-post-create.sh"
   ],
-  "postStartCommand": ["/bin/bash", "/home/vscode/workspace/.devcontainer/scripts/on-post-start.sh"]
+  "postStartCommand": [
+    "/bin/bash",
+    "/home/vscode/workspace/.devcontainer/scripts/on-post-start.sh"
+  ]
 }

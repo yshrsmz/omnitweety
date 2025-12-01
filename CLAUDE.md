@@ -19,6 +19,7 @@ pnpm format           # Lint and format code
 ## Required Setup
 
 Create `apikey-release.json` in project root with Twitter API credentials:
+
 ```json
 {
   "consumer_key": "YOUR_CONSUMER_KEY",
@@ -36,15 +37,18 @@ Create `apikey-release.json` in project root with Twitter API credentials:
 ### Key Components
 
 **Omnibox Command System** (`src/background/`):
+
 - `Omnitweety.ts`: Main controller handling tweet posting and omnibox input
 - `SubCommands.ts`: Extensible command system for `:share`, `:options`, `:version` commands
 
 **OAuth Authentication** (`src/auth/`):
+
 - `AuthFlow.ts`: OAuth 1.0a PIN-based flow for Twitter
 - `OAuthHeader.ts`: Generates signed OAuth headers
 - `signing.ts`: HMAC-SHA1 signature generation
 
 **Data Layer** (`src/data/`):
+
 - `ConfigDataSource.ts`: Chrome storage abstraction with migration support
 - Repository pattern: `AccessTokenRepository`, `TweetTemplateRepository`, `AmazonAssociateRepository`
 

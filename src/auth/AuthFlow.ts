@@ -10,7 +10,7 @@ export class AuthFlow {
   private readonly authHeader: OAuthFlowHeader
 
   private oauthToken = ''
-  // @ts-expect-error
+  // @ts-expect-error - assigned but not used yet, kept for future OAuth flow extensions
   private oauthTokenSecret = ''
 
   constructor(

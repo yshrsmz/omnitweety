@@ -39,7 +39,6 @@ export default class AmazonAssociate {
   }
 
   public static getProductId(url: URL): string {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     return url.pathname.match(AmazonAssociate.PRODUCT_ID_REGEXP)![1]
   }
 
