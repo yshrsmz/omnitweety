@@ -8,7 +8,7 @@ const percentEncode = (value: string): string => {
   )
 }
 
-const stringToUint8Array = (value: string): Uint8Array => {
+const stringToUint8Array = (value: string): Uint8Array<ArrayBuffer> => {
   return Uint8Array.from(Array.from(value).map((char) => char.charCodeAt(0)))
 }
 
