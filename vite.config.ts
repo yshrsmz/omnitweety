@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue'
 import { crx } from '@crxjs/vite-plugin'
 import manifest from './manifest.config'
 import apikeys from './apikey-release.json' with { type: 'json' }
+import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -19,6 +20,14 @@ export default defineConfig({
       https: 'https-browserify',
       stream: 'stream-browserify',
       url: 'url',
+      '@': `${path.resolve(__dirname, 'src')}`,
+    },
+  },
+  server: {
+    cors: {
+      origin: [
+        /chrome-extension:\/\//,
+      ],
     },
   },
 })
