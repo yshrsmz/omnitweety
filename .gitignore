@@ -7,6 +7,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+.pnpm-store/
 node_modules
 dist
 dist-ssr
@@ -27,3 +28,7 @@ apikey-*.json
 
 dist.zip
 .DS_Store
+
+*.tsbuildinfo
+
+.devcontainer/runtime.env
