@@ -1,56 +1,30 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:base",
-    ":pinDependencies",
-    ":pinDevDependencies"
-  ],
+  "extends": ["config:base", ":pinDependencies", ":pinDevDependencies"],
   "lockFileMaintenance": {
     "enabled": true
   },
   "masterIssue": true,
-  "postUpdateOptions": [
-    "pnpmDedupe"
-  ],
+  "postUpdateOptions": ["pnpmDedupe"],
   "prConcurrentLimit": 1,
   "packageRules": [
     {
-      "matchPackagePrefixes": [
-        "@vitejs"
-      ],
-      "matchPackageNames": [
-        "vite"
-      ],
+      "matchPackagePrefixes": ["@vitejs"],
+      "matchPackageNames": ["vite"],
       "groupName": "vitejs"
     },
     {
       "groupName": "eslint",
-      "matchPackageNames": [
-        "eslint"
-      ],
-      "matchPackagePrefixes": [
-        "@typescript-eslint/",
-        "eslint-"
-      ]
+      "matchPackageNames": ["eslint"],
+      "matchPackagePrefixes": ["@typescript-eslint/", "eslint-"]
     },
     {
-      "matchPackagePatterns": [
-        "*"
-      ],
-      "matchUpdateTypes": [
-        "minor",
-        "patch"
-      ],
+      "matchPackagePatterns": ["*"],
+      "matchUpdateTypes": ["minor", "patch"],
       "groupName": "all non-major dependencies",
       "groupSlug": "all-minor-patch",
-      "excludePackageNames": [
-        "eslint",
-        "pnpm"
-      ],
-      "excludePackagePrefixes": [
-        "@typescript-eslint/",
-        "eslint-"
-      ]
+      "excludePackageNames": ["eslint", "pnpm"],
+      "excludePackagePrefixes": ["@typescript-eslint/", "eslint-"]
     }
   ]
 }
