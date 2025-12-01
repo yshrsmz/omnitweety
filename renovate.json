@@ -12,6 +12,7 @@
   "postUpdateOptions": [
     "pnpmDedupe"
   ],
+  "prConcurrentLimit": 1,
   "packageRules": [
     {
       "matchPackagePrefixes": [
