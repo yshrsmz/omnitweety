@@ -1,5 +1,6 @@
 import { defineConfig } from 'wxt'
 import path from 'node:path'
+import tailwindcss from '@tailwindcss/vite'
 import apikeys from './apikey-release.json' with { type: 'json' }
 
 // https://wxt.dev/api/config.html
@@ -28,10 +29,22 @@ export default defineConfig({
   alias: {
     '@': path.resolve(__dirname, 'src'),
   },
+  webExt: {
+    disabled: true,
+  },
+  dev: {
+    server: {
+      port: 3000,
+      host: '0.0.0.0',
+      origin: 'http://localhost:3000',
+    },
+  },
   vite: () => ({
     define: {
       TWITTER_API_KEY: JSON.stringify(apikeys.consumer_key),
       TWITTER_API_SECRET: JSON.stringify(apikeys.consumer_secret),
     },
+    plugins: [tailwindcss()],
+    server: { host: true, strictPort: true },
   }),
 })

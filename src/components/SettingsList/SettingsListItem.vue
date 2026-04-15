@@ -19,20 +19,15 @@ export default defineComponent({
 
 <template>
   <li class="SettingsListItem" :class="$attrs.class">
-    <component :is="as" v-bind="excludedAttrs" class="block">
+    <component
+      :is="as"
+      v-bind="excludedAttrs"
+      class="block px-6 py-4 text-base"
+    >
       <slot />
-      <div v-if="$slots.subtext" class="SettingsListItem__subtext">
+      <div v-if="$slots.subtext" class="SettingsListItem__subtext text-gray-600 text-sm">
         <slot name="subtext"></slot>
       </div>
     </component>
   </li>
 </template>
-<style lang="postcss" scoped>
-.SettingsListItem > :deep(*) {
-  @apply px-6 py-4 text-base;
-}
-
-.SettingsListItem__subtext {
-  @apply text-gray-600 text-sm;
-}
-</style>
