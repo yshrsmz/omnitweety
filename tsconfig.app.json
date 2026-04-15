@@ -25,6 +25,12 @@
     "esModuleInterop": true,
     "types": ["chrome"]
   },
+  "vueCompilerOptions": {
+    "strictSlotChildren": true,
+    "strictVModel": true,
+    "strictCssModules": true,
+    "resolveStyleImports": true
+  },
   "include": [
     "src/**/*.ts",
     "src/**/*.d.ts",
