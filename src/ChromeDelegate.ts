@@ -3,6 +3,7 @@ import { Chrome, escapeText } from './utils'
 export interface ChromeDelegate {
   currentPage(): Promise<chrome.tabs.Tab | null>
   appVersion(): string
+  getURL(path: string): string
   showDefaultSuggestion(message: string): void
   openNewTab(url: string, active: boolean): void
   openOptionsPage(): void
@@ -30,6 +31,10 @@ export class DefaultChromeDelegate implements ChromeDelegate {
   appVersion(): string {
     const manifest = this.chrome.runtime.getManifest()
     return manifest.version_name ?? manifest.version
+  }
+
+  getURL(path: string): string {
+    return this.chrome.runtime.getURL(path)
   }
 
   showDefaultSuggestion(message: string): void {

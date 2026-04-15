@@ -9,12 +9,19 @@ Omnitweety is a Chrome extension that allows users to tweet from Chrome's Omnibo
 ## Build Commands
 
 ```bash
-pnpm install          # Install dependencies
-pnpm dev              # Development build with hot reload
-pnpm build            # Production build (runs vue-tsc then vite build)
-pnpm test             # Run tests with vitest
-pnpm format           # Lint and format code
+pnpm install                      # Install dependencies (runs `wxt prepare` in postinstall)
+pnpm dev                          # Development build with hot reload (WXT)
+pnpm build                        # Production build (runs vue-tsc then `wxt build`)
+pnpm zip                          # Production build + zip for store upload
+pnpm test                         # Run tests with vitest (watch mode)
+pnpm test -- run path/to/file     # Run a single test file once
+pnpm lint                         # Lint only (no fixes)
+pnpm format                       # Lint --fix and prettier write
 ```
+
+WXT output lands in `.output/<browser>-mv3/` (e.g. `.output/chrome-mv3/`). Legacy crxjs output (`dist/`) is no longer produced.
+
+Vitest stubs `TWITTER_API_KEY`/`TWITTER_API_SECRET` via `vitest.config.ts`, so tests run without `apikey-release.json`.
 
 ## Required Setup
 
@@ -29,10 +36,10 @@ Create `apikey-release.json` in project root with Twitter API credentials:
 
 ## Architecture
 
-### Chrome Extension Structure (Manifest V3)
+### Chrome Extension Structure (Manifest V3, WXT entrypoints)
 
-- **Background Service Worker** (`src/background/index.ts`): Entry point that initializes `Omnitweety` class and handles Chrome omnibox events (`onInputChanged`, `onInputEntered`)
-- **Options Page** (`src/options.html`, `src/App.vue`): Vue 3 SPA for settings using Tailwind CSS and HeadlessUI
+- **Background Service Worker** (`src/entrypoints/background.ts`): `defineBackground({ type: 'module', main })` — all Chrome listener registration MUST live inside `main()` (WXT imports the file under Node during build; top-level runtime code will break).
+- **Options Page** (`src/entrypoints/options/index.html` + `main.ts` + `../../App.vue`): Vue 3 SPA for settings using Tailwind CSS and HeadlessUI. `open_in_tab: true` is set via `<meta name="manifest.open_in_tab">` so the options page opens in a full tab, matching the legacy `options_page` behavior.
 
 ### Key Components
 
@@ -54,7 +61,7 @@ Create `apikey-release.json` in project root with Twitter API credentials:
 
 ### Build Configuration
 
-- Uses `@crxjs/vite-plugin` for Chrome extension bundling
-- Manifest defined in `manifest.config.ts` (not static JSON)
-- Development mode uses `twd` keyword; production uses `tw`
-- API keys injected as `TWITTER_API_KEY` and `TWITTER_API_SECRET` globals via Vite define
+- Uses [WXT](https://wxt.dev) (`wxt.config.ts`) for Chrome extension bundling. Auto-imports are disabled (`imports: false`) — import `defineBackground` etc. explicitly from `wxt/utils/define-background`.
+- Manifest is generated from `wxt.config.ts` `manifest: ({ mode }) => ({ ... })`; `version`/`version_name` come from `package.json`.
+- Development mode uses `twd` omnibox keyword and `[DEV] Omnitweety` name; production uses `tw` / `Omnitweety`.
+- API keys injected as `TWITTER_API_KEY` and `TWITTER_API_SECRET` globals via Vite `define` (forwarded through `wxt.config.ts` `vite:` hook).

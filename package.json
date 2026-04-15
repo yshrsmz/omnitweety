@@ -5,12 +5,13 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc -b && vite build",
-    "preview": "vite preview",
+    "dev": "wxt",
+    "build": "vue-tsc -b && wxt build",
+    "zip": "vue-tsc -b && wxt zip",
     "test": "vitest",
     "lint": "eslint .",
-    "format": "eslint --fix . && prettier -w ."
+    "format": "eslint --fix . && prettier -w .",
+    "postinstall": "wxt prepare"
   },
   "dependencies": {
     "@headlessui/vue": "1.7.23",
@@ -21,13 +22,13 @@
     "vue": "3.5.26"
   },
   "devDependencies": {
-    "@crxjs/vite-plugin": "2.3.0",
     "@eslint/js": "9.39.2",
     "@tailwindcss/forms": "0.5.11",
     "@types/chrome": "0.1.32",
     "@types/node": "24.10.4",
     "@types/twitter-text": "3.1.10",
     "@vitejs/plugin-vue": "6.0.3",
+    "@wxt-dev/module-vue": "^1.0.3",
     "autoprefixer": "10.4.23",
     "eslint": "9.39.2",
     "eslint-config-prettier": "10.1.8",
@@ -41,7 +42,8 @@
     "typescript-eslint": "8.50.1",
     "vite": "7.3.0",
     "vitest": "2.1.9",
-    "vue-tsc": "2.2.12"
+    "vue-tsc": "2.2.12",
+    "wxt": "^0.20.22"
   },
   "packageManager": "pnpm@9.15.9"
 }

@@ -16,6 +16,8 @@ interface TweetResponse {
   }
 }
 
+const NOTIFICATION_ICON_PATH = '/icon-128.png'
+
 class Omnitweety {
   private oAuthRequestHeader: OAuthRequestHeader | null = null
 
@@ -69,7 +71,7 @@ class Omnitweety {
 
       if (!response.ok) {
         chrome.createNotification(
-          './src/assets/icon_128.png',
+          chrome.getURL(NOTIFICATION_ICON_PATH),
           `Oops! there was an error: ${response.status}`,
           body?.errors?.[0]?.message || `Error: ${response.statusText}`
         )
@@ -78,13 +80,13 @@ class Omnitweety {
 
       const res: TweetResponse = body
       chrome.createNotification(
-        './src/assets/icon_128.png',
+        chrome.getURL(NOTIFICATION_ICON_PATH),
         AppConfig.NAME,
         res.data.text
       )
     } catch (error) {
       chrome.createNotification(
-        './src/assets/icon_128.png',
+        chrome.getURL(NOTIFICATION_ICON_PATH),
         `Oops! there was an error`,
         `${error}`
       )
