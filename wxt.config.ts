@@ -33,14 +33,5 @@ export default defineConfig({
       TWITTER_API_KEY: JSON.stringify(apikeys.consumer_key),
       TWITTER_API_SECRET: JSON.stringify(apikeys.consumer_secret),
     },
-    resolve: {
-      alias: {
-        buffer: 'buffer',
-        http: 'stream-http',
-        https: 'https-browserify',
-        stream: 'stream-browserify',
-        url: 'url',
-      },
-    },
   }),
 })
