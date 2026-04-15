@@ -6,11 +6,14 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite",
+    "dev:wxt": "wxt",
     "build": "vue-tsc -b && vite build",
+    "build:wxt": "vue-tsc -b && wxt build",
     "preview": "vite preview",
     "test": "vitest",
     "lint": "eslint .",
-    "format": "eslint --fix . && prettier -w ."
+    "format": "eslint --fix . && prettier -w .",
+    "postinstall": "wxt prepare"
   },
   "dependencies": {
     "@headlessui/vue": "1.7.23",
@@ -28,6 +31,7 @@
     "@types/node": "24.10.4",
     "@types/twitter-text": "3.1.10",
     "@vitejs/plugin-vue": "6.0.3",
+    "@wxt-dev/module-vue": "^1.0.3",
     "autoprefixer": "10.4.23",
     "eslint": "9.39.2",
     "eslint-config-prettier": "10.1.8",
@@ -41,7 +45,8 @@
     "typescript-eslint": "8.50.1",
     "vite": "7.3.0",
     "vitest": "2.1.9",
-    "vue-tsc": "2.2.12"
+    "vue-tsc": "2.2.12",
+    "wxt": "^0.20.22"
   },
   "packageManager": "pnpm@9.15.9"
 }

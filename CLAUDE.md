@@ -9,12 +9,16 @@ Omnitweety is a Chrome extension that allows users to tweet from Chrome's Omnibo
 ## Build Commands
 
 ```bash
-pnpm install          # Install dependencies
-pnpm dev              # Development build with hot reload
-pnpm build            # Production build (runs vue-tsc then vite build)
-pnpm test             # Run tests with vitest
-pnpm format           # Lint and format code
+pnpm install                      # Install dependencies
+pnpm dev                          # Development build with hot reload
+pnpm build                        # Production build (runs vue-tsc then vite build)
+pnpm test                         # Run tests with vitest (watch mode)
+pnpm test -- run path/to/file     # Run a single test file once
+pnpm lint                         # Lint only (no fixes)
+pnpm format                       # Lint --fix and prettier write
 ```
+
+Vitest stubs `TWITTER_API_KEY`/`TWITTER_API_SECRET` via `vitest.config.ts`, so tests run without `apikey-release.json`.
 
 ## Required Setup
 

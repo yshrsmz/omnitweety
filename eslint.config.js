@@ -7,7 +7,7 @@ import globals from 'globals'
 export default tseslint.config(
   // Global ignores
   {
-    ignores: ['node_modules/', 'dist/', 'pnpm-lock.yaml'],
+    ignores: ['node_modules/', 'dist/', '.output/', '.wxt/', 'pnpm-lock.yaml'],
   },
 
   // Base configs
