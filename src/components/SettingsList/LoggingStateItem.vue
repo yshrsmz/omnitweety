@@ -30,35 +30,18 @@ const onItemClick = () => {
       >
       <Switch
         value="isLoggingActive"
-        class="LoggingStateItem__Switch"
+        class="LoggingStateItem__Switch relative inline-flex h-[38px] w-[74px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
         :class="{
-          'LoggingStateItem__Switch--enabled': isLoggingActive,
-          'LoggingStateItem__Switch--disabled': !isLoggingActive,
+          'LoggingStateItem__Switch--enabled bg-teal-900': isLoggingActive,
+          'LoggingStateItem__Switch--disabled bg-teal-700': !isLoggingActive,
         }"
       >
         <span
           aria-hidden="true"
           :class="isLoggingActive ? 'translate-x-9' : 'translate-x-0'"
-          class="LoggingStateItem__SwitchIcon"
+          class="LoggingStateItem__SwitchIcon pointer-events-none inline-block h-[34px] w-[34px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out"
         />
       </Switch>
     </SwitchGroup>
   </SettingsListItem>
 </template>
-
-<style lang="postcss">
-.LoggingStateItem__Switch {
-  @apply relative inline-flex h-[38px] w-[74px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75;
-}
-
-.LoggingStateItem__Switch--enabled {
-  @apply bg-teal-900;
-}
-.LoggingStateItem__Switch--disabled {
-  @apply bg-teal-700;
-}
-
-.LoggingStateItem__SwitchIcon {
-  @apply pointer-events-none inline-block h-[34px] w-[34px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out;
-}
-</style>

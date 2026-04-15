@@ -50,7 +50,7 @@ const onLoginCloseClick = () => {
         leave-from="opacity-100"
         leave-to="opacity-0"
       >
-        <div class="fixed inset-0 bg-black bg-opacity-25" />
+        <div class="fixed inset-0 bg-black/25" />
       </TransitionChild>
 
       <div class="fixed inset-0 overflow-y-auto">
@@ -82,9 +82,10 @@ const onLoginCloseClick = () => {
                     v-model="pinCodeRef"
                     type="text"
                     name="text"
-                    class="TwitterPinCodeDialog__input"
+                    class="TwitterPinCodeDialog__input block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                     :class="{
-                      'TwitterPinCodeDialog__input--error': !isValidPinCode,
+                      'TwitterPinCodeDialog__input--error border-red-300 text-red-900 placeholder-red-300 focus:border-red-500 focus:ring-red-500':
+                        !isValidPinCode,
                     }"
                     placeholder="7-digit number"
                   />
@@ -117,9 +118,9 @@ const onLoginCloseClick = () => {
                 </button>
                 <button
                   type="button"
-                  class="TwitterPinCodeDialog__AuthButton"
+                  class="TwitterPinCodeDialog__AuthButton inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                   :class="{
-                    'TwitterPinCodeDialog__AuthButton--disabled':
+                    'TwitterPinCodeDialog__AuthButton--disabled bg-blue-50 text-blue-200':
                       !isValidPinCode,
                   }"
                   :disabled="!isValidPinCode"
@@ -135,20 +136,3 @@ const onLoginCloseClick = () => {
     </Dialog>
   </TransitionRoot>
 </template>
-
-<style lang="postcss" scoped>
-.TwitterPinCodeDialog__input {
-  @apply block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm;
-}
-
-.TwitterPinCodeDialog__input.TwitterPinCodeDialog__input--error {
-  @apply border-red-300 text-red-900 placeholder-red-300 focus:border-red-500 focus:ring-red-500;
-}
-
-.TwitterPinCodeDialog__AuthButton {
-  @apply inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2;
-}
-.TwitterPinCodeDialog__AuthButton.TwitterPinCodeDialog__AuthButton--disabled {
-  @apply bg-blue-50 text-blue-200;
-}
-</style>

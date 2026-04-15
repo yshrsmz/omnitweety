@@ -6,12 +6,6 @@ defineProps<{ title: string }>()
 
 <template>
   <SettingsListItem class="SettingsListHeading"
-    ><p>{{ title }}</p></SettingsListItem
+    ><p class="pb-2 text-gray-400 font-semibold">{{ title }}</p></SettingsListItem
   >
 </template>
-
-<style lang="postcss" scoped>
-.SettingsListItem.SettingsListHeading > :deep(*) {
-  @apply pb-2 text-gray-400 font-semibold;
-}
-</style>

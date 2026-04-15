@@ -49,12 +49,16 @@ const onLogout = () => {
   <SettingsListItem>
     <div class="flex flex-row justify-between items-center">
       <p>Auth Status: {{ isAuthorized ? 'Authorized' : 'Not Authorized' }}</p>
-      <button v-if="!isAuthorized" class="AuthButton" @click="onLoginClick">
+      <button
+        v-if="!isAuthorized"
+        class="AuthButton inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+        @click="onLoginClick"
+      >
         Login with Twitter
       </button>
       <button
         v-else
-        class="AuthButton AuthButton--authorized"
+        class="AuthButton AuthButton--authorized inline-flex items-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
         @click="onLogoutClick"
       >
         Logout from Twitter
@@ -71,13 +75,3 @@ const onLogout = () => {
     />
   </SettingsListItem>
 </template>
-
-<style lang="postcss" scoped>
-.AuthButton {
-  @apply inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2;
-}
-
-.AuthButton.AuthButton--authorized {
-  @apply bg-red-600 hover:bg-red-700 focus:ring-red-500;
-}
-</style>
