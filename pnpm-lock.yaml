@@ -49,7 +49,7 @@ importers:
         specifier: 6.0.3
         version: 6.0.3(vite@7.3.2(@types/node@24.10.4)(jiti@2.6.1)(lightningcss@1.32.0)(yaml@2.8.2))(vue@3.5.26(typescript@5.9.3))
       '@wxt-dev/module-vue':
-        specifier: ^1.0.3
+        specifier: 1.0.3
         version: 1.0.3(vite@7.3.2(@types/node@24.10.4)(jiti@2.6.1)(lightningcss@1.32.0)(yaml@2.8.2))(vue@3.5.26(typescript@5.9.3))(wxt@0.20.22(@types/node@24.10.4)(eslint@9.39.2(jiti@2.6.1))(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.53.3)(yaml@2.8.2))
       eslint:
         specifier: 9.39.2
@@ -88,7 +88,7 @@ importers:
         specifier: 2.2.12
         version: 2.2.12(typescript@5.9.3)
       wxt:
-        specifier: ^0.20.22
+        specifier: 0.20.22
         version: 0.20.22(@types/node@24.10.4)(eslint@9.39.2(jiti@2.6.1))(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.53.3)(yaml@2.8.2)
 
 packages:
@@ -2309,10 +2309,6 @@ packages:
     resolution: {integrity: sha512-orRsuYpJVw8LdAwqqLykBj9ecS5/cRHlI5+nvTo8LcCKmzDmqVORXtOIYEEQuL9D4BxtA1lm5isAqzQZCoQ6Eg==}
     engines: {node: '>=4'}
 
-  postcss@8.5.6:
-    resolution: {integrity: sha512-3Ybi1tAuwAP9s0r1UQ2J4n5Y0G05bJkpUIO0/bI9MhwmD70S5aTWbXGBwxHrelT+XM1k6dM0pk+SwNkpTRN7Pg==}
-    engines: {node: ^10 || ^12 || >=14}
-
   postcss@8.5.9:
     resolution: {integrity: sha512-7a70Nsot+EMX9fFU3064K/kdHWZqGVY+BADLyXc8Dfv+mTLLVl6JzJpPaCZ2kQL9gIJvKXSLMHhqdRRjwQeFtw==}
     engines: {node: ^10 || ^12 || >=14}
@@ -3807,7 +3803,7 @@ snapshots:
       '@vue/shared': 3.5.26
       estree-walker: 2.0.2
       magic-string: 0.30.21
-      postcss: 8.5.6
+      postcss: 8.5.9
       source-map-js: 1.2.1
 
   '@vue/compiler-ssr@3.5.26':
@@ -5062,12 +5058,6 @@ snapshots:
       cssesc: 3.0.0
       util-deprecate: 1.0.2
 
-  postcss@8.5.6:
-    dependencies:
-      nanoid: 3.3.11
-      picocolors: 1.1.1
-      source-map-js: 1.2.1
-
   postcss@8.5.9:
     dependencies:
       nanoid: 3.3.11
@@ -5529,7 +5519,7 @@ snapshots:
   vite@5.4.21(@types/node@24.10.4)(lightningcss@1.32.0):
     dependencies:
       esbuild: 0.21.5
-      postcss: 8.5.6
+      postcss: 8.5.9
       rollup: 4.53.3
     optionalDependencies:
       '@types/node': 24.10.4
@@ -5541,7 +5531,7 @@ snapshots:
       esbuild: 0.27.2
       fdir: 6.5.0(picomatch@4.0.4)
       picomatch: 4.0.4
-      postcss: 8.5.6
+      postcss: 8.5.9
       rollup: 4.53.3
       tinyglobby: 0.2.16
     optionalDependencies:
