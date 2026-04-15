@@ -6,7 +6,7 @@
   },
   "masterIssue": true,
   "postUpdateOptions": ["pnpmDedupe"],
-  "prConcurrentLimit": 1,
+  "prConcurrentLimit": 3,
   "packageRules": [
     {
       "matchPackagePrefixes": ["@vitejs"],
