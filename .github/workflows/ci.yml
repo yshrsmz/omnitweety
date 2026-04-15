@@ -21,6 +21,9 @@ jobs:
       - name: Checkout 🛎
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
 
+      - name: Prepare build
+        run: echo "{ \"consumer_key\":\"\", \"consumer_secret\":\"\"}" > apikey-release.json
+
       - uses: pnpm/action-setup@eae0cfeb286e66ffb5155f1a79b90583a127a68b # v2.4.1
 
       - name: Setup node env 🏗
@@ -39,9 +42,6 @@ jobs:
           reporter: github-pr-review
           eslint_flags: '.'
           level: error
-
-      - name: Prepare build
-        run: echo "{ \"consumer_key\":\"\", \"consumer_secret\":\"\"}" > apikey-release.json
 
       - name: Test
         run: pnpm test
