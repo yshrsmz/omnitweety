@@ -61,8 +61,8 @@ importers:
         specifier: 10.8.0
         version: 10.8.0(@typescript-eslint/parser@8.58.2(eslint@10.2.0(jiti@2.6.1))(typescript@5.9.3))(eslint@10.2.0(jiti@2.6.1))(vue-eslint-parser@9.4.3(eslint@10.2.0(jiti@2.6.1)))
       globals:
-        specifier: 16.5.0
-        version: 16.5.0
+        specifier: 17.5.0
+        version: 17.5.0
       jsdom:
         specifier: 27.4.0
         version: 27.4.0
@@ -1714,8 +1714,8 @@ packages:
     resolution: {integrity: sha512-wHTUcDUoZ1H5/0iVqEudYW4/kAlN5cZ3j/bXn0Dpbizl9iaUVeWSHqiOjsgk6OW2bkLclbBjzewBz6weQ1zA2Q==}
     engines: {node: '>=18'}
 
-  globals@16.5.0:
-    resolution: {integrity: sha512-c/c15i26VrJ4IRt5Z89DnIzCGDn9EcebibhAOjw5ibqEHsE1wLUgkPn9RDmNcUKyU87GeaL633nyJ+pplFR2ZQ==}
+  globals@17.5.0:
+    resolution: {integrity: sha512-qoV+HK2yFl/366t2/Cb3+xxPUo5BuMynomoDmiaZBIdbs+0pYbjfZU+twLhGKp4uCZ/+NbtpVepH5bGCxRyy2g==}
     engines: {node: '>=18'}
 
   graceful-fs@4.2.10:
@@ -4404,7 +4404,7 @@ snapshots:
     dependencies:
       ini: 4.1.1
 
-  globals@16.5.0: {}
+  globals@17.5.0: {}
 
   graceful-fs@4.2.10: {}
 
