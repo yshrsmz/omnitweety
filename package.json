@@ -29,7 +29,7 @@
     "@types/twitter-text": "3.1.10",
     "@tailwindcss/vite": "4.2.2",
     "@vitejs/plugin-vue": "6.0.3",
-    "@wxt-dev/module-vue": "^1.0.3",
+    "@wxt-dev/module-vue": "1.0.3",
     "eslint": "9.39.2",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-vue": "10.6.2",
@@ -42,7 +42,7 @@
     "vite": "7.3.2",
     "vitest": "2.1.9",
     "vue-tsc": "2.2.12",
-    "wxt": "^0.20.22"
+    "wxt": "0.20.22"
   },
   "packageManager": "pnpm@9.15.9"
 }
