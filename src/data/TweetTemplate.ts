@@ -12,14 +12,11 @@ export default class TweetTemplate {
     const baseResultText = `${baseMessage} ${url}`
     const baseResult = TwitterText.parseTweet(baseResultText)
 
-    let resultText = ''
     if (baseResult.valid) {
-      resultText = baseResultText
-    } else {
-      const diff = TwitterConfig.STATUS_LENGTH - baseResult.weightedLength
-      resultText = `${baseMessage.slice(0, diff)} ${url}`
+      return baseResultText
     }
-    return resultText
+    const diff = TwitterConfig.STATUS_LENGTH - baseResult.weightedLength
+    return `${baseMessage.slice(0, diff)} ${url}`
   }
 
   public static empty(): TweetTemplate {

@@ -16,6 +16,7 @@
       "groupName": "eslint",
       "matchPackageNames": [
         "eslint",
+        "@eslint/{/,}**",
         "@typescript-eslint/{/,}**",
         "eslint-{/,}**"
       ]
@@ -28,6 +29,7 @@
         "*",
         "!eslint",
         "!pnpm",
+        "!@eslint/{/,}**",
         "!@typescript-eslint/{/,}**",
         "!eslint-{/,}**"
       ]

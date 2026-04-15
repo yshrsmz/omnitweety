@@ -33,6 +33,15 @@ export default tseslint.config(
     },
   },
 
+  // Vue SFCs: top-level bindings in `<script setup>` are consumed by the
+  // template, which eslint core's `no-useless-assignment` cannot see.
+  {
+    files: ['**/*.vue'],
+    rules: {
+      'no-useless-assignment': 'off',
+    },
+  },
+
   // JavaScript config files
   {
     files: ['**/*.{js,cjs}'],
