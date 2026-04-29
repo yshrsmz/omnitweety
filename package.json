@@ -19,7 +19,7 @@
     "consola": "3.4.2",
     "date-fns": "4.1.0",
     "twitter-text": "3.1.0",
-    "vue": "3.5.32"
+    "vue": "3.5.33"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
@@ -34,12 +34,12 @@
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-vue": "10.8.0",
     "globals": "17.5.0",
-    "jsdom": "29.0.2",
+    "jsdom": "29.1.0",
     "prettier": "3.8.3",
     "tailwindcss": "4.2.4",
     "typescript": "6.0.3",
-    "typescript-eslint": "8.59.0",
-    "vite": "8.0.9",
+    "typescript-eslint": "8.59.1",
+    "vite": "8.0.10",
     "vitest": "4.1.5",
     "vue-tsc": "3.2.7",
     "wxt": "0.20.25"
