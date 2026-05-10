@@ -44,8 +44,5 @@
     "vue-tsc": "3.2.8",
     "wxt": "0.20.25"
   },
-  "packageManager": "pnpm@11.0.9",
-  "pnpm": {
-    "onlyBuiltDependencies": ["esbuild"]
-  }
+  "packageManager": "pnpm@11.0.9"
 }
